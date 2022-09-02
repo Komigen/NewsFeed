@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,17 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="OEe-xu-8Ke">
-                                <rect key="frame" x="197" y="438" width="20" height="20"/>
-                                <color key="tintColor" systemColor="labelColor"/>
-                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gw-uN-pjG">
+                                <rect key="frame" x="184.5" y="294" width="45" height="39.5"/>
+                                <fontDescription key="fontDescription" name="Charter-Bold" family="Charter" pointSize="32"/>
+                                <color key="textColor" name="ColorSetForBarButton"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="OEe-xu-8Ke" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="3Aq-aO-Y9K"/>
-                            <constraint firstItem="OEe-xu-8Ke" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="3Jo-1E-WqB"/>
+                            <constraint firstItem="2gw-uN-pjG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FDP-FJ-b0C"/>
+                            <constraint firstItem="2gw-uN-pjG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="L0l-5U-Kva"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -37,9 +39,9 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="ColorSetForBarButton">
+            <color red="0.11372549830000001" green="0.11372549830000001" blue="0.1176470518" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
