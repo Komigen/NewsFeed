@@ -28,6 +28,7 @@
 		B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */; };
 		B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */; };
 		B5CE5AAE28C231460076BE6F /* RecentRateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AAD28C231460076BE6F /* RecentRateViewCell.swift */; };
+		B5CE5AB128C622890076BE6F /* CurrentPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AB028C622890076BE6F /* CurrentPost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerCoinLayer.swift; sourceTree = "<group>"; };
 		B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCoinLayer.swift; sourceTree = "<group>"; };
 		B5CE5AAD28C231460076BE6F /* RecentRateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRateViewCell.swift; sourceTree = "<group>"; };
+		B5CE5AB028C622890076BE6F /* CurrentPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				B54EA24528C0802400535572 /* NetworkManagerNews.swift */,
 				B5CE5AA228C208780076BE6F /* Extension.swift */,
 				B54EA23F28C07D1900535572 /* ModelNews.swift */,
+				B5CE5AB028C622890076BE6F /* CurrentPost.swift */,
 			);
 			path = News;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */,
 				B5CE5A8128C10AFE0076BE6F /* RecentRateVC.swift in Sources */,
 				B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */,
+				B5CE5AB128C622890076BE6F /* CurrentPost.swift in Sources */,
 				B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */,
 				B54EA22A28C07C2500535572 /* SceneDelegate.swift in Sources */,
 				B5CE5AA328C208780076BE6F /* Extension.swift in Sources */,

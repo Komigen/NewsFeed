@@ -9,9 +9,19 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageNews: UIImageView!
-    
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var imageNews: UIImageView! {
+        didSet {
+            imageNews.layer.cornerRadius = 7.0
+            imageNews.clipsToBounds = true
+            imageNews.contentMode = .scaleAspectFill
+        }
+    }
+    @IBOutlet weak var label: UILabel! {
+        didSet {
+            label.font = UIFont(name: "System", size: 17.0)
+            label.textAlignment = .left
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,7 +29,5 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     func setupCell(data: Data) {
-//        self.imageNews.image = data.image
     }
-
 }

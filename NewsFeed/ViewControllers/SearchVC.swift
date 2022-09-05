@@ -23,5 +23,6 @@ class SearchVC: UIViewController {
     */
 
     @IBAction func clearButton(_ sender: UIButton) {
+        
     }
 }

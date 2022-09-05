@@ -11,13 +11,16 @@ class FirstVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        networkManager.fetchDataByCountrysHeadlines(country: .UnitedStates)
+        networkManager.onCompletion = { currentPost, image in
+            print(currentPost.content ?? "Error")
+        }
+        
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
 //        self.collectionView.visibleCells[]
-        networkManager.fetchData(urlString: networkManager.stringForUrl) { [weak self] currentPost in
-
-        }
+      
+        
         
         self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
     }
@@ -44,8 +47,11 @@ extension FirstVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-//        let item = dataArrayNews[indexPath.row]
-//        
+
+            cell.label.text = "12"        
+        
+//        cell.label.text = NetworkManager
+//
 //        cell.label.text = item.articles
 //        cell.image = UIImage(data: dataArrayNews[indexPath.row].)
         
@@ -53,6 +59,4 @@ extension FirstVC: UICollectionViewDataSource, UICollectionViewDelegate {
         
         return cell
     }
-    
-
 }

@@ -1,6 +1,5 @@
 import Foundation
 
-
 struct CurrentPost {
     
     let status:             String?
@@ -14,6 +13,7 @@ struct CurrentPost {
     let urlToImage:         String?
     let publishedAt:        Date?
     let content:            String?
+    
     
     init?(modelNews: ModelNews) {
         status             = modelNews.status
