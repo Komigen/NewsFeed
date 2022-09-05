@@ -57,7 +57,7 @@ extension RecentRateVC: UITableViewDataSource, UITableViewDelegate {
         cell.rusNamesOfQuotes.text = "tembete"
         //        cell.imageCountry = da
         //        cell.imageCountry.layer.cornerRadius = singleRadius
-        //        cell.rusNamesOfQuotes =
+//        cell.rusNamesOfQuotes.text = dataArray[indexPath.row]
         //        cell.engNamesOfQuotes =
         //        cell.course =
         //        cell.diffCourse =

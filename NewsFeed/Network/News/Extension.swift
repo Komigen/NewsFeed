@@ -1,19 +1,85 @@
 import Foundation
 
-extension NetworkManagerNews {
-    
-    func getSearchUrlString(words: String, country: String, lang: String) -> String { return "https://google-news.p.rapidapi.com/v1/search?q=Elon%20Musk&country=\(country)&lang=\(lang)"
-    }
-    
-    func getSearchBySourceUrlString(source: String, lang: String, country: String) -> String { return "https://google-news.p.rapidapi.com/v1/source_search?source=\(source)&lang=\(lang)&country=\(country)"
-    }
-    
-    func getGeographicHeadlinesUrlString(lang: String, country: String, geo: String) -> String { return "https://google-news.p.rapidapi.com/v1/geo_headlines?lang=\(lang)&country=\(country)&geo=\(geo)"
-    }
-    
-    func getTopicHeadlinesUrlString(lang: String, country: String, topic: String) -> String { return "https://google-news.p.rapidapi.com/v1/topic_headlines?lang=\(lang)&country=\(country)&topic=\(topic)"
-    }
-    
-    func getTopHeadlinesUrlString(lang: String, country: String) -> String { return "https://google-news.p.rapidapi.com/v1/top_headlines?lang=\(lang)&country=\(country)"
-    }
+enum CategoryNews: String {
+    case business      = "Business"
+    case entertainment = "Entertainment"
+    case general       = "General"
+    case health        = "Health"
+    case science       = "Science"
+    case sports        = "Sports"
+    case technology    = "Technology"
 }
+
+enum LanguagesCodes: String {
+    case Arabic     = "ar"
+    case German     = "de"
+    case English    = "en"
+    case Spanish    = "es"
+    case French     = "fr"
+    case Hebrew     = "he"
+    case Italian    = "it"
+    case Dutch      = "nl"
+    case Norwegian  = "no"
+    case Portuguese = "pt"
+    case Russian    = "ru"
+    case Swedish    = "sv"
+    case Chinese    = "zh"
+}
+
+enum CountrysCodes: String {
+    case UnitedArabEmirates = "ae"
+    case Argentina          = "ar"
+    case Austria            = "at"
+    case Australia          = "au"
+    case Belgium            = "be"
+    case Bulgaria           = "bg"
+    case Brazil             = "br"
+    case Canada             = "ca"
+    case Switzerland        = "ch"
+    case China              = "cn"
+    case Colombia           = "co"
+    case Cuba               = "cu"
+    case CzechRepublic      = "cz"
+    case Germany            = "de"
+    case Egypt              = "eg"
+    case France             = "fr"
+    case UnitedKingdom      = "gb"
+    case Greece             = "gr"
+    case HongKong           = "hk"
+    case Hungary            = "hu"
+    case Indonesia          = "id"
+    case Ireland            = "ie"
+    case Israel             = "il"
+    case India              = "in"
+    case Italy              = "it"
+    case Japan              = "jp"
+    case SouthKorea         = "kr"
+    case Lithuania          = "lt"
+    case Latvia             = "lv"
+    case Morocco            = "ma"
+    case Mexico             = "mx"
+    case Malaysia           = "my"
+    case Nigeria            = "ng"
+    case Netherlands        = "nl"
+    case Norway             = "no"
+    case NewZealand         = "nz"
+    case Philippines        = "ph"
+    case Poland             = "pl"
+    case Portugal           = "pt"
+    case Romania            = "ro"
+    case Serbia             = "rs"
+    case Russia             = "ru"
+    case SaudiArabia        = "sa"
+    case Sweden             = "se"
+    case Singapore          = "sg"
+    case Slovenia           = "si"
+    case Slovakia           = "sk"
+    case Thailand           = "th"
+    case Turkey             = "tr"
+    case Taiwan             = "tw"
+    case Ukraine            = "ua"
+    case UnitedStates       = "us"
+    case Venezuela          = "ve"
+    case SouthAfrica        = "za"
+}
+
