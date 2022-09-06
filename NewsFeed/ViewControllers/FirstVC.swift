@@ -1,62 +1,58 @@
 import UIKit
 
-var dataArrayNews = [ModelNews]()
 var networkManager = NetworkManager()
 
-class FirstVC: UIViewController {
+var dataArrayNews = [ModelNews]()
 
-    @IBOutlet weak var collectionView: UICollectionView!
+var postsArray = [CurrentPost]()
+var imagesArray = [UIImage]()
+
+class FirstVC: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        networkManager.fetchDataByCountrysHeadlines(country: .UnitedStates)
+        
+        networkManager.fetchData(urlString: "https://newsapi.org/v2/everything?q=putin&apiKey=4ace509310244680ae2b2a43a8341974")
         networkManager.onCompletion = { currentPost, image in
-            print(currentPost.content ?? "Error")
+            postsArray.append(currentPost)
+            imagesArray.append(image)
         }
         
-        self.collectionView.dataSource = self
-        self.collectionView.delegate = self
-//        self.collectionView.visibleCells[]
-      
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         
-        self.collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
+        
+        
+        
+        
+        
+        /*
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destination.
+         // Pass the selected object to the new view controller.
+         }
+         */
     }
-
-
-    /*
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-extension FirstVC: UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension FirstVC: UITableViewDataSource, UITableViewDelegate {
+   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-
-            cell.label.text = "12"        
-        
-//        cell.label.text = NetworkManager
-//
-//        cell.label.text = item.articles
-//        cell.image = UIImage(data: dataArrayNews[indexPath.row].)
-        
-//        let currentNews =
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstVCCell
         
         return cell
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 140.0
+    }
 }
+

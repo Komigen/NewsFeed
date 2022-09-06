@@ -39,22 +39,25 @@ struct NetworkManager {
 
         guard let url = URL(string: urlString) else { return }
         
-        let request = URLRequest(url: url, cachePolicy: URLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 10.0)
+        let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest) { (data, response, error) -> Void in
-            guard error != nil else { return }
-            print(error!)
-
-            guard let httpResponse = response as? HTTPURLResponse else { return }
-            print(httpResponse)
+           
+            if error != nil {
+//                print(error!)
+            }
+            
+            if response is HTTPURLResponse {
+//            print(response!)
+            }
             
             if let data = data {
-                if let currentPost = parseJson(data: data) {
-                    if let urlToImage = currentPost.urlToImage {
+                let currentPost = parseJson(data: data)
+                if let urlToImage = currentPost?.urlToImage {
                         downloadImage(url: urlToImage) { image in
-                            self.onCompletion?(currentPost, image)
-                        }
+                            self.onCompletion?(currentPost!, image)
+                            print("ERROR - download image")
                     }
                 }
             }
@@ -78,23 +81,22 @@ struct NetworkManager {
     
     
     
-    func parseJson(data: Data) -> CurrentPost? {
+   fileprivate func parseJson(data: Data) -> CurrentPost? {
         
-        let decoder = JSONDecoder()
         do {
-            let currentData = try decoder.decode(ModelNews.self, from: data)
-            
+            let currentData = try JSONDecoder().decode(ModelNews.self, from: data)
+
             guard let currentPost = CurrentPost(modelNews: currentData) else { return nil }
-            
-            
-            
+           
+            print("Sucessed parsing JsonData")
             return currentPost
-        } catch let error as NSError {
-            print(error.localizedDescription)
+        } catch _ as NSError {
+            debugPrint("ERROR - parse JsonData")
         }
         return nil
     }
 }
+
 
 
 
