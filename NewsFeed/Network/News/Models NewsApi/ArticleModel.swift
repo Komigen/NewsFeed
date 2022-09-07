@@ -8,6 +8,12 @@ struct Article: Codable {
     var urlToImage: String?
     var publishedAt: String?
     var content: String?
+    var id: String? {
+        source?.id
+    }
+    var name: String? {
+        source?.name
+    }
 
     enum CodingKeys: String, CodingKey {
         case source, author, title

@@ -1,11 +1,8 @@
 import UIKit
 
-var networkManager = NetworkManager()
-
-var dataArrayNews = [ModelNews]()
-
-var postsArray = [CurrentPost]()
-var imagesArray = [UIImage]()
+var networkManager = NetworkManagerNewsApi()
+var currentPosts = [Article]()
+var createUrlString = CreateUrlString()
 
 class FirstVC: UIViewController {
     
@@ -14,45 +11,64 @@ class FirstVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkManager.fetchData(urlString: "https://newsapi.org/v2/everything?q=putin&apiKey=4ace509310244680ae2b2a43a8341974")
-        networkManager.onCompletion = { currentPost, image in
-            postsArray.append(currentPost)
-            imagesArray.append(image)
-        }
-        
+        networkManager.fetchData(urlString: createUrlString.fetchDataByCountrysHeadlines(country: .UnitedStates))
         self.tableView.dataSource = self
         self.tableView.delegate = self
+
         
-        
-        
-        
-        
-        
-        
-        /*
+
          
-         // In a storyboard-based application, you will often want to do a little preparation before navigation
-         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         // Get the new view controller using segue.destination.
-         // Pass the selected object to the new view controller.
-         }
-         */
     }
+   
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "FirstVCToReadVC" {
+//            let readVc = segue.destination as! ReadVC
+//            let cell = sender as! FirstVCCell
+//            cell.imagePost.image = cell.dogImageView.image
+//        }
+//    }
+    
 }
 
 extension FirstVC: UITableViewDataSource, UITableViewDelegate {
-   
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return currentPosts.count
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstVCCell
         
+//        cell.titleText.text = currentPosts[indexPath.item].title
+//        cell.authorText.text = currentPosts[indexPath.item].author
+//        cell.imagePost.downloadImage(url: currentPosts[indexPath.item].urlToImage!)
+        
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140.0
     }
 }
 
+//MARK: Download image
+extension UIImageView {
+    
+    func downloadImage(url: String) {
+        guard let url = URL(string: url) else { return }
+        let session = URLSession.shared
+        session.dataTask(with: url) { (data, response, error) in
+            if let safeData = data {
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: safeData)
+                }
+            }
+        }.resume()
+        print("Successed downloading Image")
+    }
+}
