@@ -20,6 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="ColorSetForBackground"/>
+                        <color key="barTintColor" systemColor="systemRedColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="3TB-5k-kYN" kind="relationship" relationship="viewControllers" id="YOh-pC-yU2"/>
@@ -154,7 +155,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-2Z-Drv">
-                                <rect key="frame" x="20" y="146" width="374" height="89"/>
+                                <rect key="frame" x="20" y="135.5" width="374" height="89"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7j-GZ-yKM">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="18"/>
@@ -181,13 +182,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-dU-WZf">
-                                <rect key="frame" x="20" y="74" width="374" height="42"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <rect key="frame" x="20" y="74" width="374" height="31.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
+                                <color key="highlightedColor" name="NavigatonButton"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="grb-LH-i7H">
-                                <rect key="frame" x="20" y="302" width="374" height="33.5"/>
+                                <rect key="frame" x="20" y="291.5" width="374" height="33.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqM-Zb-4vz" userLabel="Low">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="33.5"/>
@@ -215,14 +216,14 @@
                                     <constraint firstItem="atE-Mu-xlm" firstAttribute="centerY" secondItem="TbW-mL-gzB" secondAttribute="centerY" id="TLj-nS-bP0"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Font size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-Qr-Vf2">
-                                <rect key="frame" x="20" y="276" width="374" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-Qr-Vf2">
+                                <rect key="frame" x="20" y="265.5" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qji-yg-MxE" userLabel="Example Font Size">
-                                <rect key="frame" x="20" y="347.5" width="374" height="70"/>
+                                <rect key="frame" x="20" y="337" width="374" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="oJy-W2-QgZ"/>
                                 </constraints>
@@ -233,7 +234,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hWv-iS-saO"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="ColorSetForBackground"/>
                         <constraints>
                             <constraint firstItem="hWv-iS-saO" firstAttribute="trailing" secondItem="grb-LH-i7H" secondAttribute="trailing" constant="20" id="2lT-nL-6hF"/>
                             <constraint firstItem="jfc-Qr-Vf2" firstAttribute="trailing" secondItem="grb-LH-i7H" secondAttribute="trailing" id="4Zd-bs-6L5"/>
@@ -386,7 +387,7 @@
                             </imageReference>
                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="pRo-s4-fFb" kind="presentation" id="mIr-Qu-Hto"/>
+                                <segue destination="pRo-s4-fFb" kind="presentation" id="GeL-R0-bjH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -449,7 +450,7 @@
                                 </hierarchicalColors>
                             </imageReference>
                             <connections>
-                                <segue destination="pRo-s4-fFb" kind="presentation" id="tS1-RQ-cfi"/>
+                                <segue destination="pRo-s4-fFb" kind="presentation" id="QJk-4G-fF6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -637,7 +638,7 @@
                                 </hierarchicalColors>
                             </imageReference>
                             <connections>
-                                <segue destination="pRo-s4-fFb" kind="presentation" id="frt-4c-uNy"/>
+                                <segue destination="pRo-s4-fFb" kind="presentation" id="iK3-2h-KSc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -701,7 +702,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="First2 + ReadLater" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-D6-4AL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="First" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-D6-4AL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -712,7 +713,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opn-gO-1PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6180" y="1526"/>
+            <point key="canvasLocation" x="6013" y="1455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8MG-iv-5jL">
@@ -828,7 +829,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="frt-4c-uNy"/>
+        <segue reference="GeL-R0-bjH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="First" width="1170" height="2532"/>
@@ -850,6 +851,9 @@
         </namedColor>
         <namedColor name="ColorSetForBarButton">
             <color red="0.11400000005960464" green="0.11400000005960464" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="NavigatonButton">
+            <color red="0.11400000005960464" green="0.11400000005960464" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

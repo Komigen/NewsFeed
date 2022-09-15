@@ -38,7 +38,7 @@ class SettingsVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        getSettings(model: StoreSettingsFontSize, key: KeyForUserDefaults.key.rawValue)
+//        getSettings(model: StoreSettingsFontSize, key: KeyForUserDefaults.key.rawValue)
         
         
     }
