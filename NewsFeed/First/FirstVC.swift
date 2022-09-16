@@ -1,6 +1,5 @@
 import UIKit
 
-var networkManager = NetworkManagerNewsApi()
 var currentPosts = [Article]()
 var createUrlString = CreateUrlString()
 
@@ -11,7 +10,16 @@ class FirstVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkManager.fetchData(urlString: createUrlString.fetchDataByCountrysHeadlines(country: .UnitedStates))
+        NetworkManagerNewsApi().fetchData(urlString: createUrlString.fetchDataByCountrysHeadlines(country: .UnitedStates)) { [weak self] result in
+            switch result {
+            case .success: 
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure: break
+            }
+        }
+        
         self.tableView.dataSource = self
         self.tableView.delegate = self
 
@@ -19,15 +27,6 @@ class FirstVC: UIViewController {
 
          
     }
-   
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "FirstVCToReadVC" {
-//            let readVc = segue.destination as! ReadVC
-//            let cell = sender as! FirstVCCell
-//            cell.imagePost.image = cell.dogImageView.image
-//        }
-//    }
-    
 }
 
 extension FirstVC: UITableViewDataSource, UITableViewDelegate {
@@ -54,13 +53,17 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140.0
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 //MARK: Download image
 extension UIImageView {
     
-    func downloadImage(url: String) {
-        guard let url = URL(string: url) else { return }
+    func downloadImage(stringUrl: String) {
+        guard let url = URL(string: stringUrl), UIApplication.shared.canOpenURL(url) else { print("ERROR: image URL-address not valid."); return }
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
             if let safeData = data {
@@ -69,6 +72,6 @@ extension UIImageView {
                 }
             }
         }.resume()
-        print("Successed downloading Image")
+        print("SUCCESSED downloading Image")
     }
 }

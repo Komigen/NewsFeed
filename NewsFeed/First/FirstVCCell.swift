@@ -1,7 +1,7 @@
 import UIKit
 
 class FirstVCCell: UITableViewCell {
-
+    
     @IBOutlet weak var titleText: UILabel!
     @IBOutlet weak var authorText: UILabel!
     @IBOutlet weak var imagePost: UIImageView! {
@@ -10,9 +10,13 @@ class FirstVCCell: UITableViewCell {
         }
     }
     
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
     }
 }
+
+
+
+

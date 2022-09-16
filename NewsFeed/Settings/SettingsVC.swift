@@ -18,8 +18,7 @@ struct StoreSettingsTheme: Codable {
 }
 
 class SettingsVC: UIViewController {
-    
-    
+        
     @IBOutlet weak var fontSizeLabel: UILabel! {
         didSet {
             fontSizeLabel.font = UIFont(name: fontSizeLabel.font.fontName,

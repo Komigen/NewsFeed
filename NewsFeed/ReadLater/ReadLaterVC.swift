@@ -1,6 +1,6 @@
 import UIKit
 
-class SearchVC: UIViewController {
+class ReadLaterVC: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var clearButton: UIButton!

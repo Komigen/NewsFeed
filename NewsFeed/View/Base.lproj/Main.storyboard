@@ -33,10 +33,10 @@
             </objects>
             <point key="canvasLocation" x="-428" y="1472"/>
         </scene>
-        <!--FirstVC-->
+        <!--First-->
         <scene sceneID="bfa-FU-R17">
             <objects>
-                <viewController id="1ji-hm-Ek0" userLabel="FirstVC" customClass="FirstVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1ji-hm-Ek0" userLabel="First" customClass="FirstVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6oT-rX-IxA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,8 +79,8 @@
                                                         </hierarchicalColors>
                                                     </imageReference>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-hI-uo6">
-                                                    <rect key="frame" x="20" y="98.5" width="35" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-hI-uo6">
+                                                    <rect key="frame" x="20" y="98.5" width="43" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" systemColor="secondaryLabelColor"/>
                                                     <nil key="highlightedColor"/>
@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="2386.9565217391305" y="289.28571428571428"/>
         </scene>
-        <!--SettingsVC-->
+        <!--Settings-->
         <scene sceneID="GXM-ka-pqe">
             <objects>
-                <viewController id="pRo-s4-fFb" customClass="SettingsVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pRo-s4-fFb" userLabel="Settings" customClass="SettingsVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L0P-TX-2on">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -283,10 +283,10 @@
             </objects>
             <point key="canvasLocation" x="6354" y="640"/>
         </scene>
-        <!--SearchVC-->
+        <!--ReadLater-->
         <scene sceneID="cgx-Py-AJ9">
             <objects>
-                <viewController id="rLe-hO-fWs" userLabel="SearchVC" customClass="SearchVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rLe-hO-fWs" userLabel="ReadLater" customClass="ReadLaterVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s2M-ff-1qw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -401,10 +401,10 @@
             </objects>
             <point key="canvasLocation" x="2394.202898550725" y="992.41071428571422"/>
         </scene>
-        <!--BookmarksVC-->
+        <!--Bookmarks-->
         <scene sceneID="S0u-vh-y09">
             <objects>
-                <viewController id="hCX-Jv-5vN" userLabel="BookmarksVC" customClass="BookmarksVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hCX-Jv-5vN" userLabel="Bookmarks" customClass="BookmarksVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xo4-RM-zdp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -459,10 +459,10 @@
             </objects>
             <point key="canvasLocation" x="2394.202898550725" y="1699.5535714285713"/>
         </scene>
-        <!--QuotesVC-->
+        <!--RecentRate-->
         <scene sceneID="dHb-rk-kgN">
             <objects>
-                <viewController id="GX8-tR-daD" userLabel="QuotesVC" customClass="RecentRateVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GX8-tR-daD" userLabel="RecentRate" customClass="RecentRateVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q8c-TJ-Pfk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -653,10 +653,10 @@
             </objects>
             <point key="canvasLocation" x="2394.202898550725" y="2439.5089285714284"/>
         </scene>
-        <!--ReadVC-->
+        <!--Read-->
         <scene sceneID="lSI-mx-lo9">
             <objects>
-                <viewController id="Z7v-ma-mbk" userLabel="ReadVC" customClass="ReadVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z7v-ma-mbk" userLabel="Read" customClass="ReadVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fLG-M4-fIJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -702,7 +702,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="First" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-D6-4AL">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="First1" translatesAutoresizingMaskIntoConstraints="NO" id="Unb-D6-4AL">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -713,7 +713,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Opn-gO-1PP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6013" y="1455"/>
+            <point key="canvasLocation" x="3212" y="289"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8MG-iv-5jL">
@@ -829,10 +829,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GeL-R0-bjH"/>
+        <segue reference="qpM-y8-qt7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="First" width="1170" height="2532"/>
+        <image name="First1" width="1170" height="2532"/>
         <image name="First2 + ReadLater" width="1170" height="2532"/>
         <image name="Queue" width="1170" height="2532"/>
         <image name="Search" width="1170" height="2532"/>

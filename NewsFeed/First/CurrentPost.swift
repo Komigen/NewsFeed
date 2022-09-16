@@ -1,0 +1,33 @@
+import Foundation
+
+class CurrentPost {
+    
+    let sourceName:         String?
+    let author:             String?
+    let title:              String?
+    let articleDescription: String?
+    let url:                String?
+    let urlToImage:         String?
+    let publishedAt:        String?
+    let content:            String?
+    
+    
+    init(sourceName: String?,
+         author: String?,
+         title: String?,
+         articleDescription: String?,
+         url: String?,
+         urlToImage: String?,
+         publishedAt: String?,
+         content: String?
+    ) {
+        self.sourceName = sourceName
+        self.author = author
+        self.title = title
+        self.articleDescription = articleDescription
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
+        self.content = content
+    }
+}
