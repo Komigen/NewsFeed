@@ -1,6 +1,6 @@
 import Foundation
 
-struct NetworkManagerCoinLayer {
+class NetworkManagerCoinLayer {
     
     fileprivate let apiKey = "6668744690fd8c840e335ed7d0ca796f"
     
@@ -9,7 +9,7 @@ struct NetworkManagerCoinLayer {
         let urlString = "https://api.coinlayer.com/api/live?access_key=\(apiKey)"
         guard let url = URL(string: urlString) else { return }
         let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: url) { data, response, error in
+        let dataTask = session.dataTask(with: url) { [self] data, response, error in
             
             guard error != nil else { return }
             print(error!)

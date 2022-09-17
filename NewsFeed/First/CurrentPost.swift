@@ -1,6 +1,8 @@
-import Foundation
+import UIKit
 
-class CurrentPost {
+//MARK: Init Post
+
+final class CurrentPost {
     
     let sourceName:         String?
     let author:             String?
@@ -12,22 +14,33 @@ class CurrentPost {
     let content:            String?
     
     
-    init(sourceName: String?,
-         author: String?,
-         title: String?,
-         articleDescription: String?,
-         url: String?,
-         urlToImage: String?,
-         publishedAt: String?,
-         content: String?
-    ) {
-        self.sourceName = sourceName
-        self.author = author
-        self.title = title
+   required init(sourceName:         String?,
+                 author:             String?,
+                 title:              String?,
+                 articleDescription: String?,
+                 url:                String?,
+                 urlToImage:         String?,
+                 publishedAt:        String?,
+                 content:            String?
+    ){
+        self.sourceName         = sourceName
+        self.author             = author
+        self.title              = title
         self.articleDescription = articleDescription
-        self.url = url
-        self.urlToImage = urlToImage
-        self.publishedAt = publishedAt
-        self.content = content
+        self.url                = url
+        self.urlToImage         = urlToImage
+        self.publishedAt        = publishedAt
+        self.content            = content
+    }
+}
+
+//MARK: Init Image
+
+final class CurrentImage {
+    
+    let image: UIImage?
+    
+    required init(image: UIImage?) {
+        self.image = image
     }
 }

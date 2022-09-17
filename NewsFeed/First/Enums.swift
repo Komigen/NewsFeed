@@ -1,6 +1,6 @@
 import Foundation
 
-enum CategoryNews: String {
+public enum CategoryNews: String {
     case business      = "Business"
     case entertainment = "Entertainment"
     case general       = "General"
@@ -10,7 +10,7 @@ enum CategoryNews: String {
     case technology    = "Technology"
 }
 
-enum LanguagesCodes: String {
+public enum LanguagesCodes: String {
     case Arabic     = "ar"
     case German     = "de"
     case English    = "en"
@@ -26,7 +26,7 @@ enum LanguagesCodes: String {
     case Chinese    = "zh"
 }
 
-enum CountrysCodes: String {
+public enum CountrysCodes: String {
     case UnitedArabEmirates = "ae"
     case Argentina          = "ar"
     case Austria            = "at"

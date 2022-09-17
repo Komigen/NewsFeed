@@ -2,9 +2,9 @@ import UIKit
 
 class ReadLaterVC: UIViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,7 +22,5 @@ class ReadLaterVC: UIViewController {
     }
     */
 
-    @IBAction func clearButton(_ sender: UIButton) {
-        
-    }
+
 }

@@ -15,9 +15,9 @@
 		B54EA23128C07C2700535572 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B54EA23028C07C2700535572 /* Assets.xcassets */; };
 		B54EA23428C07C2700535572 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B54EA23228C07C2700535572 /* LaunchScreen.storyboard */; };
 		B54EA24628C0802400535572 /* NetworkManagerNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54EA24528C0802400535572 /* NetworkManagerNews.swift */; };
+		B58FF8B728D5D178004167AD /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF8B628D5D178004167AD /* UserSettings.swift */; };
 		B5CA0AED28D05CA400BD4D06 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CA0AEC28D05CA400BD4D06 /* SettingsVC.swift */; };
 		B5CE5A7D28C10AB40076BE6F /* ReadLaterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A7C28C10AB40076BE6F /* ReadLaterVC.swift */; };
-		B5CE5A7F28C10ADF0076BE6F /* BookmarksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A7E28C10ADF0076BE6F /* BookmarksVC.swift */; };
 		B5CE5A8128C10AFE0076BE6F /* RecentRateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8028C10AFE0076BE6F /* RecentRateVC.swift */; };
 		B5CE5A8328C10B1C0076BE6F /* ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8228C10B1C0076BE6F /* ReadVC.swift */; };
 		B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */; };
@@ -40,9 +40,9 @@
 		B54EA23328C07C2700535572 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B54EA23528C07C2700535572 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B54EA24528C0802400535572 /* NetworkManagerNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerNews.swift; sourceTree = "<group>"; };
+		B58FF8B628D5D178004167AD /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		B5CA0AEC28D05CA400BD4D06 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		B5CE5A7C28C10AB40076BE6F /* ReadLaterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadLaterVC.swift; sourceTree = "<group>"; };
-		B5CE5A7E28C10ADF0076BE6F /* BookmarksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksVC.swift; sourceTree = "<group>"; };
 		B5CE5A8028C10AFE0076BE6F /* RecentRateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentRateVC.swift; sourceTree = "<group>"; };
 		B5CE5A8228C10B1C0076BE6F /* ReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVC.swift; sourceTree = "<group>"; };
 		B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
@@ -95,7 +95,6 @@
 				B54EA23528C07C2700535572 /* Info.plist */,
 				B5CE5AA428C2168A0076BE6F /* First */,
 				B5CA0AF028D43F9000BD4D06 /* ReadLater */,
-				B5CA0AEF28D43F7000BD4D06 /* Bookmarks */,
 				B5CE5AAF28C231500076BE6F /* RecentRate */,
 				B5CA0AEB28D057BF00BD4D06 /* Settings */,
 				B54EA23028C07C2700535572 /* Assets.xcassets */,
@@ -129,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CA0AEC28D05CA400BD4D06 /* SettingsVC.swift */,
+				B58FF8B628D5D178004167AD /* UserSettings.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -140,14 +140,6 @@
 			);
 			name = Read;
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		B5CA0AEF28D43F7000BD4D06 /* Bookmarks */ = {
-			isa = PBXGroup;
-			children = (
-				B5CE5A7E28C10ADF0076BE6F /* BookmarksVC.swift */,
-			);
-			path = Bookmarks;
 			sourceTree = "<group>";
 		};
 		B5CA0AF028D43F9000BD4D06 /* ReadLater */ = {
@@ -278,7 +270,7 @@
 				B5CE5A8328C10B1C0076BE6F /* ReadVC.swift in Sources */,
 				B5CE5AAE28C231460076BE6F /* RecentRateViewCell.swift in Sources */,
 				B5CA0AED28D05CA400BD4D06 /* SettingsVC.swift in Sources */,
-				B5CE5A7F28C10ADF0076BE6F /* BookmarksVC.swift in Sources */,
+				B58FF8B728D5D178004167AD /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

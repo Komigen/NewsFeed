@@ -1,6 +1,6 @@
 import Foundation
 
-class NetworkManagerNewsApi {
+final class NetworkManagerNewsApi {
         
     func fetchData(urlString: String, completionHandler: @escaping (Result<[Article], Error>) -> Void) {
         
@@ -64,5 +64,4 @@ struct Article: Codable {
 struct Source: Codable {
     var name: String?
 }
-
 
