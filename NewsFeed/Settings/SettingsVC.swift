@@ -17,15 +17,14 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        getSettings(model: UserSettingsModel, key: KeyForUserDefaults.key)
     }
     
     @IBAction func fontSizeSlider(_ sender: UISlider) {
         let senderValue = CGFloat(sender.value)
         fontSizeLabel.font = UIFont(name: fontSizeLabel.font.fontName, size: senderValue)
         currentFontSize = senderValue
-        currentFontSize = senderValue
+        currentsSiderValue = Float(senderValue)
     }
     
     @IBAction func displayModeSegments(_ sender: UISegmentedControl) {
@@ -43,20 +42,9 @@ class SettingsVC: UIViewController {
     
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         
-        let currentSettings = UserSettingsModel(userFont: currentFontSize!, sliderValue: Float(currentFontSize!), themeMode: currentTheme!)
-        print(currentFontSize ?? fontSizeLabel.font.lineHeight)
+        let currentSettings = UserSettingsModel(userFont: currentFontSize ?? self.fontSizeLabel.font.pointSize , sliderValue: currentsSiderValue ?? sliderOutlet.value, themeMode: currentTheme ?? ThemeMode.light)
         setSettings(value: currentSettings, key: KeyForUserDefaults.key)
-        
+
         self.dismiss(animated: true)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

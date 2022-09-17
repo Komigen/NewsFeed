@@ -5,6 +5,11 @@ enum KeyForUserDefaults {
     static let key = "key"
 }
 
+enum ThemeMode: Codable {
+    case light
+    case dark
+}
+
 //MARK: Model Font
 
 class UserSettingsModel: Codable {
@@ -20,17 +25,6 @@ class UserSettingsModel: Codable {
     }
 }
     
-    
-    
-    
-
-
-    enum ThemeMode: Codable {
-        case light
-        case dark
-    }
-
-
 //MARK: UserDefaults SET
 
 func setSettings<T: Encodable>(value: T, key: String) {
