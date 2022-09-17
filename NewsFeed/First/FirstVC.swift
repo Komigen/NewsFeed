@@ -8,7 +8,7 @@ class FirstVC: UIViewController {
     
     var articlesArray = [Article]()
     
-//    var imagesArray = [CurrentImage]()
+    var imagesArray = [CurrentImage]()
     var postsArray = [CurrentPost]()
     
     override func viewDidLoad() {
@@ -17,13 +17,13 @@ class FirstVC: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-//        NetworkManagerNewsApi().fetchData(urlString: urlByCountrysHeadlines(country: .UnitedStates)) { [weak self] result in
-//            switch result {
-//            case .success(let articles):
-//                self?.reloadPostsArray(articles: articles)
-//            case .failure: break
-//            }
-//        }
+        NetworkManagerNewsApi().fetchData(urlString: urlByCountrysHeadlines(country: .UnitedStates)) { [weak self] result in
+            switch result {
+            case .success(let articles):
+                self?.reloadPostsArray(articles: articles)
+            case .failure: break
+            }
+        }
     }
     
     @IBOutlet weak var searchBarForWord: UISearchBar!
@@ -39,16 +39,15 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return postsArray.count
-        return 1
+        return postsArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstVCCell
         
-//        cell.titleText.text = postsArray[indexPath.item].title
-//        cell.authorText.text = postsArray[indexPath.item].author
+        cell.titleText.text = postsArray[indexPath.item].title
+        cell.authorText.text = postsArray[indexPath.item].author
 //        cell.imagePost.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage!)
         
         return cell
@@ -65,16 +64,16 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let readVc = segue.destination as? ReadVC {
-//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-//            readVc.textLabel.text = articlesArray[indexPath.item].content
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let readVc = segue.destination as? ReadVC {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+//            readVc.contentLabel.text = articlesArray[indexPath.item].content
 //            readVc.titleLabel.text = articlesArray[indexPath.item].title
 //            readVc.authorLabel.text = articlesArray[indexPath.item].author
 //                        readVc.imageView.image =
-//        }
-//
-//    }
+        }
+
+    }
     
 }
 

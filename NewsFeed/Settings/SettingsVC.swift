@@ -17,7 +17,7 @@ class SettingsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getSettings(model: UserSettingsModel, key: KeyForUserDefaults.key)
+//        getSettings(model: UserSettingsModel, key: KeyForUserDefaults.key)
     }
     
     @IBAction func fontSizeSlider(_ sender: UISlider) {
