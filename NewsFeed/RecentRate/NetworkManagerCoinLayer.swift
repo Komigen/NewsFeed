@@ -1,19 +1,12 @@
 import Foundation
 
 private let apiKey    = "6668744690fd8c840e335ed7d0ca796f"
-private let urlString = "http://api.coinlayer.com/api/live?access_key=\(apiKey)&symbols=BTC,ETH,BCH,EOS,LTC,XMR,XRP&target=USD"
+private let urlString = "https://api.coinlayer.com/api/live?access_key=\(apiKey)&symbols=BTC,ETH,BCH,EOS,LTC,XMR,XRP&target=USD"
 
-private enum UrlDownloadImage: String {
-    case BTC = "https://assets.coinlayer.com/icons/BTC.png"
-    case ETH = "https://assets.coinlayer.com/icons/ETH.png"
-    case BCH = "https://assets.coinlayer.com/icons/BCH.png"
-    case EOS = "https://assets.coinlayer.com/icons/EOS.png"
-    case LTC = "https://assets.coinlayer.com/icons/LTC.png"
-    case XMR = "https://assets.coinlayer.com/icons/XMR.png"
-    case XRP = "https://assets.coinlayer.com/icons/XRP.png"
-}
 
 class NetworkManagerCoinLayer {
+    
+    var onCompletion: (([CurrentRate]) -> Void)?
     
     func fetchData() {
         
@@ -26,26 +19,30 @@ class NetworkManagerCoinLayer {
             }
             
             if let safeData = data {
-                if let currentWeather = self.parseJSON(withData: data) {
-//                    print("SUCCESSED: parsing JsonData")
-//                    print("ERROR: parsing JsonData. \(error.localizedDescription)")
+                if let currentRate = self.parseJSON(withData: safeData) {
+                    self.onCompletion?(currentRate)
+                    print("SUCCESSED: parsing JsonData")
+                }
+            } else {
+                print("ERROR: parsing JsonData")
             }
         }
         task.resume()
     }
-}
-
-
-fileprivate func parseJSON(withData data: Data) -> CurrentWeather? {
-    let decoder = JSONDecoder()
-    do {
-        let currentWeatherData = try decoder.decode(CurrentWeatherData.self, from: data)
-        guard let currentWeather = CurrentWeather(currentWeatherData: currentWeatherData) else {
-            return nil
+    
+    
+    
+    fileprivate func parseJSON(withData data: Data) -> [CurrentRate]? {
+        do {
+            let currentData = try JSONDecoder().decode([DataModel].self, from: data)
+            var currentRates: [CurrentRate]?
+            try currentData.forEach({ rate in
+                currentRates?.append(CurrentRate(dataModel: rate)!)
+            })
+                return currentRates
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
-        return currentWeather
-    } catch let error as NSError {
-        print(error.localizedDescription)
+        return nil
     }
-    return nil
 }

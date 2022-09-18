@@ -438,7 +438,7 @@
         <!--RecentRate-->
         <scene sceneID="dHb-rk-kgN">
             <objects>
-                <viewController id="GX8-tR-daD" userLabel="RecentRate" customClass="RecentRateVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GX8-tR-daD" userLabel="RecentRate" customClass="RateVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q8c-TJ-Pfk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -457,7 +457,7 @@
                                 <rect key="frame" x="20" y="234.5" width="374" height="578.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecentRateCell" rowHeight="66" id="ywt-9k-yh3" customClass="RecentRateViewCell" customModule="NewsFeed" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RateCell" rowHeight="66" id="ywt-9k-yh3" userLabel="RateCell" customClass="RateViewCell" customModule="NewsFeed" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ywt-9k-yh3" id="meu-ez-KXu">
@@ -465,7 +465,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="UeW-Eq-3K1">
-                                                    <rect key="frame" x="0.0" y="13" width="168.5" height="40"/>
+                                                    <rect key="frame" x="0.0" y="13" width="119" height="40"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dollarsign.square.fill" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-2r-Ygn">
                                                             <rect key="frame" x="0.0" y="1" width="40" height="37.5"/>
@@ -476,16 +476,16 @@
                                                             </constraints>
                                                         </imageView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="G3O-Lt-bch">
-                                                            <rect key="frame" x="55" y="0.0" width="113.5" height="40"/>
+                                                            <rect key="frame" x="55" y="0.0" width="64" height="40"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Доллар/рубль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qs-Te-aNB">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="113.5" height="19.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qs-Te-aNB">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="19.5"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwq-cL-tmf">
-                                                                    <rect key="frame" x="0.0" y="27.5" width="31" height="12.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="ShortName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwq-cL-tmf">
+                                                                    <rect key="frame" x="0.0" y="27.5" width="64" height="12.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" systemColor="systemGray2Color"/>
                                                                     <nil key="highlightedColor"/>
@@ -498,18 +498,12 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="WF6-dd-nzd">
-                                                    <rect key="frame" x="268.5" y="10.5" width="105.5" height="45"/>
+                                                    <rect key="frame" x="268.5" y="23.5" width="105.5" height="19.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Доллар/рубль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hib-De-30y">
                                                             <rect key="frame" x="0.0" y="0.0" width="105.5" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uVl-cq-utf">
-                                                            <rect key="frame" x="74.5" y="30.5" width="31" height="14.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" systemColor="systemGray2Color"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -523,11 +517,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="course" destination="hib-De-30y" id="ibi-Ki-n9n"/>
-                                            <outlet property="diffCourse" destination="uVl-cq-utf" id="Mcd-An-R82"/>
-                                            <outlet property="engNamesOfQuotes" destination="Vwq-cL-tmf" id="Yhb-kN-1DQ"/>
-                                            <outlet property="imageCountry" destination="w4x-2r-Ygn" id="JMo-m2-8qg"/>
-                                            <outlet property="rusNamesOfQuotes" destination="2Qs-Te-aNB" id="a0c-69-oUx"/>
+                                            <outlet property="imageIcon" destination="w4x-2r-Ygn" id="JMo-m2-8qg"/>
+                                            <outlet property="nameRate" destination="2Qs-Te-aNB" id="a0c-69-oUx"/>
+                                            <outlet property="shortNameRate" destination="Vwq-cL-tmf" id="Yhb-kN-1DQ"/>
+                                            <outlet property="valueRate" destination="hib-De-30y" id="ibi-Ki-n9n"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
