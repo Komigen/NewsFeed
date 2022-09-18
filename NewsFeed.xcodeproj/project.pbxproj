@@ -163,22 +163,13 @@
 			path = First;
 			sourceTree = "<group>";
 		};
-		B5CE5AAA28C21BFF0076BE6F /* CoinLayer */ = {
-			isa = PBXGroup;
-			children = (
-				B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */,
-				B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */,
-			);
-			name = CoinLayer;
-			path = APILayer;
-			sourceTree = "<group>";
-		};
 		B5CE5AAF28C231500076BE6F /* RecentRate */ = {
 			isa = PBXGroup;
 			children = (
 				B5CE5A8028C10AFE0076BE6F /* RecentRateVC.swift */,
 				B5CE5AAD28C231460076BE6F /* RecentRateViewCell.swift */,
-				B5CE5AAA28C21BFF0076BE6F /* CoinLayer */,
+				B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */,
+				B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */,
 			);
 			path = RecentRate;
 			sourceTree = "<group>";

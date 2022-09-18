@@ -39,15 +39,16 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postsArray.count
+//        return postsArray.count
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstVCCell
         
-        cell.titleText.text = postsArray[indexPath.item].title
-        cell.authorText.text = postsArray[indexPath.item].author
+//        cell.titleText.text = postsArray[indexPath.item].title
+//        cell.authorText.text = postsArray[indexPath.item].author
 //        cell.imagePost.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage!)
         
         return cell
@@ -64,16 +65,30 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let readVc = segue.destination as? ReadVC {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//                
+//        switch editingStyle {
+//        case .delete: break
+//        case .insert: break
+//        case .none: break
+//        }
+//    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let readVc = segue.destination as? ReadVC {
+//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
 //            readVc.contentLabel.text = articlesArray[indexPath.item].content
 //            readVc.titleLabel.text = articlesArray[indexPath.item].title
 //            readVc.authorLabel.text = articlesArray[indexPath.item].author
 //                        readVc.imageView.image =
-        }
-
-    }
+//        }
+//
+//    }
     
 }
 

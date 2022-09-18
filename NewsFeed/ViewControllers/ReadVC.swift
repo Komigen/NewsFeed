@@ -32,7 +32,7 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         
         authorLabel.text = "Vanessa Gera gera"
         date.text = "1231241235"
-        titleLabel.text = "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle"
+        titleLabel.text = "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle"
         contentLabel.text = "view.addSubview(scrollView)scrollView.addSubview(imageView) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label)view.addSubview(scrollView)scrollView.addSubview(imageView) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label)"
     }
     
@@ -59,16 +59,13 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         titleLabel.translatesAutoresizingMaskIntoConstraints    = false
         contentLabel.translatesAutoresizingMaskIntoConstraints  = false
         date.translatesAutoresizingMaskIntoConstraints          = false
-        
-        let safeG = view.safeAreaLayoutGuide
-        
+                
         NSLayoutConstraint.activate([
            
-            scrollView.topAnchor.constraint(equalTo: safeG.topAnchor, constant: 0),
-            scrollView.leadingAnchor.constraint(equalTo: safeG.leadingAnchor, constant: 17),
-            scrollView.trailingAnchor.constraint(equalTo: safeG.trailingAnchor, constant: -17),
-            scrollView.bottomAnchor.constraint(equalTo: safeG.bottomAnchor, constant: -17),
-            
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 17),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -17),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -17),
             
             imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
@@ -76,26 +73,22 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
             imageView.bottomAnchor.constraint(equalTo: scrollView.topAnchor, constant: view.bounds.width/1.52),
             imageView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            
             authorLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
-            authorLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            authorLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
             authorLabel.trailingAnchor.constraint(equalTo: date.leadingAnchor, constant: -10),
             
             date.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
-            date.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            date.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10),
             date.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: view.bounds.width/2),
             
             titleLabel.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 10),
-            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: view.bounds.width/1.52 - 150),
-            titleLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
+            titleLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10),
             
             contentLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            contentLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentLabel.trailingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentLabel.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            contentLabel.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 10),
+            contentLabel.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -10),
+            contentLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
     
@@ -106,26 +99,35 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         
         authorLabel.numberOfLines = 1
         authorLabel.lineBreakMode = .byTruncatingTail
+        authorLabel.textColor     = UIColor.systemGray
+        authorLabel.textAlignment = .left
+        authorLabel.font          = authorLabel.font.withSize(12.0)
         
         date.numberOfLines = 1
-       
+        date.textColor     = UIColor.systemGray
+        date.textAlignment = .right
+        date.textColor     = UIColor.systemGray
+        date.font          = date.font.withSize(12.0)
+
         titleLabel.numberOfLines = 0
         titleLabel.lineBreakMode = .byTruncatingTail
+        titleLabel.textAlignment = .left
+        titleLabel.font          = UIFont(name: "Hoefler Text", size: 32.0)
         
         contentLabel.numberOfLines = 0
-        contentLabel.textAlignment = .left
+        contentLabel.textAlignment = .center
         
-        imageView.image = UIImage(named: "Launch")
+        imageView.image       = UIImage(named: "Launch")
         imageView.contentMode = .scaleAspectFill
         
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 20
+        imageView.clipsToBounds       = true
+        imageView.layer.cornerRadius  = 12
         imageView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         
         
-        scrollView.scrollsToTop = true
-        scrollView.clipsToBounds = true
-        scrollView.layer.cornerRadius = 20
+        scrollView.scrollsToTop        = true
+        scrollView.clipsToBounds       = true
+        scrollView.layer.cornerRadius  = 12
         scrollView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
 
         /* Font text */

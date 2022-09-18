@@ -1,17 +1,14 @@
 import UIKit
 
-var dataArray = [ModelCoinLayer]()
+var dataArray = [CurrentRate]()
 var networkManagerCoinLayer = NetworkManagerCoinLayer()
 
 class RecentRateVC: UIViewController {
     
     
-    @IBOutlet weak var starButton: UIButton!
-    @IBOutlet weak var cryptoButton: UIButton!
-    @IBOutlet weak var quotesButton: UIButton!
+
     @IBOutlet weak var tableView: UITableView!
     
-    let singleRadius = 10.0
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -25,22 +22,6 @@ class RecentRateVC: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        starButton.layer.cornerRadius = singleRadius
-        
-    }
-    
-    
-    
-    
-    @IBAction func starButton(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func quotesButton(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func cryptoButton(_ sender: UIButton) {
         
     }
 }
@@ -49,14 +30,14 @@ class RecentRateVC: UIViewController {
 extension RecentRateVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecentRateCell", for: indexPath) as! RecentRateViewCell
         cell.rusNamesOfQuotes.text = "tembete"
         //        cell.imageCountry = da
-        //        cell.imageCountry.layer.cornerRadius = singleRadius
+        //        cell.imageCountry.layer.cornerRadius = 10.0
 //        cell.rusNamesOfQuotes.text = dataArray[indexPath.row]
         //        cell.engNamesOfQuotes =
         //        cell.course =
@@ -65,6 +46,7 @@ extension RecentRateVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    //MARK: Animated tableView
     
     private func animateTableView(_ tableView: UITableView) {
         tableView.reloadData()
