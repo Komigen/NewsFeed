@@ -1,7 +1,7 @@
 import Foundation
 
 final class NetworkManagerNewsApi {
-        
+    
     func fetchData(urlString: String, completionHandler: @escaping (Result<[Article], Error>) -> Void) {
         
         guard let url = URL(string: urlString) else { print("ERROR: posts URL-address not valid."); return }
@@ -10,20 +10,23 @@ final class NetworkManagerNewsApi {
         
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, _, error) -> Void in
-            
-            if error != nil {
-                print(error!)
-            }
-            
-            if let safeData = data {
-               
-                do {
-                    let result = try JSONDecoder().decode(ModelNews.self, from: safeData)
-                    completionHandler(.success(result.articles ?? []))
-                    print("SUCCESSED: parsing JsonData. Fetch - \(String(describing: result.articles?.count)) articles")
-                } catch {
-                    completionHandler(.failure(error))
-                    print("ERROR: parsing JsonData. \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                
+                
+                if error != nil {
+                    print(error!)
+                }
+                
+                if let safeData = data {
+                    
+                    do {
+                        let result = try JSONDecoder().decode(ModelNews.self, from: safeData)
+                        completionHandler(.success(result.articles ?? []))
+                        print("SUCCESSED: parsing JsonData. Fetch - \(String(describing: result.articles?.count)) articles")
+                    } catch {
+                        completionHandler(.failure(error))
+                        print("ERROR: parsing JsonData. \(error.localizedDescription)")
+                    }
                 }
             }
         }
@@ -49,7 +52,7 @@ struct Article: Codable {
     var content: String?
     
     var source: Source?
-
+    
     var name: String? {
         source?.name
     }

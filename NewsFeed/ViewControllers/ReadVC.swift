@@ -14,7 +14,6 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
         view.addSubview(scrollView)
         scrollView.addSubview(imageView)
         scrollView.addSubview(authorLabel)
@@ -24,6 +23,7 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         
         scrollView.delegate = self
         createConstraints()
+        contentLabel.font = UIFont(name: "Hoefler Text", size: userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
         preparationUiElements()
       
         
@@ -115,7 +115,7 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         titleLabel.font          = UIFont(name: "Hoefler Text", size: 32.0)
         
         contentLabel.numberOfLines = 0
-        contentLabel.textAlignment = .center
+        contentLabel.textAlignment = .natural
         
         imageView.image       = UIImage(named: "Launch")
         imageView.contentMode = .scaleAspectFill

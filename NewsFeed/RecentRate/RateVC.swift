@@ -1,8 +1,9 @@
 import UIKit
 
 var dataArray = [String: Double]()
+var dataArrayCrypto = Crypto()
 var networkManagerCoinLayer = NetworkManagerCoinLayer()
-
+var supportNetworkManager = SupportNetworkManager()
 
 class RateVC: UIViewController {
     
@@ -17,7 +18,7 @@ class RateVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkManagerCoinLayer.fetchData { [weak self] currentRate in
+        networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
             guard let self = self else { return }
             dataArray = currentRate
             DispatchQueue.main.async {
@@ -25,8 +26,13 @@ class RateVC: UIViewController {
             }
         }
 
-        
-
+        supportNetworkManager.fetchDataCrypto { [weak self] currentCrypto in
+            guard let self = self else { return }
+            dataArrayCrypto = currentCrypto
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
         
         
         tableView.dataSource = self
@@ -46,10 +52,12 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RateCell", for: indexPath) as! RateViewCell
         let keys = Array(dataArray.keys)
         let values = Array(dataArray.values)
+//        let cryptoName = Array(dataArrayCrypto.data?.name)
+//        let cryptoSymbol = Array(dataArrayCrypto.data?.symbol)
         
         cell.shortNameRate.text = keys[indexPath.row]
         cell.valueRate.text = String(values[indexPath.row])
-//        cell.nameRate.text =
+//        cell.nameRate.text = cryptoName[indexPath.row]
         
         if cell.shortNameRate.text != nil {
             cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
