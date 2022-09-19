@@ -454,7 +454,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="86G-R1-PiC">
-                                <rect key="frame" x="20" y="234.5" width="374" height="578.5"/>
+                                <rect key="frame" x="20" y="187.5" width="374" height="625.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RateCell" rowHeight="66" id="ywt-9k-yh3" userLabel="RateCell" customClass="RateViewCell" customModule="NewsFeed" customModuleProvider="target">
@@ -467,9 +467,8 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="UeW-Eq-3K1">
                                                     <rect key="frame" x="0.0" y="13" width="119" height="40"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dollarsign.square.fill" catalog="system" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-2r-Ygn">
-                                                            <rect key="frame" x="0.0" y="1" width="40" height="37.5"/>
-                                                            <color key="tintColor" name="ColorSetForBarButton"/>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w4x-2r-Ygn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="KQe-LN-dgh"/>
                                                                 <constraint firstAttribute="width" constant="40" id="NwJ-UJ-RAx"/>
@@ -497,12 +496,18 @@
                                                         <constraint firstItem="G3O-Lt-bch" firstAttribute="leading" secondItem="w4x-2r-Ygn" secondAttribute="trailing" constant="15" id="8GX-xn-gT6"/>
                                                     </constraints>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="WF6-dd-nzd">
-                                                    <rect key="frame" x="268.5" y="23.5" width="105.5" height="19.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="4TB-2d-rJh">
+                                                    <rect key="frame" x="309" y="23" width="53" height="20.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Доллар/рубль" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hib-De-30y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="105.5" height="19.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hib-De-30y">
+                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpm-RM-kuY">
+                                                            <rect key="frame" x="42" y="0.0" width="11" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -511,9 +516,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="UeW-Eq-3K1" firstAttribute="leading" secondItem="meu-ez-KXu" secondAttribute="leading" id="8Es-GA-0bH"/>
-                                                <constraint firstAttribute="trailing" secondItem="WF6-dd-nzd" secondAttribute="trailing" id="CWQ-XH-w18"/>
                                                 <constraint firstItem="G3O-Lt-bch" firstAttribute="centerY" secondItem="meu-ez-KXu" secondAttribute="centerY" id="PAI-wa-ed0"/>
-                                                <constraint firstItem="WF6-dd-nzd" firstAttribute="centerY" secondItem="meu-ez-KXu" secondAttribute="centerY" id="yUq-oZ-4V6"/>
+                                                <constraint firstItem="4TB-2d-rJh" firstAttribute="centerY" secondItem="meu-ez-KXu" secondAttribute="centerY" id="RgQ-dj-s8e"/>
+                                                <constraint firstAttribute="trailing" secondItem="4TB-2d-rJh" secondAttribute="trailing" constant="12" id="hkz-pB-coV"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -536,7 +541,7 @@
                             <constraint firstItem="DcD-xa-UHF" firstAttribute="top" secondItem="N6p-EG-fSB" secondAttribute="bottom" constant="4" id="at7-AF-QCr"/>
                             <constraint firstAttribute="trailing" secondItem="DcD-xa-UHF" secondAttribute="trailing" constant="12" id="b5u-Uw-cTE"/>
                             <constraint firstItem="N6p-EG-fSB" firstAttribute="leading" secondItem="86G-R1-PiC" secondAttribute="leading" id="bfc-uW-JDd"/>
-                            <constraint firstItem="86G-R1-PiC" firstAttribute="top" secondItem="DcD-xa-UHF" secondAttribute="bottom" constant="47" id="eb0-F6-mM8"/>
+                            <constraint firstItem="86G-R1-PiC" firstAttribute="top" secondItem="DcD-xa-UHF" secondAttribute="bottom" id="eb0-F6-mM8"/>
                             <constraint firstItem="86G-R1-PiC" firstAttribute="bottom" secondItem="9sK-JZ-WQu" secondAttribute="bottom" id="y5V-qc-n6M"/>
                             <constraint firstItem="86G-R1-PiC" firstAttribute="centerX" secondItem="DcD-xa-UHF" secondAttribute="centerX" id="zjd-Pp-UaJ"/>
                         </constraints>
@@ -711,12 +716,11 @@
         <image name="First1" width="1170" height="2532"/>
         <image name="Launch" width="1170" height="2532"/>
         <image name="Settings3" width="1170" height="2532"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="bookmark" catalog="system" width="32" height="32"/>
         <image name="coinLayer" width="1170" height="407"/>
-        <image name="dollarsign.square" catalog="system" width="128" height="114"/>
-        <image name="dollarsign.square.fill" catalog="system" width="128" height="114"/>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="dollarsign.square" catalog="system" width="32" height="32"/>
+        <image name="gearshape" catalog="system" width="32" height="32"/>
+        <image name="house" catalog="system" width="32" height="32"/>
         <image name="newsApi" width="1097" height="376"/>
         <namedColor name="ColorSetForBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

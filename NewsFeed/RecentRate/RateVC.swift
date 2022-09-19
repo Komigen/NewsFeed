@@ -1,6 +1,6 @@
 import UIKit
 
-var dataArray = [CurrentRate]()
+var dataArray = [String: Double]()
 var networkManagerCoinLayer = NetworkManagerCoinLayer()
 
 
@@ -17,14 +17,15 @@ class RateVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        networkManagerCoinLayer.fetchData()
-        networkManagerCoinLayer.onCompletion = {  [weak self] currentRate in
+        networkManagerCoinLayer.fetchData { [weak self] currentRate in
             guard let self = self else { return }
             dataArray = currentRate
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
+
+        
 
         
         
@@ -43,39 +44,21 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RateCell", for: indexPath) as! RateViewCell
-        cell.nameRate.text = dataArray[indexPath.item].rateKey
-        cell.shortNameRate.text = dataArray[indexPath.item].rateKey
-        cell.valueRate.text = dataArray[indexPath.item].rateValue
-
+        let keys = Array(dataArray.keys)
+        let values = Array(dataArray.values)
         
+        cell.shortNameRate.text = keys[indexPath.row]
+        cell.valueRate.text = String(values[indexPath.row])
+//        cell.nameRate.text =
+        
+        if cell.shortNameRate.text != nil {
+            cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
+        }
         return cell
     }
    
-    private enum UrlDownloadImage: String {
-        case BTC = "https://assets.coinlayer.com/icons/BTC.png"
-        case ETH = "https://assets.coinlayer.com/icons/ETH.png"
-        case BCH = "https://assets.coinlayer.com/icons/BCH.png"
-        case EOS = "https://assets.coinlayer.com/icons/EOS.png"
-        case LTC = "https://assets.coinlayer.com/icons/LTC.png"
-        case XMR = "https://assets.coinlayer.com/icons/XMR.png"
-        case XRP = "https://assets.coinlayer.com/icons/XRP.png"
-    }
     
-    
-    //    var image: UIImage?  {
-    //        switch target {
-    //
-    //        case "BTC": return ""
-    //        case "ETH": return ""
-    //        case "BCH": return ""
-    //        case "EOS": return ""
-    //        case "LTC": return ""
-    //        case "XMR": return ""
-    //        case "XRP": return ""
-    //
-    //        default:
-    //            return "default"
-    //    }
+ 
     
     //MARK: Animated tableView
     
@@ -103,3 +86,20 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
+//MARK: Download image
+
+extension UIImageView {
+    
+    func downloadImageCoin(shortName: String) {
+        guard let url = URL(string: "https://assets.coinlayer.com/icons/\(shortName).png"), UIApplication.shared.canOpenURL(url) else { print("ERROR: image URL-address not valid."); return }
+        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let safeData = data, error == nil {
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: safeData)
+                }
+            }
+        }
+        task.resume()
+        print("SUCCESSED downloading Image")
+    }
+}
