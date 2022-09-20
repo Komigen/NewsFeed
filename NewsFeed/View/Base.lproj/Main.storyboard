@@ -10,17 +10,21 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="TimesNewRoman.ttf">
+            <string>.SFUI-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Tab Bar Controller-->
         <scene sceneID="N5X-NL-hnL">
             <objects>
                 <tabBarController id="bwT-E5-To6" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="vx8-br-h3M"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="12z-UY-zMj">
+                    <tabBar key="tabBar" alpha="0.69999999999999996" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="12z-UY-zMj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" name="ColorSetForBackground"/>
-                        <color key="barTintColor" systemColor="systemRedColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="3TB-5k-kYN" kind="relationship" relationship="viewControllers" id="YOh-pC-yU2"/>
@@ -44,57 +48,57 @@
                                 <rect key="frame" x="17" y="139" width="380" height="674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FirstCell" rowHeight="141" id="f9G-UU-0ny" customClass="FirstVCCell" customModule="NewsFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="380" height="141"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FirstCell" focusStyle="custom" rowHeight="110" id="f9G-UU-0ny" customClass="FirstVCCell" customModule="NewsFeed" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="380" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f9G-UU-0ny" id="3Dp-k1-BHe">
-                                            <rect key="frame" x="0.0" y="0.0" width="351.5" height="141"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="380" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYt-3F-Vsr">
-                                                    <rect key="frame" x="20" y="21.5" width="203.5" height="68"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DOJ's Mar-a-Lago filing reveals damning details on the Trump papers saga" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jYt-3F-Vsr">
+                                                    <rect key="frame" x="20" y="5" width="220" height="76"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="68" id="Vrp-Fc-vF0"/>
+                                                        <constraint firstAttribute="width" constant="204" id="OeB-Zj-I9e"/>
+                                                        <constraint firstAttribute="height" constant="76" id="Vrp-Fc-vF0"/>
                                                     </constraints>
-                                                    <string key="text">LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name=".SFUI-Regular" family=".AppleSystemUIFont" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4FK-8y-GGd">
-                                                    <rect key="frame" x="243.5" y="21.5" width="100" height="98"/>
+                                                    <rect key="frame" x="260" y="6" width="100" height="97.5"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="C8p-0Z-mMT"/>
                                                         <constraint firstAttribute="width" constant="100" id="iXC-y8-6Jx"/>
                                                     </constraints>
-                                                    <imageReference key="image" image="Launch" symbolScale="default" renderingMode="hierarchical">
+                                                    <imageReference key="image" image="square.text.square" catalog="system" symbolScale="default" renderingMode="hierarchical">
                                                         <hierarchicalColors>
-                                                            <color systemColor="secondaryLabelColor"/>
-                                                            <color systemColor="secondaryLabelColor"/>
-                                                            <color systemColor="secondaryLabelColor"/>
+                                                            <color systemColor="systemGrayColor"/>
+                                                            <color systemColor="systemGrayColor"/>
+                                                            <color systemColor="systemGrayColor"/>
                                                         </hierarchicalColors>
                                                     </imageReference>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWn-hI-uo6">
-                                                    <rect key="frame" x="20" y="98.5" width="43" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                    <rect key="frame" x="20" y="89" width="40.5" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="4FK-8y-GGd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CWn-hI-uo6" secondAttribute="trailing" constant="8" symbolic="YES" id="C9t-Gw-2rM"/>
+                                                <constraint firstItem="4FK-8y-GGd" firstAttribute="centerY" secondItem="3Dp-k1-BHe" secondAttribute="centerY" id="DYZ-6q-XyI"/>
+                                                <constraint firstItem="CWn-hI-uo6" firstAttribute="bottom" secondItem="4FK-8y-GGd" secondAttribute="bottom" id="EhJ-Iu-15Z"/>
                                                 <constraint firstItem="CWn-hI-uo6" firstAttribute="leading" secondItem="3Dp-k1-BHe" secondAttribute="leadingMargin" id="YSQ-Qx-FcQ"/>
-                                                <constraint firstItem="4FK-8y-GGd" firstAttribute="centerY" secondItem="3Dp-k1-BHe" secondAttribute="centerY" id="ZJw-E6-VvM"/>
-                                                <constraint firstItem="CWn-hI-uo6" firstAttribute="bottom" secondItem="4FK-8y-GGd" secondAttribute="bottom" id="bQ9-TG-Ywj"/>
                                                 <constraint firstItem="4FK-8y-GGd" firstAttribute="leading" secondItem="jYt-3F-Vsr" secondAttribute="trailing" constant="20" id="d0D-3l-kbb"/>
-                                                <constraint firstItem="jYt-3F-Vsr" firstAttribute="top" secondItem="3Dp-k1-BHe" secondAttribute="topMargin" constant="10.5" id="grZ-Ye-dRx"/>
-                                                <constraint firstItem="CWn-hI-uo6" firstAttribute="top" secondItem="jYt-3F-Vsr" secondAttribute="bottom" constant="9" id="jau-r6-Xr4"/>
                                                 <constraint firstItem="jYt-3F-Vsr" firstAttribute="leading" secondItem="3Dp-k1-BHe" secondAttribute="leadingMargin" id="rXv-Rs-MR3"/>
                                                 <constraint firstItem="4FK-8y-GGd" firstAttribute="trailing" secondItem="3Dp-k1-BHe" secondAttribute="trailingMargin" id="sIQ-Du-2GE"/>
                                                 <constraint firstItem="jYt-3F-Vsr" firstAttribute="top" secondItem="4FK-8y-GGd" secondAttribute="top" id="yWZ-GY-JQO"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
                                         <connections>
                                             <outlet property="authorText" destination="CWn-hI-uo6" id="OdH-Q0-CLG"/>
                                             <outlet property="imagePost" destination="4FK-8y-GGd" id="Lhk-OW-u4y"/>
@@ -127,7 +131,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="rRR-Kv-9AF">
+                    <navigationItem key="navigationItem" title="NewsFeed" id="rRR-Kv-9AF">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="4mP-Pk-DoA">
                             <imageReference key="image" image="gearshape" catalog="system" renderingMode="hierarchical-single">
                                 <hierarchicalColors>
@@ -387,15 +391,6 @@ In a court filing, Musk said the influential social media platform covered up se
                                 <rect key="frame" x="0.0" y="101" width="414" height="51"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent searches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2o-g1-iYk">
-                                <rect key="frame" x="17" y="167" width="127" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="B65-hV-8CQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CuZ-I9-mwy"/>
                         <color key="backgroundColor" name="ColorSetForBackground"/>
@@ -403,12 +398,9 @@ In a court filing, Musk said the influential social media platform covered up se
                             <constraint firstItem="tNU-8k-Y2S" firstAttribute="leading" secondItem="CuZ-I9-mwy" secondAttribute="leading" constant="17" id="1xr-ti-Wns"/>
                             <constraint firstItem="ceB-lp-uPq" firstAttribute="top" secondItem="CuZ-I9-mwy" secondAttribute="top" constant="13" id="9Ec-LX-HZx"/>
                             <constraint firstItem="CuZ-I9-mwy" firstAttribute="bottom" secondItem="tNU-8k-Y2S" secondAttribute="bottom" id="LJq-Zg-Js1"/>
-                            <constraint firstItem="k2o-g1-iYk" firstAttribute="leading" secondItem="CuZ-I9-mwy" secondAttribute="leading" constant="17" id="SCj-ts-Lb4"/>
                             <constraint firstItem="CuZ-I9-mwy" firstAttribute="trailing" secondItem="tNU-8k-Y2S" secondAttribute="trailing" constant="17" id="TbO-Q3-mBa"/>
-                            <constraint firstItem="CuZ-I9-mwy" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="k2o-g1-iYk" secondAttribute="trailing" symbolic="YES" id="X6O-UX-GfA"/>
                             <constraint firstItem="tNU-8k-Y2S" firstAttribute="centerX" secondItem="ceB-lp-uPq" secondAttribute="centerX" id="bCU-Mn-fCl"/>
                             <constraint firstItem="tNU-8k-Y2S" firstAttribute="top" secondItem="ceB-lp-uPq" secondAttribute="bottom" id="d9Q-pm-sWP"/>
-                            <constraint firstItem="k2o-g1-iYk" firstAttribute="top" secondItem="ceB-lp-uPq" secondAttribute="bottom" constant="15" id="kzF-xa-nKl"/>
                             <constraint firstItem="ceB-lp-uPq" firstAttribute="trailing" secondItem="CuZ-I9-mwy" secondAttribute="trailing" id="uws-YH-TNF"/>
                             <constraint firstItem="ceB-lp-uPq" firstAttribute="leading" secondItem="CuZ-I9-mwy" secondAttribute="leading" id="yRL-bD-X9N"/>
                         </constraints>
@@ -447,7 +439,7 @@ In a court filing, Musk said the influential social media platform covered up se
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="DcD-xa-UHF">
                                 <rect key="frame" x="12" y="136.5" width="390" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="search" enablesReturnKeyAutomatically="YES" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes" textContentType="name"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency rates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6p-EG-fSB">
                                 <rect key="frame" x="20" y="101" width="180" height="31.5"/>
@@ -488,7 +480,7 @@ In a court filing, Musk said the influential social media platform covered up se
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="ShortName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vwq-cL-tmf">
                                                                     <rect key="frame" x="0.0" y="27.5" width="64" height="12.5"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                    <color key="textColor" systemColor="systemGray2Color"/>
+                                                                    <color key="textColor" systemColor="systemGrayColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -563,6 +555,7 @@ In a court filing, Musk said the influential social media platform covered up se
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="DcD-xa-UHF" id="FTX-Hl-kTR"/>
                         <outlet property="tableView" destination="86G-R1-PiC" id="fp7-Wa-zn7"/>
                     </connections>
                 </viewController>
@@ -612,13 +605,14 @@ In a court filing, Musk said the influential social media platform covered up se
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3TB-5k-kYN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" id="Msy-Kw-Ri5">
-                        <imageReference key="image" image="house" catalog="system" renderingMode="hierarchical-single">
+                        <imageReference key="image" image="newspaper" catalog="system" renderingMode="hierarchical-single">
                             <hierarchicalColors>
-                                <color systemColor="systemGray2Color"/>
+                                <color systemColor="systemGrayColor"/>
                                 <color red="0.55634254220000001" green="0.97934550050000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </hierarchicalColors>
                         </imageReference>
+                        <imageReference key="selectedImage" image="newspaper" catalog="system" symbolScale="large" renderingMode="original"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sHU-kV-Ouh">
@@ -639,10 +633,17 @@ In a court filing, Musk said the influential social media platform covered up se
         <scene sceneID="ab6-il-ejD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B4p-AT-yq2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" id="lXX-eH-UWZ">
+                    <tabBarItem key="tabBarItem" title="" id="lXX-eH-UWZ">
                         <imageReference key="image" image="bookmark" catalog="system" renderingMode="hierarchical-single">
                             <hierarchicalColors>
-                                <color name="ColorSetForBarButton"/>
+                                <color systemColor="systemGrayColor"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                        <imageReference key="selectedImage" image="bookmark" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color systemColor="secondaryLabelColor"/>
                                 <color systemColor="tertiaryLabelColor"/>
                             </hierarchicalColors>
@@ -668,13 +669,14 @@ In a court filing, Musk said the influential social media platform covered up se
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pkU-Ow-Jro" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="362-iO-TXK">
-                        <imageReference key="image" image="dollarsign.square" catalog="system" renderingMode="hierarchical-single">
+                        <imageReference key="image" image="dollarsign.square" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
                             <hierarchicalColors>
-                                <color name="ColorSetForBarButton"/>
+                                <color systemColor="systemGray2Color"/>
                                 <color systemColor="secondaryLabelColor"/>
                                 <color systemColor="tertiaryLabelColor"/>
                             </hierarchicalColors>
                         </imageReference>
+                        <imageReference key="selectedImage" image="dollarsign.square" catalog="system" symbolScale="large" renderingMode="original"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iQ8-v0-Nhv">
@@ -716,14 +718,14 @@ In a court filing, Musk said the influential social media platform covered up se
     </inferredMetricsTieBreakers>
     <resources>
         <image name="First1" width="1170" height="2532"/>
-        <image name="Launch" width="1170" height="2532"/>
         <image name="Settings3" width="1170" height="2532"/>
         <image name="bookmark" catalog="system" width="32" height="32"/>
         <image name="coinLayer" width="1170" height="407"/>
         <image name="dollarsign.square" catalog="system" width="32" height="32"/>
         <image name="gearshape" catalog="system" width="32" height="32"/>
-        <image name="house" catalog="system" width="32" height="32"/>
         <image name="newsApi" width="1097" height="376"/>
+        <image name="newspaper" catalog="system" width="32" height="32"/>
+        <image name="square.text.square" catalog="system" width="32" height="32"/>
         <namedColor name="ColorSetForBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -748,11 +750,8 @@ In a court filing, Musk said the influential social media platform covered up se
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

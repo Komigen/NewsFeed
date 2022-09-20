@@ -23,17 +23,8 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         
         scrollView.delegate = self
         createConstraints()
-        contentLabel.font = UIFont(name: "Hoefler Text", size: userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
+        contentLabel.font = UIFont(name: "System Light", size: userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
         preparationUiElements()
-      
-        
-        
-        
-        
-        authorLabel.text = "Vanessa Gera gera"
-        date.text = "1231241235"
-        titleLabel.text = "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle"
-        contentLabel.text = "view.addSubview(scrollView)scrollView.addSubview(imageView) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label)view.addSubview(scrollView)scrollView.addSubview(imageView) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label) scrollView.addSubview(label)"
     }
     
     //MARK: Navigation Bar Button Item
@@ -62,7 +53,7 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
                 
         NSLayoutConstraint.activate([
            
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 17),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 17),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -17),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -17),
@@ -106,7 +97,6 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         date.numberOfLines = 1
         date.textColor     = UIColor.systemGray
         date.textAlignment = .right
-        date.textColor     = UIColor.systemGray
         date.font          = date.font.withSize(12.0)
 
         titleLabel.numberOfLines = 0
@@ -116,6 +106,7 @@ class ReadVC: UIViewController, UIScrollViewDelegate {
         
         contentLabel.numberOfLines = 0
         contentLabel.textAlignment = .natural
+        contentLabel.textColor     = UIColor.darkGray
         
         imageView.image       = UIImage(named: "Launch")
         imageView.contentMode = .scaleAspectFill

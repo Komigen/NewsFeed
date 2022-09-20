@@ -2,8 +2,8 @@ import UIKit
 
 class FirstVC: UIViewController {
     
-//    var firstVc = FirstVC()
-    
+    //    var firstVc = FirstVC()
+    var createStringUrl = CreateStringUrl()
     @IBOutlet weak var tableView: UITableView!
     
     var articlesArray = [Article]()
@@ -17,7 +17,7 @@ class FirstVC: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        NetworkManagerNewsApi().fetchData(urlString: urlByCountrysHeadlines(country: .UnitedStates)) { [weak self] result in
+        NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.France.rawValue)) { [weak self] result in
             switch result {
             case .success(let articles):
                 self?.reloadPostsArray(articles: articles)
@@ -39,17 +39,23 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return postsArray.count
-        return 1
+        return postsArray.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FirstCell", for: indexPath) as! FirstVCCell
         
-//        cell.titleText.text = postsArray[indexPath.item].title
-//        cell.authorText.text = postsArray[indexPath.item].author
-//        cell.imagePost.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage!)
+        cell.titleText.text = postsArray[indexPath.item].title
+        cell.authorText.text = {
+            if let author = postsArray[indexPath.item].author {
+            return "Opinion by \(author)"
+        } else {
+            return "Author unknown"
+        }
+        }()
+        
+        cell.imagePost.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
         
         return cell
     }
@@ -66,30 +72,28 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
-//    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//                
-//        switch editingStyle {
-//        case .delete: break
-//        case .insert: break
-//        case .none: break
-//        }
-//    }
+    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    //        return true
+    //    }
+    //
+    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    //
+    //        switch editingStyle {
+    //        case .delete: break
+    //        case .insert: break
+    //        case .none: break
+    //        }
+    //    }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let readVc = segue.destination as? ReadVC {
-//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-//            readVc.contentLabel.text = articlesArray[indexPath.item].content
-//            readVc.titleLabel.text = articlesArray[indexPath.item].title
-//            readVc.authorLabel.text = articlesArray[indexPath.item].author
-//                        readVc.imageView.image =
-//        }
-//
-//    }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let readVc = segue.destination as? ReadVC {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            readVc.contentLabel.text = postsArray[indexPath.item].content
+            readVc.titleLabel.text = postsArray[indexPath.item].title
+            readVc.authorLabel.text = "\(postsArray[indexPath.item].author ?? "Author unknown")"
+            readVc.imageView.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
+        }
+    }
 }
 
 //MARK: Download image
@@ -132,7 +136,7 @@ extension FirstVC {
     
     //MARK: Reload TableView
     
-   private func reloadTableView() {
+    private func reloadTableView() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

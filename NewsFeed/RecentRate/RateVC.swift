@@ -2,13 +2,16 @@ import UIKit
 
 var dataArray = [String: Double]()
 var dataArrayCrypto = Crypto()
+
 var networkManagerCoinLayer = NetworkManagerCoinLayer()
 var supportNetworkManager = SupportNetworkManager()
 
-class RateVC: UIViewController {
+class RateVC: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    var filteredData: [String: Double]!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -18,6 +21,8 @@ class RateVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        filteredData = dataArray
+
         networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
             guard let self = self else { return }
             dataArray = currentRate
@@ -36,26 +41,26 @@ class RateVC: UIViewController {
         
         
         tableView.dataSource = self
-        tableView.delegate = self
-        
+        tableView.delegate   = self
+        searchBar.delegate   = self
     }
 }
 
 
 extension RateVC: UITableViewDataSource, UITableViewDelegate {
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataArray.count
+        return filteredData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RateCell", for: indexPath) as! RateViewCell
-        let keys = Array(dataArray.keys)
-        let values = Array(dataArray.values)
 //        let cryptoName = Array(dataArrayCrypto.data?.name)
 //        let cryptoSymbol = Array(dataArrayCrypto.data?.symbol)
-        
-        cell.shortNameRate.text = keys[indexPath.row]
+        let values = Array(filteredData.values)
+        let keys = Array(filteredData.keys)
+        cell.shortNameRate.text = String(keys[indexPath.row])
         cell.valueRate.text = String(values[indexPath.row])
 //        cell.nameRate.text = cryptoName[indexPath.row]
         
@@ -65,8 +70,6 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
    
-    
- 
     
     //MARK: Animated tableView
     
@@ -91,8 +94,33 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
             delay += 0.7
         }
     }
+    
 }
 
+
+//MARK: Search Results
+
+//extension RateVC: UISearchResultsUpdating {
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//        
+//    }
+//    
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        filteredData = [:]
+//        
+//        if searchText == "" {
+//            filteredData = dataArray
+//        }
+//        for (word, value) in dataArray.enumerated() {
+//            if word.uppercased().contains(searchText.uppercased()) {
+//                filteredData.append(dataArray[word])
+//            }
+//        }
+//        self.tableView.reloadData()
+//        animateTableView(tableView)
+//    }
+//}
 
 //MARK: Download image
 

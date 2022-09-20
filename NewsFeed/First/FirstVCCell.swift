@@ -8,6 +8,7 @@ class FirstVCCell: UITableViewCell {
         didSet {
             imagePost.layer.cornerRadius = 8.0
             imagePost.clipsToBounds = true
+            imagePost.contentMode = .scaleAspectFill
         }
     }
     
