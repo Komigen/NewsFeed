@@ -3,7 +3,6 @@ import UIKit
 private let apiKey    = "6668744690fd8c840e335ed7d0ca796f"
 fileprivate let urlString = "http://api.coinlayer.com/api/live?access_key=\(apiKey)&target=USD"
 
-
 class NetworkManagerCoinLayer {
     
     var arrayRate = [String: Double]()

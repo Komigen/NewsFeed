@@ -1,21 +1,24 @@
 import UIKit
 
 class FirstVC: UIViewController {
-    
-    //    var firstVc = FirstVC()
-    var createStringUrl = CreateStringUrl()
+        
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    var createStringUrl = CreateStringUrl()
+
     var articlesArray = [Article]()
     
     var imagesArray = [CurrentImage]()
-    var postsArray = [CurrentPost]()
+    var postsArray  = [CurrentPostModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tableView.dataSource = self
-        self.tableView.delegate = self
+        self.tableView.delegate   = self
+        self.searchBar.delegate   = self
+        
         
         NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.France.rawValue)) { [weak self] result in
             switch result {
@@ -49,10 +52,10 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         cell.titleText.text = postsArray[indexPath.item].title
         cell.authorText.text = {
             if let author = postsArray[indexPath.item].author {
-            return "Opinion by \(author)"
-        } else {
-            return "Author unknown"
-        }
+                return "Opinion by \(author)"
+            } else {
+                return "Author unknown"
+            }
         }()
         
         cell.imagePost.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
@@ -62,7 +65,7 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140.0
+        return 110.0
     }
     
     
@@ -86,15 +89,13 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let readVc = segue.destination as? ReadVC {
+        if let readLaterVc = segue.destination as? ReadVC {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            readVc.contentLabel.text = postsArray[indexPath.item].content
-            readVc.titleLabel.text = postsArray[indexPath.item].title
-            readVc.authorLabel.text = "\(postsArray[indexPath.item].author ?? "Author unknown")"
-            readVc.imageView.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
+            readLaterVc.stringUrl = postsArray[indexPath.item].url ?? ""
         }
     }
 }
+
 
 //MARK: Download image
 
@@ -115,20 +116,20 @@ extension UIImageView {
 }
 
 
-
 //MARK: Reload postsArray & reload TableView
 
-extension FirstVC {
+extension FirstVC: UISearchBarDelegate {
+    
     
     func reloadPostsArray(articles: [Article]) {
-        self.postsArray = articles.compactMap({ CurrentPost(sourceName: $0.source?.name,
-                                                            author: $0.author,
-                                                            title: $0.title,
-                                                            articleDescription: $0.articleDescription,
-                                                            url: $0.url,
-                                                            urlToImage: $0.urlToImage,
-                                                            publishedAt: $0.publishedAt,
-                                                            content: $0.content)
+        self.postsArray = articles.compactMap({ CurrentPostModel(sourceName: $0.source?.name,
+                                                                 author: $0.author,
+                                                                 title: $0.title,
+                                                                 articleDescription: $0.articleDescription,
+                                                                 url: $0.url,
+                                                                 urlToImage: $0.urlToImage,
+                                                                 publishedAt: $0.publishedAt,
+                                                                 content: $0.content)
         })
         reloadTableView()
     }
@@ -141,6 +142,32 @@ extension FirstVC {
             self.tableView.reloadData()
         }
     }
+    
+    //MARK: Search Results
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == "" {
+            filteredData = dataArray
+        } else {
+            
+            filteredData = [:]
+            for word in dataArray.keys {
+                
+                if word.uppercased().contains(searchText.uppercased()) {
+                    filteredData = dataArray.filter({ $0.key.contains(word) })
+                    print(filteredData)
+                } else {
+                    filteredData = dataArray
+                }
+            }
+            self.tableView.reloadData()
+            animateTableView(tableView)
+        }
+    }
 }
+
+
 
 

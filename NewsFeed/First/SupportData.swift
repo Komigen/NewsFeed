@@ -1,5 +1,7 @@
 import Foundation
 
+// MARK: Support data for creating custom a request
+
 public enum CategoryNews: String {
     case business      = "Business"
     case entertainment = "Entertainment"

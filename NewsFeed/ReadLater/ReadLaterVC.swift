@@ -3,7 +3,6 @@ import UIKit
 class ReadLaterVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,3 +23,4 @@ class ReadLaterVC: UIViewController {
 
 
 }
+

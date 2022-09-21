@@ -2,7 +2,7 @@ import UIKit
 
 //MARK: Init Post
 
-final class CurrentPost {
+final class CurrentPostModel {
     
     let sourceName:         String?
     let author:             String?

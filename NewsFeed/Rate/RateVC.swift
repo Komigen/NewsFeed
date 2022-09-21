@@ -1,17 +1,15 @@
 import UIKit
 
-var dataArray = [String: Double]()
 var dataArrayCrypto = Crypto()
-
 var networkManagerCoinLayer = NetworkManagerCoinLayer()
-var supportNetworkManager = SupportNetworkManager()
 
-class RateVC: UIViewController, UISearchBarDelegate {
+class RateVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var filteredData: [String: Double]!
+    var dataArray    = [String: Double]()
+    var filteredData = [String: Double]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -21,25 +19,16 @@ class RateVC: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        filteredData = dataArray
-
+        
         networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
             guard let self = self else { return }
-            dataArray = currentRate
+            self.dataArray = currentRate
+            self.filteredData = self.dataArray
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
-
-        supportNetworkManager.fetchDataCrypto { [weak self] currentCrypto in
-            guard let self = self else { return }
-            dataArrayCrypto = currentCrypto
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-        
-        
+                
         tableView.dataSource = self
         tableView.delegate   = self
         searchBar.delegate   = self
@@ -56,20 +45,19 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RateCell", for: indexPath) as! RateViewCell
-//        let cryptoName = Array(dataArrayCrypto.data?.name)
-//        let cryptoSymbol = Array(dataArrayCrypto.data?.symbol)
+        
         let values = Array(filteredData.values)
-        let keys = Array(filteredData.keys)
+        let keys   = Array(filteredData.keys)
+        
         cell.shortNameRate.text = String(keys[indexPath.row])
-        cell.valueRate.text = String(values[indexPath.row])
-//        cell.nameRate.text = cryptoName[indexPath.row]
+        cell.valueRate.text     = String(values[indexPath.row])
         
         if cell.shortNameRate.text != nil {
             cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
         }
         return cell
     }
-   
+    
     
     //MARK: Animated tableView
     
@@ -94,33 +82,34 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
             delay += 0.7
         }
     }
-    
 }
 
 
 //MARK: Search Results
 
-//extension RateVC: UISearchResultsUpdating {
-//
-//    func updateSearchResults(for searchController: UISearchController) {
-//        
-//    }
-//    
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        filteredData = [:]
-//        
-//        if searchText == "" {
-//            filteredData = dataArray
-//        }
-//        for (word, value) in dataArray.enumerated() {
-//            if word.uppercased().contains(searchText.uppercased()) {
-//                filteredData.append(dataArray[word])
-//            }
-//        }
-//        self.tableView.reloadData()
-//        animateTableView(tableView)
-//    }
-//}
+extension RateVC: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText == "" {
+            filteredData = dataArray
+        } else {
+            
+            filteredData = [:]
+            for word in dataArray.keys {
+                
+                if word.uppercased().contains(searchText.uppercased()) {
+                    filteredData = dataArray.filter({ $0.key.contains(word) })
+                    print(filteredData)
+                } else {
+                    filteredData = dataArray
+                }
+            }
+            self.tableView.reloadData()
+            animateTableView(tableView)
+        }
+    }
+}
 
 //MARK: Download image
 

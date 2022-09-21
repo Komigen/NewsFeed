@@ -21,12 +21,12 @@
 		B5CE5A8328C10B1C0076BE6F /* ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8228C10B1C0076BE6F /* ReadVC.swift */; };
 		B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */; };
 		B5CE5A9728C1DAE80076BE6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A9628C1DAE80076BE6F /* Constants.swift */; };
-		B5CE5AA328C208780076BE6F /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AA228C208780076BE6F /* Enums.swift */; };
+		B5CE5AA328C208780076BE6F /* SupportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AA228C208780076BE6F /* SupportData.swift */; };
 		B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */; };
 		B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */; };
 		B5CE5AAE28C231460076BE6F /* RateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AAD28C231460076BE6F /* RateViewCell.swift */; };
-		B5CE5AB128C622890076BE6F /* CurrentPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AB028C622890076BE6F /* CurrentPost.swift */; };
-		B5EF88B528D8AD3900C1F4AF /* SupportNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF88B428D8AD3900C1F4AF /* SupportNetworkManager.swift */; };
+		B5CE5AB128C622890076BE6F /* CurrentPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AB028C622890076BE6F /* CurrentPostModel.swift */; };
+		B5EF88B728DB067800C1F4AF /* ReadLaterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF88B628DB067800C1F4AF /* ReadLaterCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,12 +46,12 @@
 		B5CE5A8228C10B1C0076BE6F /* ReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVC.swift; sourceTree = "<group>"; };
 		B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		B5CE5A9628C1DAE80076BE6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B5CE5AA228C208780076BE6F /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		B5CE5AA228C208780076BE6F /* SupportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportData.swift; sourceTree = "<group>"; };
 		B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerCoinLayer.swift; sourceTree = "<group>"; };
 		B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCoinLayer.swift; sourceTree = "<group>"; };
 		B5CE5AAD28C231460076BE6F /* RateViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewCell.swift; sourceTree = "<group>"; };
-		B5CE5AB028C622890076BE6F /* CurrentPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPost.swift; sourceTree = "<group>"; };
-		B5EF88B428D8AD3900C1F4AF /* SupportNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportNetworkManager.swift; sourceTree = "<group>"; };
+		B5CE5AB028C622890076BE6F /* CurrentPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentPostModel.swift; sourceTree = "<group>"; };
+		B5EF88B628DB067800C1F4AF /* ReadLaterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadLaterCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 				B54EA23528C07C2700535572 /* Info.plist */,
 				B5CE5AA428C2168A0076BE6F /* First */,
 				B5CA0AF028D43F9000BD4D06 /* ReadLater */,
-				B5CE5AAF28C231500076BE6F /* RecentRate */,
+				B5CE5AAF28C231500076BE6F /* Rate */,
 				B5CA0AEB28D057BF00BD4D06 /* Settings */,
 				B54EA23028C07C2700535572 /* Assets.xcassets */,
 				B5CA0AEE28D43D4200BD4D06 /* Read */,
@@ -145,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE5A7C28C10AB40076BE6F /* ReadLaterVC.swift */,
+				B5EF88B628DB067800C1F4AF /* ReadLaterCell.swift */,
 			);
 			path = ReadLater;
 			sourceTree = "<group>";
@@ -154,24 +155,23 @@
 			children = (
 				B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */,
 				B52EDAC528C71C6800594D97 /* FirstVCCell.swift */,
-				B5CE5AA228C208780076BE6F /* Enums.swift */,
-				B5CE5AB028C622890076BE6F /* CurrentPost.swift */,
+				B5CE5AA228C208780076BE6F /* SupportData.swift */,
+				B5CE5AB028C622890076BE6F /* CurrentPostModel.swift */,
 				B52EDACC28C88A9300594D97 /* CreateUrlString.swift */,
 				B52EDAC728C7BD8D00594D97 /* Network */,
 			);
 			path = First;
 			sourceTree = "<group>";
 		};
-		B5CE5AAF28C231500076BE6F /* RecentRate */ = {
+		B5CE5AAF28C231500076BE6F /* Rate */ = {
 			isa = PBXGroup;
 			children = (
 				B5CE5A8028C10AFE0076BE6F /* RateVC.swift */,
 				B5CE5AAD28C231460076BE6F /* RateViewCell.swift */,
 				B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */,
-				B5EF88B428D8AD3900C1F4AF /* SupportNetworkManager.swift */,
 				B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */,
 			);
-			path = RecentRate;
+			path = Rate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,17 +248,17 @@
 				B5CE5A7D28C10AB40076BE6F /* ReadLaterVC.swift in Sources */,
 				B5CE5A9728C1DAE80076BE6F /* Constants.swift in Sources */,
 				B54EA24628C0802400535572 /* NetworkManagerNews.swift in Sources */,
-				B5EF88B528D8AD3900C1F4AF /* SupportNetworkManager.swift in Sources */,
 				B54EA22828C07C2500535572 /* AppDelegate.swift in Sources */,
 				B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */,
 				B5CE5A8128C10AFE0076BE6F /* RateVC.swift in Sources */,
 				B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */,
 				B52EDAC628C71C6800594D97 /* FirstVCCell.swift in Sources */,
-				B5CE5AB128C622890076BE6F /* CurrentPost.swift in Sources */,
+				B5CE5AB128C622890076BE6F /* CurrentPostModel.swift in Sources */,
 				B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */,
 				B54EA22A28C07C2500535572 /* SceneDelegate.swift in Sources */,
+				B5EF88B728DB067800C1F4AF /* ReadLaterCell.swift in Sources */,
 				B52EDACD28C88A9300594D97 /* CreateUrlString.swift in Sources */,
-				B5CE5AA328C208780076BE6F /* Enums.swift in Sources */,
+				B5CE5AA328C208780076BE6F /* SupportData.swift in Sources */,
 				B5CE5A8328C10B1C0076BE6F /* ReadVC.swift in Sources */,
 				B5CE5AAE28C231460076BE6F /* RateViewCell.swift in Sources */,
 				B5CA0AED28D05CA400BD4D06 /* SettingsVC.swift in Sources */,
@@ -417,7 +417,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,7 +447,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
