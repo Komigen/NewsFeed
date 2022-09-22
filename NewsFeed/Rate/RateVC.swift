@@ -7,19 +7,21 @@ class RateVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var currencyRatesLabel: UILabel!
+    @IBOutlet weak var settingsButtonOutlet: UIBarButtonItem!
     
     var dataArray    = [String: Double]()
     var filteredData = [String: Double]()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        prepareUi()
         animateTableView(tableView)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
             guard let self = self else { return }
             self.dataArray = currentRate
@@ -32,6 +34,31 @@ class RateVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate   = self
         searchBar.delegate   = self
+    }
+    
+    //MARK: Ui settings before display
+
+    func prepareUi() {
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+        case 0:
+            tableView.backgroundColor = whiteColor
+            self.view.backgroundColor = whiteColor
+            searchBar.barTintColor    = systemGray6Color
+            searchBar.layer.cornerRadius = 16.0
+            searchBar.clipsToBounds = true
+            currencyRatesLabel.textColor = blackColor
+            print("Presented light display mode on RateVc")
+        case 1:
+            tableView.backgroundColor = blackColor
+            self.view.backgroundColor = blackColor
+            searchBar.barTintColor    = systemGray6Color
+            searchBar.layer.cornerRadius = 16.0
+            searchBar.clipsToBounds = true
+
+            currencyRatesLabel.textColor = whiteColor
+            print("Presented dark display mode on RateVc")
+        default: break
+        }
     }
 }
 
@@ -52,16 +79,24 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
         cell.shortNameRate.text = String(keys[indexPath.row])
         cell.valueRate.text     = String(values[indexPath.row])
         
+//        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+//        case 0:
+//            cell.backgroundColor = whiteColor
+//        case 1:
+//            cell.backgroundColor = blackColor
+//        default: break
+//        }
+        
         if cell.shortNameRate.text != nil {
             cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
         }
         return cell
     }
-    
+}
     
     //MARK: Animated tableView
     
-    private func animateTableView(_ tableView: UITableView) {
+public func animateTableView(_ tableView: UITableView) {
         tableView.reloadData()
         
         let cells = tableView.visibleCells
@@ -82,7 +117,7 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
             delay += 0.7
         }
     }
-}
+
 
 
 //MARK: Search Results

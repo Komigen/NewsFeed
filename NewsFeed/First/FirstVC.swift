@@ -1,12 +1,18 @@
 import UIKit
 
 class FirstVC: UIViewController {
-        
+    
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.layer.cornerRadius = 16.0
+            searchBar.clipsToBounds = true
+        }
+    }
+    @IBOutlet weak var newsFeedLabel: UINavigationItem!
     
     var createStringUrl = CreateStringUrl()
-
+    
     var articlesArray = [Article]()
     
     var imagesArray = [CurrentImage]()
@@ -14,10 +20,11 @@ class FirstVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.tableView.dataSource = self
         self.tableView.delegate   = self
         self.searchBar.delegate   = self
+        
         
         
         NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.France.rawValue)) { [weak self] result in
@@ -27,9 +34,30 @@ class FirstVC: UIViewController {
             case .failure: break
             }
         }
+        
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+            
+        case 0:
+            tableView.backgroundColor = whiteColor
+            self.view.backgroundColor = whiteColor
+            newsFeedLabel.titleView?.tintColor = UIColor.black
+            tableView.reloadData()
+            animateTableView(self.tableView)
+            print("Presented light display mode on RateVc")
+        case 1:
+            tableView.backgroundColor = blackColor
+            self.view.backgroundColor = self.tableView.backgroundColor
+            newsFeedLabel.titleView?.tintColor = UIColor.white
+            animateTableView(self.tableView)
+            print("Presented dark display mode on RateVc")
+        default:
+            tableView.backgroundColor = whiteColor
+            self.view.backgroundColor = whiteColor
+            newsFeedLabel.titleView?.tintColor = UIColor.black
+            animateTableView(self.tableView)
+            print("Presented light display mode on RateVc")
+        }
     }
-    
-    @IBOutlet weak var searchBarForWord: UISearchBar!
 }
 
 //MARK: TableView delegate
@@ -59,7 +87,14 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         }()
         
         cell.imagePost.downloadImage(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
-        
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+        case 0:
+            cell.backgroundColor = whiteColor
+        case 1:
+            cell.backgroundColor = blackColor
+        default:
+            cell.backgroundColor = whiteColor
+        }
         return cell
     }
     
@@ -68,30 +103,42 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         return 110.0
     }
     
+    //MARK: Actions Row
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        print("You tapped cell number - \(indexPath.row)")
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
+        let readLaterAction = UIContextualAction(
+            style: .normal,
+            title: nil) { [weak self] (action, view, completion) in
+                
+                lazy var readLaterVc = ReadLaterVC()
+                if let currentPost = self?.postsArray[indexPath.item] {
+                    readLaterVc.savedPosts.append(currentPost)
+                    completion(true)
+                }
+            }
+        readLaterAction.backgroundColor = .black
+        readLaterAction.image = UIImage(systemName: "star")
+        let configuration = UISwipeActionsConfiguration(actions: [readLaterAction])
+        configuration.performsFirstActionWithFullSwipe = false
+        return configuration
     }
     
     
-    //    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-    //        return true
-    //    }
-    //
-    //    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //
-    //        switch editingStyle {
-    //        case .delete: break
-    //        case .insert: break
-    //        case .none: break
-    //        }
-    //    }
+    
+    
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let readLaterVc = segue.destination as? ReadVC {
+        if let readLaterVc = segue.destination as? ReadLaterCell {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            readLaterVc.stringUrl = postsArray[indexPath.item].url ?? ""
+            readLaterVc.titleLabel.text = postsArray[indexPath.item].title ?? ""
         }
     }
 }
@@ -146,26 +193,26 @@ extension FirstVC: UISearchBarDelegate {
     //MARK: Search Results
     
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if searchText == "" {
-            filteredData = dataArray
-        } else {
-            
-            filteredData = [:]
-            for word in dataArray.keys {
-                
-                if word.uppercased().contains(searchText.uppercased()) {
-                    filteredData = dataArray.filter({ $0.key.contains(word) })
-                    print(filteredData)
-                } else {
-                    filteredData = dataArray
-                }
-            }
-            self.tableView.reloadData()
-            animateTableView(tableView)
-        }
-    }
+    //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    //
+    //        if searchText == "" {
+    //            filteredData = dataArray
+    //        } else {
+    //
+    //            filteredData = [:]
+    //            for word in dataArray.keys {
+    //
+    //                if word.uppercased().contains(searchText.uppercased()) {
+    //                    filteredData = dataArray.filter({ $0.key.contains(word) })
+    //                    print(filteredData)
+    //                } else {
+    //                    filteredData = dataArray
+    //                }
+    //            }
+    //            self.tableView.reloadData()
+    //            animateTableView(tableView)
+    //        }
+    //    }
 }
 
 

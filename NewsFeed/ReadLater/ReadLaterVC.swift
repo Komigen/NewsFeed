@@ -2,6 +2,8 @@ import UIKit
 
 class ReadLaterVC: UIViewController {
 
+    var savedPosts = [CurrentPostModel]()
+
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {

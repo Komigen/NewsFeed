@@ -1,7 +1,7 @@
 import UIKit
 
 class ReadLaterCell: UITableViewCell {
-
+    
     @IBOutlet weak var imagePost: UIView! {
         didSet {
             imagePost.layer.cornerRadius = 8.0
