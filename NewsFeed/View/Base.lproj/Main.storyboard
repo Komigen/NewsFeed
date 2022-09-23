@@ -82,7 +82,7 @@
                                             <outlet property="authorText" destination="CWn-hI-uo6" id="OdH-Q0-CLG"/>
                                             <outlet property="imagePost" destination="4FK-8y-GGd" id="Lhk-OW-u4y"/>
                                             <outlet property="titleText" destination="jYt-3F-Vsr" id="tO1-HK-dMR"/>
-                                            <segue destination="PkM-Mv-sXI" kind="show" id="DC1-bg-dKM"/>
+                                            <segue destination="PkM-Mv-sXI" kind="show" identifier="webView" id="DC1-bg-dKM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -420,12 +420,12 @@ In a court filing, Musk said the influential social media platform covered up se
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="SourceLabel" destination="uRy-9W-CJJ" id="8WB-ph-pc0"/>
                                             <outlet property="dateLabel" destination="19O-ec-nKR" id="TKF-xf-Zqx"/>
-                                            <outlet property="imagePost" destination="E81-NL-49I" id="nFx-r7-wS3"/>
+                                            <outlet property="imagePost" destination="ewg-t3-gbM" id="iYs-Zd-Gab"/>
                                             <outlet property="shortContentLabel" destination="c0o-0I-7Ck" id="pVQ-rw-cYn"/>
+                                            <outlet property="sourceLabel" destination="uRy-9W-CJJ" id="8WB-ph-pc0"/>
                                             <outlet property="titleLabel" destination="vau-9n-8CN" id="hzz-7V-kyg"/>
-                                            <segue destination="PkM-Mv-sXI" kind="show" id="NA5-2b-ueg"/>
+                                            <segue destination="PkM-Mv-sXI" kind="show" id="a8r-fs-ytL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -456,6 +456,7 @@ In a court filing, Musk said the influential social media platform covered up se
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="readLaterLabel" destination="Xe1-1f-yPe" id="hdL-bL-mDg"/>
                         <outlet property="tableView" destination="tNU-8k-Y2S" id="r6Z-FG-eYx"/>
                     </connections>
                 </viewController>
@@ -482,7 +483,7 @@ In a court filing, Musk said the influential social media platform covered up se
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="86G-R1-PiC">
-                                <rect key="frame" x="20" y="187.5" width="374" height="625.5"/>
+                                <rect key="frame" x="20" y="191.5" width="374" height="621.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RateCell" rowHeight="66" id="ywt-9k-yh3" userLabel="RateCell" customClass="RateViewCell" customModule="NewsFeed" customModuleProvider="target">
@@ -540,6 +541,7 @@ In a court filing, Musk said the influential social media platform covered up se
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dollarSymbol" destination="Zpm-RM-kuY" id="JOx-4n-vab"/>
                                             <outlet property="imageIcon" destination="w4x-2r-Ygn" id="JMo-m2-8qg"/>
                                             <outlet property="shortNameRate" destination="Vwq-cL-tmf" id="Yhb-kN-1DQ"/>
                                             <outlet property="valueRate" destination="hib-De-30y" id="ibi-Ki-n9n"/>
@@ -554,11 +556,11 @@ In a court filing, Musk said the influential social media platform covered up se
                             <constraint firstItem="N6p-EG-fSB" firstAttribute="leading" secondItem="Q8c-TJ-Pfk" secondAttribute="leadingMargin" id="8F5-6u-iXQ"/>
                             <constraint firstItem="9sK-JZ-WQu" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N6p-EG-fSB" secondAttribute="trailing" symbolic="YES" id="AE6-fa-Apl"/>
                             <constraint firstItem="N6p-EG-fSB" firstAttribute="top" secondItem="9sK-JZ-WQu" secondAttribute="top" constant="13" id="Ppv-lv-IJg"/>
+                            <constraint firstItem="86G-R1-PiC" firstAttribute="top" secondItem="DcD-xa-UHF" secondAttribute="bottom" constant="4" id="VOK-s4-kqR"/>
                             <constraint firstItem="DcD-xa-UHF" firstAttribute="leading" secondItem="9sK-JZ-WQu" secondAttribute="leading" constant="12" id="Xiv-Ik-fV8"/>
                             <constraint firstItem="DcD-xa-UHF" firstAttribute="top" secondItem="N6p-EG-fSB" secondAttribute="bottom" constant="4" id="at7-AF-QCr"/>
                             <constraint firstAttribute="trailing" secondItem="DcD-xa-UHF" secondAttribute="trailing" constant="12" id="b5u-Uw-cTE"/>
                             <constraint firstItem="N6p-EG-fSB" firstAttribute="leading" secondItem="86G-R1-PiC" secondAttribute="leading" id="bfc-uW-JDd"/>
-                            <constraint firstItem="86G-R1-PiC" firstAttribute="top" secondItem="DcD-xa-UHF" secondAttribute="bottom" id="eb0-F6-mM8"/>
                             <constraint firstItem="86G-R1-PiC" firstAttribute="bottom" secondItem="9sK-JZ-WQu" secondAttribute="bottom" id="y5V-qc-n6M"/>
                             <constraint firstItem="86G-R1-PiC" firstAttribute="centerX" secondItem="DcD-xa-UHF" secondAttribute="centerX" id="zjd-Pp-UaJ"/>
                         </constraints>
@@ -747,8 +749,8 @@ In a court filing, Musk said the influential social media platform covered up se
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qpM-y8-qt7"/>
-        <segue reference="DC1-bg-dKM"/>
+        <segue reference="GeL-R0-bjH"/>
+        <segue reference="a8r-fs-ytL"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="First2 + ReadLater" width="1170" height="2532"/>

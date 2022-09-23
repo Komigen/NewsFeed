@@ -1,7 +1,8 @@
 import UIKit
 
-private let apiKey    = "6668744690fd8c840e335ed7d0ca796f"
-fileprivate let urlString = "http://api.coinlayer.com/api/live?access_key=\(apiKey)&target=USD"
+private let apiKey1       = "6668744690fd8c840e335ed7d0ca796f"
+private let apiKey2       = "bb5e94afb7945f8762b53977431c32ea"
+fileprivate let urlString = "http://api.coinlayer.com/api/live?access_key=\(apiKey2)&target=USD"
 
 class NetworkManagerCoinLayer {
     
@@ -39,3 +40,4 @@ class NetworkManagerCoinLayer {
         }
     }
 }
+
