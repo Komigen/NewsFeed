@@ -1,15 +1,20 @@
 import UIKit
+import RealmSwift
 
 class ReadLaterVC: UIViewController {
-
+    
+    let realm = try! Realm()
+    var loadPosts: Results<PostRealmModel>!
+    
     var savedPosts = [CurrentPostModel?]()
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var readLaterLabel: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateThemeUi()
+        loadPosts = realm(PostRealmModel.self)
         self.tableView.dataSource = self
         self.tableView.delegate   = self
     }
@@ -43,11 +48,35 @@ class ReadLaterVC: UIViewController {
         }
     }
     
-    //MARK: Actions Row
-
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return true
+    //MARK: Save data in Realm
+    
+    @objc func addItem(_ sender: AnyObject) {
+       
+        let post = [PostRealmModel]()
+        DispatchQueue.main.async {
+            post = PostRealmModel(value: ["sourceName": savedPosts.
+                                          "author":
+                                            "title":
+                                            "articleDescription":
+                                            "url":
+                                            "urlToImage":
+                                            "publishedAt":
+                                            "content": ])
         }
+
+        
+        try! realm.write {
+            realm.add(post)
+        }
+        self.tableView.reloadData()
+    }
+    
+    
+    //MARK: Actions Row
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -76,25 +105,29 @@ extension ReadLaterVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return savedPosts.count
-    }
+        
+        if !loadPosts.isEmpty {
+        return loadPosts.count
+        } else {
+            return 0
+        }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReadLaterCell", for: indexPath) as! ReadLaterCell
-        let currentPost = savedPosts[indexPath.item]
+        let currentPost = loadPosts[indexPath.item]
         
         cell.sourceLabel.text = {
-            if let sourceName = savedPosts[indexPath.item]?.sourceName {
+            if let sourceName = loadPosts[indexPath.item]?.sourceName {
                 return "\(sourceName)"
             } else {
                 return "Source unknown"
             }
         }()
-        cell.dateLabel.text         = currentPost?.publishedAt
-        cell.titleLabel.text        = currentPost?.title
-        cell.shortContentLabel.text = currentPost?.content
-        cell.imagePost.downloadImagePost(stringUrl: currentPost?.urlToImage ?? "")
-
+        cell.dateLabel.text         = loadPosts?.publishedAt
+        cell.titleLabel.text        = loadPosts?.title
+        cell.shortContentLabel.text = loadPosts?.content
+        cell.imagePost.downloadImagePost(stringUrl: loadPosts?.urlToImage ?? "")
+        
         //UI
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
