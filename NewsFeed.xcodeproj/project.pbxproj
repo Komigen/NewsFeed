@@ -10,6 +10,7 @@
 		B52EDAC628C71C6800594D97 /* FirstVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EDAC528C71C6800594D97 /* FirstVCCell.swift */; };
 		B52EDACD28C88A9300594D97 /* CreateUrlString.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52EDACC28C88A9300594D97 /* CreateUrlString.swift */; };
 		B53E9EF328DDEC8D00055A82 /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9EF228DDEC8D00055A82 /* PostsModel.swift */; };
+		B53E9EF728E6D55400055A82 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53E9EF628E6D55400055A82 /* Extensions.swift */; };
 		B54EA22828C07C2500535572 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54EA22728C07C2500535572 /* AppDelegate.swift */; };
 		B54EA22A28C07C2500535572 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54EA22928C07C2500535572 /* SceneDelegate.swift */; };
 		B54EA22F28C07C2500535572 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B54EA22D28C07C2500535572 /* Main.storyboard */; };
@@ -21,7 +22,6 @@
 		B5CE5A8128C10AFE0076BE6F /* RateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8028C10AFE0076BE6F /* RateVC.swift */; };
 		B5CE5A8328C10B1C0076BE6F /* ReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8228C10B1C0076BE6F /* ReadVC.swift */; };
 		B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */; };
-		B5CE5A9728C1DAE80076BE6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5A9628C1DAE80076BE6F /* Constants.swift */; };
 		B5CE5AA328C208780076BE6F /* SupportData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AA228C208780076BE6F /* SupportData.swift */; };
 		B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */; };
 		B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */; };
@@ -37,6 +37,7 @@
 		B52EDAC528C71C6800594D97 /* FirstVCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVCCell.swift; sourceTree = "<group>"; };
 		B52EDACC28C88A9300594D97 /* CreateUrlString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUrlString.swift; sourceTree = "<group>"; };
 		B53E9EF228DDEC8D00055A82 /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
+		B53E9EF628E6D55400055A82 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B54EA22428C07C2500535572 /* NewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54EA22728C07C2500535572 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B54EA22928C07C2500535572 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +51,6 @@
 		B5CE5A8028C10AFE0076BE6F /* RateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateVC.swift; sourceTree = "<group>"; };
 		B5CE5A8228C10B1C0076BE6F /* ReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVC.swift; sourceTree = "<group>"; };
 		B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
-		B5CE5A9628C1DAE80076BE6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B5CE5AA228C208780076BE6F /* SupportData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportData.swift; sourceTree = "<group>"; };
 		B5CE5AA828C21BF80076BE6F /* NetworkManagerCoinLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerCoinLayer.swift; sourceTree = "<group>"; };
 		B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCoinLayer.swift; sourceTree = "<group>"; };
@@ -88,6 +88,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		B53E9EF828E6D77800055A82 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B53E9EF628E6D55400055A82 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B54EA21B28C07C2500535572 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +126,7 @@
 				B5CA0AEE28D43D4200BD4D06 /* Read */,
 				B54EA24328C07D9500535572 /* View */,
 				B54EA24428C07DC900535572 /* SupportFiles */,
+				B53E9EF828E6D77800055A82 /* Extensions */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -134,7 +143,6 @@
 		B54EA24428C07DC900535572 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				B5CE5A9628C1DAE80076BE6F /* Constants.swift */,
 				B54EA22728C07C2500535572 /* AppDelegate.swift */,
 				B54EA22928C07C2500535572 /* SceneDelegate.swift */,
 			);
@@ -317,12 +325,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5CE5A7D28C10AB40076BE6F /* ReadLaterVC.swift in Sources */,
-				B5CE5A9728C1DAE80076BE6F /* Constants.swift in Sources */,
 				B54EA24628C0802400535572 /* NetworkManagerNews.swift in Sources */,
 				B54EA22828C07C2500535572 /* AppDelegate.swift in Sources */,
 				B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */,
 				B5CE5A8128C10AFE0076BE6F /* RateVC.swift in Sources */,
 				B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */,
+				B53E9EF728E6D55400055A82 /* Extensions.swift in Sources */,
 				B52EDAC628C71C6800594D97 /* FirstVCCell.swift in Sources */,
 				B5CE5AB128C622890076BE6F /* CurrentPostModel.swift in Sources */,
 				B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */,

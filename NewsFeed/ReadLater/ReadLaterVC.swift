@@ -3,20 +3,26 @@ import RealmSwift
 
 class ReadLaterVC: UIViewController {
     
-    let realm = try! Realm()
-    var loadPosts: Results<PostRealmModel>!
-    
-    var savedPosts = [CurrentPostModel?]()
+    //MARK: Realm
+    var realm = try! Realm()
+    var postsArray: Results<PostRealmModel> {
+        get {
+            return realm.objects(PostRealmModel.self)
+        }
+    }
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var readLaterLabel: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realm = try! Realm()
+        
         updateThemeUi()
-        loadPosts = realm(PostRealmModel.self)
         self.tableView.dataSource = self
         self.tableView.delegate   = self
+        
     }
     
     //MARK: Update Ui - light\dark theme
@@ -27,71 +33,49 @@ class ReadLaterVC: UIViewController {
         case 0:
             tableView.backgroundColor = whiteColor
             self.view.backgroundColor = whiteColor
-            readLaterLabel.titleView?.tintColor = UIColor.black
-            tableView.reloadData()
-            animateTableView(self.tableView)
+            readLaterLabel.titleView?.tintColor = blackColor
             print("Presented light display mode on RateVc")
         case 1:
             tableView.backgroundColor = blackColor
-            self.view.backgroundColor = self.tableView.backgroundColor
-            readLaterLabel.titleView?.tintColor = UIColor.white
-            tableView.reloadData()
-            animateTableView(self.tableView)
+            self.view.backgroundColor = blackColor
+            readLaterLabel.titleView?.tintColor = whiteColor
             print("Presented dark display mode on RateVc")
         default:
             tableView.backgroundColor = whiteColor
             self.view.backgroundColor = whiteColor
-            readLaterLabel.titleView?.tintColor = UIColor.black
-            tableView.reloadData()
-            animateTableView(self.tableView)
+            readLaterLabel.titleView?.tintColor = blackColor
             print("Presented light display mode on RateVc")
         }
-    }
-    
-    //MARK: Save data in Realm
-    
-    @objc func addItem(_ sender: AnyObject) {
-       
-        let post = [PostRealmModel]()
-        DispatchQueue.main.async {
-            post = PostRealmModel(value: ["sourceName": savedPosts.
-                                          "author":
-                                            "title":
-                                            "articleDescription":
-                                            "url":
-                                            "urlToImage":
-                                            "publishedAt":
-                                            "content": ])
-        }
-
-        
-        try! realm.write {
-            realm.add(post)
-        }
-        self.tableView.reloadData()
+        tableView.reloadData()
+        animateTableView(self.tableView)
     }
     
     
-    //MARK: Actions Row
+    //MARK: Delete action row
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
-            tableView.beginUpdates()
-            savedPosts.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .none)
-            tableView.endUpdates()
+            
+            let currentPost = postsArray[indexPath.row]
+            
+            try! self.realm.write {
+                self.realm.delete(currentPost)
+            }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
     
     //MARK: ReadVC - WebView
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let readVc = segue.destination as? ReadVC {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            readVc.stringUrl = savedPosts[indexPath.item]?.url ?? ""
+            readVc.stringUrl = postsArray[indexPath.item].url ?? ""
         }
     }
 }
@@ -104,29 +88,34 @@ extension ReadLaterVC: UITableViewDataSource, UITableViewDelegate {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 539.0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if !loadPosts.isEmpty {
-        return loadPosts.count
+        if !postsArray.isEmpty {
+            return postsArray.count
         } else {
             return 0
         }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReadLaterCell", for: indexPath) as! ReadLaterCell
-        let currentPost = loadPosts[indexPath.item]
+        let currentPost = postsArray[indexPath.row]
         
         cell.sourceLabel.text = {
-            if let sourceName = loadPosts[indexPath.item]?.sourceName {
+            if let sourceName = postsArray[indexPath.row].source {
                 return "\(sourceName)"
             } else {
                 return "Source unknown"
             }
         }()
-        cell.dateLabel.text         = loadPosts?.publishedAt
-        cell.titleLabel.text        = loadPosts?.title
-        cell.shortContentLabel.text = loadPosts?.content
-        cell.imagePost.downloadImagePost(stringUrl: loadPosts?.urlToImage ?? "")
+        cell.dateLabel.text?.getFormattedDate(stringDate: currentPost.date)
+        cell.titleLabel.text        = currentPost.title
+        cell.shortContentLabel.text = currentPost.shortContent
+        cell.imagePost.downloadImagePost(stringUrl: currentPost.urlToImage ?? "")
         
         //UI
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {

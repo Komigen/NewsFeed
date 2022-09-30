@@ -6,6 +6,7 @@ class ReadLaterCell: UITableViewCell {
         didSet {
             imagePost.layer.cornerRadius = 8.0
             imagePost.clipsToBounds = true
+            imagePost.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
             imagePost.contentMode = .scaleAspectFill
         }
     }

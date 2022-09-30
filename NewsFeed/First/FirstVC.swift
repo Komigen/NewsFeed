@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 class FirstVC: UIViewController {
     
@@ -12,9 +13,14 @@ class FirstVC: UIViewController {
     @IBOutlet weak var newsFeedLabel: UINavigationItem!
     
     var createStringUrl = CreateStringUrl()
-    var imagesArray = [UIImage?]()
-    var postsArray  = [CurrentPostModel]()
+    var imagesArray     = [UIImage?]()
+    var postsArray      = [CurrentPostModel]()
     
+    //MARK: Realm
+    
+    var realm = try! Realm()
+    var savedPosts = [PostRealmModel]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,10 +38,10 @@ class FirstVC: UIViewController {
             case .failure: break
             }
         }
-        
     }
     
     //MARK: ReadVC - WebView
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let readVc = segue.destination as? ReadVC {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -119,20 +125,28 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     //MARK: Actions Row
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
-        let readLaterVc = ReadLaterVC()
-        
+                
         let readLaterAction = UIContextualAction(
             style: .normal,
             title: nil) { [weak self] (action, view, completion) in
                 
                 if let currentArticle = self?.postsArray[indexPath.item] {
-                    readLaterVc.savedPosts.append(currentArticle)
-                    /* Здесь я хочу передать передать пост с данными на следующий экран в ReadLaterVC, в массив savedPosts, но не выходит */
-                    print(readLaterVc.savedPosts.count)
+                  
+                    let savedPost = PostRealmModel()
+                    savedPost.date         = currentArticle.publishedAt ?? ""
+                    savedPost.title        = currentArticle.title ?? ""
+                    savedPost.shortContent = currentArticle.content ?? ""
+                    savedPost.urlToImage   = currentArticle.urlToImage ?? ""
+                    savedPost.source       = currentArticle.sourceName ?? ""
+                    savedPost.url          = currentArticle.url ?? ""
+                    
+                    try! self?.realm.write{
+                        self?.realm.add(savedPost)
+                    }
                     completion(true)
                 }
             }
+        
         readLaterAction.backgroundColor = .black
         readLaterAction.image = UIImage(systemName: "star")
         let configuration = UISwipeActionsConfiguration(actions: [readLaterAction])
@@ -162,25 +176,6 @@ extension FirstVC {
     }
 }
 
-
-//MARK: Download image
-
-extension UIImageView {
-    
-    public func downloadImagePost(stringUrl: String) {
-                
-        guard let url = URL(string: stringUrl), UIApplication.shared.canOpenURL(url) else { print("ERROR: image URL-address not valid."); return }
-        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
-            if let safeData = data, error == nil {
-                DispatchQueue.main.async {
-                    self.image = UIImage(data: safeData)
-                }
-            }
-        }
-        task.resume()
-        print("SUCCESSED downloading ImagePost")
-    }
-}
 
 //MARK: Animated tableView
 
