@@ -3,8 +3,8 @@ import RealmSwift
 
 class FirstVC: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar! {
+    @IBOutlet weak var tableView:     UITableView!
+    @IBOutlet weak var searchBar:     UISearchBar! {
         didSet {
             searchBar.layer.cornerRadius = 16.0
             searchBar.clipsToBounds = true
@@ -20,15 +20,15 @@ class FirstVC: UIViewController {
     
     var realm = try! Realm()
     var savedPosts = [PostRealmModel]()
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         updateThemeUi()
         self.tableView.dataSource = self
         self.tableView.delegate   = self
-        self.searchBar.delegate   = self
-        animateTableView(self.tableView)
+        tableView.animateTableView()
         
         
         NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.France.rawValue)) { [weak self] result in
@@ -56,26 +56,17 @@ class FirstVC: UIViewController {
             
         case 0:
             tableView.backgroundColor = whiteColor
-            self.view.backgroundColor = whiteColor
+            self.view.backgroundColor = pinkLight
             newsFeedLabel.titleView?.tintColor = UIColor.black
-            tableView.reloadData()
-            animateTableView(self.tableView)
-            print("Presented light display mode on RateVc")
         case 1:
             tableView.backgroundColor = blackColor
             self.view.backgroundColor = self.tableView.backgroundColor
             newsFeedLabel.titleView?.tintColor = UIColor.white
-            tableView.reloadData()
-            animateTableView(self.tableView)
-            print("Presented dark display mode on RateVc")
         default:
-            tableView.backgroundColor = whiteColor
-            self.view.backgroundColor = whiteColor
-            newsFeedLabel.titleView?.tintColor = UIColor.black
-            tableView.reloadData()
-            animateTableView(self.tableView)
-            print("Presented light display mode on RateVc")
+            break
         }
+        tableView.reloadData()
+        tableView.animateTableView()
     }
 }
 
@@ -104,34 +95,37 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         }()
         cell.imagePost.downloadImagePost(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
         
-        //UI
+        //UI 0 - light theme, 1 - dark
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
             cell.backgroundColor = whiteColor
         case 1:
             cell.backgroundColor = blackColor
         default:
-            cell.backgroundColor = whiteColor
+            break
         }
         cell.selectionStyle = .none
-        
         return cell
     }
+    
+    /* Height row, footer */
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110.0
     }
     
+
+    
     //MARK: Actions Row
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-                
+        
         let readLaterAction = UIContextualAction(
             style: .normal,
             title: nil) { [weak self] (action, view, completion) in
                 
                 if let currentArticle = self?.postsArray[indexPath.item] {
-                  
+                    
                     let savedPost = PostRealmModel()
                     savedPost.date         = currentArticle.publishedAt ?? ""
                     savedPost.title        = currentArticle.title ?? ""
@@ -155,11 +149,9 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
 //MARK: Reload postsArray & reload TableView
 
 extension FirstVC {
-    
     func reloadPostsArray(articles: [Article]) {
         self.postsArray = articles.compactMap({ CurrentPostModel(sourceName: $0.source?.name,
                                                                  author: $0.author,
@@ -176,33 +168,27 @@ extension FirstVC {
     }
 }
 
-
-//MARK: Animated tableView
-
-public func animateTableView(_ tableView: UITableView) {
-    tableView.reloadData()
-    
-    let cells = tableView.visibleCells
-    let tableViewHeight = tableView.bounds.height
-    var delay = 0.0
-    
-    for cell in cells {
-        cell.transform = CGAffineTransform(translationX: 0, y: tableViewHeight)
-        
-        UIView.animate(withDuration: 1.5,
-                       delay: delay * 0.05,
-                       usingSpringWithDamping: 0.8,
-                       initialSpringVelocity: 0,
-                       options: .curveEaseOut,
-                       animations: {
-            cell.transform = CGAffineTransform.identity
-        })
-        delay += 0.7
-    }
-}
-
 //MARK: UISearchBarDelegate
 
-extension FirstVC: UISearchBarDelegate {
-    
-}
+//extension FirstVC: UISearchResultsUpdating {
+//    func updateSearchResults(for searchController: UISearchController) {
+//        if !searchBarIsEmpty {
+//
+//            NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byPhrase(phrase: searchBar.searchTextField.text ?? "")) { [weak self] result in
+//            switch result {
+//            case .success(let articles):
+//                self?.reloadPostsArray(articles: articles)
+//            case .failure: break
+//            }
+//        }
+//        }
+//    }
+//
+//
+//    private var searchBarIsEmpty: Bool {
+//        guard let text = searchBar.searchTextField.text else { return false }
+//        return text.isEmpty
+//    }
+//
+//}
+

@@ -2,7 +2,7 @@ import UIKit
 
 let userDefaults = UserDefaults.standard
 
-//MARK: Using this colours
+//MARK: Using this colours. if you have to change the colors, you only need to do this here (Refactor -> Rename)
 
 let blackColor       = UIColor.black
 let whiteColor       = UIColor.white
@@ -10,6 +10,7 @@ let systemGrayColor  = UIColor.systemGray
 let systemGray4Color = UIColor.systemGray4
 let systemGray6Color = UIColor.systemGray6
 let darkGrayColor    = UIColor.darkGray
+let pinkLight = UIColor(red: 247, green: 247, blue: 247, alpha: 1.0)
 
 enum KeyForUserDefaults {
     static let fontKey   = "fontKey"
@@ -70,7 +71,6 @@ class SettingsVC: UIViewController {
             segmentedControlLabel.backgroundColor = systemGrayColor
             self.view.backgroundColor = whiteColor
             
-            print("Selected light display mode")
         case 1:
             currentThemeMode = 1
             
@@ -83,9 +83,7 @@ class SettingsVC: UIViewController {
             segmentedControlLabel.selectedSegmentTintColor = darkGrayColor
             segmentedControlLabel.backgroundColor = systemGray6Color
             self.view.backgroundColor = blackColor
-            
-            print("Selected dark display mode")
-            
+
         default:
             break
         }
@@ -119,7 +117,7 @@ class SettingsVC: UIViewController {
         
         currentThemeMode = userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0
         
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int {
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
             sliderOutlet.minimumTrackTintColor = systemGrayColor
             sliderOutlet.maximumTrackTintColor = systemGray6Color
@@ -149,18 +147,7 @@ class SettingsVC: UIViewController {
             print("Presented dark display mode on SettingsVc")
             
         default:
-            sliderOutlet.minimumTrackTintColor = systemGrayColor
-            sliderOutlet.maximumTrackTintColor = systemGray6Color
-            
-            self.view.backgroundColor = whiteColor
-            segmentedControlLabel.selectedSegmentTintColor = whiteColor
-            segmentedControlLabel.backgroundColor = systemGrayColor
-            
-            settingsLabel.textColor = blackColor
-            smallA.textColor        = blackColor
-            largeA.textColor        = blackColor
-            
-            print("Presented default light display mode")
+            break
         }
     }
 }

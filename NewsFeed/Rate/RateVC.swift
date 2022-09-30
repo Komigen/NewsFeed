@@ -22,7 +22,7 @@ class RateVC: UIViewController {
             self.filteredData = self.dataArray
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                animateTableView(self.tableView)
+                self.tableView.animateTableView()
             }
         }
                 
@@ -31,28 +31,23 @@ class RateVC: UIViewController {
         searchBar.delegate   = self
     }
     
-    //MARK: Ui settings before display
+    //MARK: Ui 0 - light theme, 1 - dark
 
     func prepareUi() {
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
             tableView.backgroundColor    = whiteColor
             self.view.backgroundColor    = whiteColor
-            searchBar.barTintColor       = systemGray6Color
-            searchBar.layer.cornerRadius = 16.0
-            searchBar.clipsToBounds      = true
             currencyRatesLabel.textColor = blackColor
-            print("Presented light display mode on RateVc")
         case 1:
             tableView.backgroundColor    = blackColor
             self.view.backgroundColor    = blackColor
-            searchBar.barTintColor       = systemGray6Color
-            searchBar.layer.cornerRadius = 16.0
-            searchBar.clipsToBounds      = true
             currencyRatesLabel.textColor = whiteColor
-            print("Presented dark display mode on RateVc")
         default: break
         }
+        searchBar.barTintColor       = systemGray6Color
+        searchBar.layer.cornerRadius = 16.0
+        searchBar.clipsToBounds      = true
     }
 }
 
@@ -77,18 +72,16 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
             cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
         }
         
-        //UI
+        //UI 0 - light theme, 1 - dark
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
             cell.backgroundColor = whiteColor
         case 1:
             cell.backgroundColor = blackColor
         default:
-            cell.backgroundColor = whiteColor
+            break
         }
-      
         cell.selectionStyle = .none
-
         return cell
     }
 }
@@ -129,7 +122,7 @@ extension RateVC: UISearchBarDelegate {
                 }
             }
             self.tableView.reloadData()
-            animateTableView(tableView)
+            self.tableView.animateTableView()
         }
     }
 }

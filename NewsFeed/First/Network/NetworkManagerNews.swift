@@ -61,7 +61,6 @@ struct Article: Codable {
     }
 }
 
-
 struct Source: Codable {
     var name: String?
 }

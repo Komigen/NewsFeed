@@ -15,50 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let _ = (scene as? UIWindowScene) else { return }
-//        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-//        window?.windowScene = windowScene
-//
-//        window?.rootViewController = createTabBar()
-//        window?.makeKeyAndVisible()
+
     }
 
-    
-//    func createTabBar() -> UITabBarController {
-//        let tabBar = UITabBarController()
-//        UITabBar.appearance().tintColor = .darkGray
-//        UITabBar.setTransparentTabBar()
-//        tabBar.viewControllers = [createFirstVc(), createReadVc(), createReadLaterVc(), createRateVc()]
-//
-//        return tabBar
-//    }
-//
-//    func createFirstVc() -> FirstVC {
-//        let viewController = FirstVC()
-//        viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .topRated, tag: 0)
-//
-//        return viewController
-//    }
-//
-//    func createReadVc() -> ReadVC {
-//        let viewController = ReadVC()
-//        viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-//
-//        return viewController
-//    }
-//
-//    func createReadLaterVc() -> ReadLaterVC {
-//        let viewController = ReadLaterVC()
-//        viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 2)
-//
-//        return viewController
-//    }
-//
-//    func createRateVc() -> RateVC {
-//        let viewController = RateVC()
-//        viewController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 3)
-//
-//        return viewController
-//    }
     
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -89,13 +48,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-}
-
-extension UITabBar {
-
-    static func setTransparentTabBar() {
-        UITabBar.appearance().backgroundImage = UIImage()
-        UITabBar.appearance().shadowImage = UIImage()
-        UITabBar.appearance().clipsToBounds = true
-    }
 }
