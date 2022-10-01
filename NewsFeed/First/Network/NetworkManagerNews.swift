@@ -21,10 +21,10 @@ final class NetworkManagerNewsApi {
                     do {
                         let result = try JSONDecoder().decode(ModelNews.self, from: safeData)
                         completion(.success(result.articles ?? []))
-                        print("SUCCESSED: parsing JsonData. Fetch - \(String(describing: result.articles?.count)) articles")
+                        //                        print("SUCCESSED: parsing JsonData. Fetch - \(String(describing: result.articles?.count)) articles")
                     } catch {
                         completion(.failure(error))
-                        print("ERROR: parsing JsonData. \(error.localizedDescription)")
+                        //                        print("ERROR: parsing JsonData. \(error.localizedDescription)")
                     }
                 }
             }

@@ -15,12 +15,8 @@ class CreateStringUrl {
     }
     
     //MARK: Top headlines by Phrase
-    func byTopHeadlines(phrase: String) -> String {
-        return "https://newsapi.org/v2/top-headlines?q=\(phrase)&apiKey=\(apiKey)"
-    }
+//    func byTopHeadlines(phrase: String) -> String {
+//        return "https://newsapi.org/v2/top-headlines?q=\(phrase)&apiKey=\(apiKey)"
+//    }
     
-    //MARK: Categorys & Countrys
-    func byCategoryAndPhrase(countryCodes: String, categoryNews: String) -> String {
-        return "https://newsapi.org/v2/top-headlines?country=\(countryCodes)&category=\(categoryNews)&apiKey=\(apiKey)"
-    }
 }

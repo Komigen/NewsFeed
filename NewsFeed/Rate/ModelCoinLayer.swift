@@ -6,10 +6,7 @@ struct RatesModel: Codable {
     var rates: [String: Double]
 }
 
-
-
-
-// MARK: Model for parse fullName Rates
+/* Model for parse all data, not used */
 
 struct RatesNamesModel: Codable {
     var crypto: Crypto?
@@ -146,7 +143,7 @@ struct Crypto: Codable {
     var yoc, yoyow, zbc, zcl: The611?
     var zec, zen, zil, zny: The611?
     var zrx, zsc: The611?
-
+    
     enum CodingKeys: String, CodingKey {
         case the611 = "611"
         case abc = "ABC"
@@ -537,22 +534,20 @@ struct Crypto: Codable {
     }
 }
 
-
 struct The611: Codable {
     var symbol: String?
     var name: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case symbol = "shortName"
         case name
     }
 }
 
-
 struct Apc: Codable {
     var symbol: String?
     var name: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case symbol = "shortName"
         case name

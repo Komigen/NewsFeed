@@ -4,15 +4,15 @@ import RealmSwift
 class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     //MARK: Realm
-    var realm = try! Realm()
-    var postsArray: Results<PostRealmModel> {
+    
+    private var realm = try! Realm()
+    private var postsArray: Results<PostRealmModel> {
         get {
             return realm.objects(PostRealmModel.self)
         }
     }
     
-    @IBOutlet weak var readLaterLabel: UINavigationItem!
-    @IBOutlet weak var tableView:      UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     
     override func viewDidLoad() {
@@ -20,30 +20,37 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         
         realm = try! Realm()
         
-        updateThemeUi()
-        
         self.tableView.dataSource = self
         self.tableView.delegate   = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateThemeUi()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.animateTableView()
     }
     
     //MARK: Update Ui - 0 - light theme, 1 - dark
     
-    func updateThemeUi() {
+    private func updateThemeUi() {
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             
         case 0:
             tableView.backgroundColor = whiteColor
             self.view.backgroundColor = pinkLight
-            readLaterLabel.titleView?.tintColor = blackColor
+            self.navigationController?.navigationBar.barTintColor = whiteColor
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: blackColor]
         case 1:
             tableView.backgroundColor = blackColor
             self.view.backgroundColor = blackColor
-            readLaterLabel.titleView?.tintColor = whiteColor
+            self.navigationController?.navigationBar.barTintColor = blackColor
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: whiteColor]
         default:
             break
         }
-        tableView.reloadData()
-        tableView.animateTableView()
     }
     
     
@@ -76,7 +83,7 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     }
     
     //MARK: TableView
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -125,7 +132,7 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         return cell
     }
     
-    /* Height row, footer */
+    /* Height row */
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 530.0

@@ -2,16 +2,6 @@ import Foundation
 
 // MARK: Support data for creating custom a request
 
-public enum CategoryNews: String {
-    case business      = "Business"
-    case entertainment = "Entertainment"
-    case general       = "General"
-    case health        = "Health"
-    case science       = "Science"
-    case sports        = "Sports"
-    case technology    = "Technology"
-}
-
 public enum LanguagesCodes: String {
     case Arabic     = "ar"
     case German     = "de"

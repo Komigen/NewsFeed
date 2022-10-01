@@ -4,9 +4,9 @@ private let apiKey1       = "6668744690fd8c840e335ed7d0ca796f"
 private let apiKey2       = "bb5e94afb7945f8762b53977431c32ea"
 fileprivate let urlString = "http://api.coinlayer.com/api/live?access_key=\(apiKey2)&target=USD"
 
-class NetworkManagerCoinLayer {
+final class NetworkManagerCoinLayer {
     
-    var arrayRate = [String: Double]()
+    private var arrayRate = [String: Double]()
     
     func fetchDataRates(completion: @escaping([String: Double]) -> Void) {
         
@@ -14,7 +14,6 @@ class NetworkManagerCoinLayer {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, _, error) in
             DispatchQueue.main.async {
-                
                 
                 if error != nil {
                     print(error!)
@@ -29,9 +28,7 @@ class NetworkManagerCoinLayer {
         task.resume()
     }
     
-    
-    
-    fileprivate func parseJSON(withData data: Data){
+    private func parseJSON(withData data: Data) {
         do {
             let currentData = try JSONDecoder().decode(RatesModel.self, from: data)
             self.arrayRate = currentData.rates

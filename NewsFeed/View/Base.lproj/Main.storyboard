@@ -93,7 +93,11 @@
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="BRX-ac-NSj">
                                 <rect key="frame" x="9" y="88" width="396" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" enablesReturnKeyAutomatically="YES" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
                             </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qDE-ZU-bQx"/>
@@ -127,7 +131,6 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="newsFeedLabel" destination="rRR-Kv-9AF" id="8dA-Zn-fVO"/>
                         <outlet property="searchBar" destination="BRX-ac-NSj" id="DGh-zB-hid"/>
                         <outlet property="tableView" destination="i7f-ch-ca4" id="qlg-oq-HBM"/>
                     </connections>
@@ -423,6 +426,7 @@ In a court filing, Musk said the influential social media platform covered up se
                                                 <constraint firstItem="19O-ec-nKR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uRy-9W-CJJ" secondAttribute="trailing" priority="750" constant="8" symbolic="YES" id="pVR-vg-9jW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="dateLabel" destination="19O-ec-nKR" id="TKF-xf-Zqx"/>
                                             <outlet property="imagePost" destination="ewg-t3-gbM" id="iYs-Zd-Gab"/>
@@ -444,7 +448,7 @@ In a court filing, Musk said the influential social media platform covered up se
                             <constraint firstItem="tNU-8k-Y2S" firstAttribute="top" secondItem="CuZ-I9-mwy" secondAttribute="top" id="jPP-ML-bLf"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Read later" largeTitleDisplayMode="always" id="Xe1-1f-yPe">
+                    <navigationItem key="navigationItem" title="NewsFeed" id="Xe1-1f-yPe">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="lji-8D-C3B">
                             <imageReference key="image" image="gearshape" catalog="system" renderingMode="hierarchical-single">
                                 <hierarchicalColors>
@@ -460,7 +464,6 @@ In a court filing, Musk said the influential social media platform covered up se
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="readLaterLabel" destination="Xe1-1f-yPe" id="hdL-bL-mDg"/>
                         <outlet property="tableView" destination="tNU-8k-Y2S" id="r6Z-FG-eYx"/>
                     </connections>
                 </viewController>
@@ -569,7 +572,7 @@ In a court filing, Musk said the influential social media platform covered up se
                             <constraint firstItem="86G-R1-PiC" firstAttribute="centerX" secondItem="DcD-xa-UHF" secondAttribute="centerX" id="zjd-Pp-UaJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2cI-tM-MI1">
+                    <navigationItem key="navigationItem" title="NewsFeed" id="2cI-tM-MI1">
                         <barButtonItem key="rightBarButtonItem" title="Item" id="6UX-ea-R15">
                             <imageReference key="image" image="gearshape" catalog="system" renderingMode="hierarchical-single">
                                 <hierarchicalColors>
@@ -639,7 +642,7 @@ In a court filing, Musk said the influential social media platform covered up se
                     <tabBarItem key="tabBarItem" id="Msy-Kw-Ri5">
                         <imageReference key="image" image="newspaper" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
                             <hierarchicalColors>
-                                <color systemColor="labelColor"/>
+                                <color systemColor="systemMintColor"/>
                                 <color systemColor="secondaryLabelColor"/>
                                 <color systemColor="tertiaryLabelColor"/>
                             </hierarchicalColors>
@@ -718,6 +721,7 @@ In a court filing, Musk said the influential social media platform covered up se
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="waw-Tg-Mme" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="wHW-NT-7zP"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xoR-Lq-Scd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -753,8 +757,8 @@ In a court filing, Musk said the influential social media platform covered up se
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="GeL-R0-bjH"/>
-        <segue reference="a8r-fs-ytL"/>
+        <segue reference="iK3-2h-KSc"/>
+        <segue reference="DC1-bg-dKM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="First2 + ReadLater" width="1170" height="2532"/>
@@ -795,6 +799,9 @@ In a court filing, Musk said the influential social media platform covered up se
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>

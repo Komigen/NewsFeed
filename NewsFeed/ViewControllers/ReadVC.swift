@@ -3,9 +3,9 @@ import WebKit
 
 class ReadVC: UIViewController {
     
-    let webView   = WKWebView()
-    var stringUrl = ""
-
+    private let webView   = WKWebView()
+    private var stringUrl = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,12 +18,14 @@ class ReadVC: UIViewController {
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-      
+        
         loadRequest(stringUrl: stringUrl)
     }
     
     private func loadRequest(stringUrl: String) {
+        
         guard let url = URL(string: stringUrl) else { return }
+        
         let urlRequest = URLRequest(url: url)
         
         webView.load(urlRequest)

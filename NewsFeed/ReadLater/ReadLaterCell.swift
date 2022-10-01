@@ -2,7 +2,7 @@ import UIKit
 
 class ReadLaterCell: UITableViewCell {
     
-    @IBOutlet weak var imagePost: UIImageView!{
+    @IBOutlet weak var imagePost:         UIImageView!{
         didSet {
             imagePost.layer.cornerRadius  = 8.0
             imagePost.clipsToBounds       = true
@@ -13,5 +13,9 @@ class ReadLaterCell: UITableViewCell {
     @IBOutlet weak var sourceLabel:       UILabel!
     @IBOutlet weak var dateLabel:         UILabel!
     @IBOutlet weak var titleLabel:        UILabel!
-    @IBOutlet weak var shortContentLabel: UILabel!
+    @IBOutlet weak var shortContentLabel: UILabel!{
+        didSet {
+            shortContentLabel.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
+        }
+    }
 }

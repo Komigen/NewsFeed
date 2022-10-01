@@ -1,6 +1,6 @@
 import UIKit
 
-var networkManagerCoinLayer = NetworkManagerCoinLayer()
+private var networkManagerCoinLayer = NetworkManagerCoinLayer()
 
 class RateVC: UIViewController {
     
@@ -9,52 +9,61 @@ class RateVC: UIViewController {
     @IBOutlet weak var currencyRatesLabel:   UILabel!
     @IBOutlet weak var settingsButtonOutlet: UIBarButtonItem!
     
-    var dataArray    = [String: Double]()
-    var filteredData = [String: Double]()
+    private var dataArray    = [String: Double]()
+    private var filteredData = [String: Double]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareUi()
-
         networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
             guard let self    = self else { return }
             self.dataArray    = currentRate
             self.filteredData = self.dataArray
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                self.tableView.animateTableView()
             }
         }
-                
+        
         tableView.dataSource = self
         tableView.delegate   = self
         searchBar.delegate   = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateThemeUi()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.animateTableView()
+    }
     
     //MARK: Ui 0 - light theme, 1 - dark
-
-    func prepareUi() {
+    
+    private func updateThemeUi() {
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
             tableView.backgroundColor    = whiteColor
             self.view.backgroundColor    = whiteColor
             currencyRatesLabel.textColor = blackColor
+            self.navigationController?.navigationBar.barTintColor = whiteColor
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: blackColor]
+            
         case 1:
             tableView.backgroundColor    = blackColor
             self.view.backgroundColor    = blackColor
             currencyRatesLabel.textColor = whiteColor
+            navigationController?.navigationBar.barTintColor = blackColor
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: whiteColor]
+            
         default: break
         }
-        searchBar.barTintColor       = systemGray6Color
-        searchBar.layer.cornerRadius = 16.0
-        searchBar.clipsToBounds      = true
+        searchBar.createSettings()
     }
 }
 
 //MARK: TableView delegate
 
 extension RateVC: UITableViewDataSource, UITableViewDelegate {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredData.count
@@ -86,23 +95,6 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//MARK: Download image
-
-extension UIImageView {
-    
-    func downloadImageCoin(shortName: String) {
-        guard let url = URL(string: "https://assets.coinlayer.com/icons/\(shortName).png"), UIApplication.shared.canOpenURL(url) else { print("ERROR: imageCoin URL-address not valid."); return }
-        let task = URLSession.shared.dataTask(with: url) { (data, _, error) in
-            if let safeData = data, error == nil {
-                DispatchQueue.main.async {
-                    self.image = UIImage(data: safeData)
-                }
-            }
-        }
-        task.resume()
-        print("SUCCESSED downloading ImageCoin")
-    }
-}
 
 //MARK: UISearchBarDelegate
 

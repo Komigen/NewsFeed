@@ -1,8 +1,7 @@
 import UIKit
 
 class RateViewCell: UITableViewCell {
-    
-    
+        
     @IBOutlet weak var imageIcon: UIImageView! {
         didSet {
             imageIcon.layer.cornerRadius = 8.0
@@ -12,13 +11,13 @@ class RateViewCell: UITableViewCell {
     
     @IBOutlet weak var shortNameRate: UILabel! {
         didSet {
-            shortNameRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 18.0)
+            shortNameRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             case 0: shortNameRate.textColor = blackColor
-                print("Presented light display mode on RateVc")
+//                print("Presented light display mode on RateVc")
             case 1: shortNameRate.textColor = whiteColor
-                print("Presented dark display mode on RateVc")
+//                print("Presented dark display mode on RateVc")
             default: break
             }
         }
@@ -26,7 +25,7 @@ class RateViewCell: UITableViewCell {
     
     @IBOutlet weak var valueRate: UILabel! {
         didSet {
-            valueRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 18.0)
+            valueRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             case 0: valueRate.textColor = blackColor
@@ -35,9 +34,10 @@ class RateViewCell: UITableViewCell {
             }
         }
     }
+    
     @IBOutlet weak var dollarSymbol: UILabel! {
         didSet {
-            dollarSymbol.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 18.0)
+            dollarSymbol.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             case 0: dollarSymbol.textColor = blackColor

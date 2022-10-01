@@ -3,41 +3,44 @@ import RealmSwift
 
 class FirstVC: UIViewController {
     
-    @IBOutlet weak var tableView:     UITableView!
-    @IBOutlet weak var searchBar:     UISearchBar! {
-        didSet {
-            searchBar.layer.cornerRadius = 16.0
-            searchBar.clipsToBounds = true
-        }
-    }
-    @IBOutlet weak var newsFeedLabel: UINavigationItem!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    var createStringUrl = CreateStringUrl()
-    var imagesArray     = [UIImage?]()
-    var postsArray      = [CurrentPostModel]()
+    private var createStringUrl = CreateStringUrl()
+    private var imagesArray     = [UIImage?]()
+    private var postsArray      = [CurrentPostModel]()
     
     //MARK: Realm
     
-    var realm = try! Realm()
-    var savedPosts = [PostRealmModel]()
+    private var realm = try! Realm()
+    private var savedPosts = [PostRealmModel]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateThemeUi()
-        self.tableView.dataSource = self
-        self.tableView.delegate   = self
-        tableView.animateTableView()
-        
-        
-        NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.France.rawValue)) { [weak self] result in
+        NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
             switch result {
             case .success(let articles):
                 self?.reloadPostsArray(articles: articles)
             case .failure: break
             }
         }
+        
+        self.tableView.dataSource = self
+        self.tableView.delegate   = self
+        self.searchBar.delegate   = self
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateThemeUi()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.animateTableView()
     }
     
     //MARK: ReadVC - WebView
@@ -49,28 +52,34 @@ class FirstVC: UIViewController {
         }
     }
     
-    //MARK: Update Ui - light\dark theme
+    //MARK: Update Ui 0 - light theme, 1 - dark
     
-    func updateThemeUi() {
+    private func updateThemeUi() {
+        
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             
         case 0:
             tableView.backgroundColor = whiteColor
-            self.view.backgroundColor = pinkLight
-            newsFeedLabel.titleView?.tintColor = UIColor.black
+            view.backgroundColor      = pinkLight
+            navigationController?.navigationBar.barTintColor = whiteColor
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: blackColor]
+            tabBarController?.tabBar.barTintColor = whiteColor
+            
         case 1:
             tableView.backgroundColor = blackColor
-            self.view.backgroundColor = self.tableView.backgroundColor
-            newsFeedLabel.titleView?.tintColor = UIColor.white
+            view.backgroundColor      = blackColor
+            navigationController?.navigationBar.barTintColor = blackColor
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: whiteColor]
+            tabBarController?.tabBar.barTintColor = blackColor
+            
         default:
             break
         }
-        tableView.reloadData()
-        tableView.animateTableView()
+        searchBar.createSettings()
     }
 }
 
-//MARK: TableView delegate
+//MARK: TableView
 
 extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -108,15 +117,10 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    /* Height row, footer */
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 110.0
     }
     
-
-    
-    //MARK: Actions Row
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -141,8 +145,8 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         
-        readLaterAction.backgroundColor = .black
-        readLaterAction.image = UIImage(systemName: "star")
+        readLaterAction.backgroundColor = blackColor
+        readLaterAction.image = UIImage(systemName: "bookmark")
         let configuration = UISwipeActionsConfiguration(actions: [readLaterAction])
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
@@ -152,7 +156,8 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
 //MARK: Reload postsArray & reload TableView
 
 extension FirstVC {
-    func reloadPostsArray(articles: [Article]) {
+    
+    private func reloadPostsArray(articles: [Article]) {
         self.postsArray = articles.compactMap({ CurrentPostModel(sourceName: $0.source?.name,
                                                                  author: $0.author,
                                                                  title: $0.title,
@@ -168,27 +173,22 @@ extension FirstVC {
     }
 }
 
-//MARK: UISearchBarDelegate
+//MARK: SearchBar
 
-//extension FirstVC: UISearchResultsUpdating {
-//    func updateSearchResults(for searchController: UISearchController) {
-//        if !searchBarIsEmpty {
-//
-//            NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byPhrase(phrase: searchBar.searchTextField.text ?? "")) { [weak self] result in
-//            switch result {
-//            case .success(let articles):
-//                self?.reloadPostsArray(articles: articles)
-//            case .failure: break
-//            }
-//        }
-//        }
-//    }
-//
-//
-//    private var searchBarIsEmpty: Bool {
-//        guard let text = searchBar.searchTextField.text else { return false }
-//        return text.isEmpty
-//    }
-//
-//}
+extension FirstVC: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if searchBar.text != "" {
+            NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byPhrase(phrase: searchBar.text!)) { [weak self] result in
+                switch result {
+                case .success(let articles):
+                    self?.reloadPostsArray(articles: articles)
+                case .failure: break
+                }
+            }
+            searchBar.searchTextField.resignFirstResponder()
+        }
+    }
+}
 
