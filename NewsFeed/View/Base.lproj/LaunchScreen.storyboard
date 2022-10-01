@@ -21,7 +21,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hi!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gw-uN-pjG">
-                                <rect key="frame" x="177.5" y="294" width="59" height="49"/>
+                                <rect key="frame" x="177.5" y="344" width="59" height="49"/>
+                                <fontDescription key="fontDescription" name=".SFUI-Regular" family=".AppleSystemUIFont" pointSize="44"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NewsFeed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxq-rk-fxg">
+                                <rect key="frame" x="114" y="174" width="186" height="49"/>
                                 <fontDescription key="fontDescription" name=".SFUI-Regular" family=".AppleSystemUIFont" pointSize="44"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -30,8 +36,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="wxq-rk-fxg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="130" id="Eei-DU-ssV"/>
                             <constraint firstItem="2gw-uN-pjG" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FDP-FJ-b0C"/>
-                            <constraint firstItem="2gw-uN-pjG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="250" id="L0l-5U-Kva"/>
+                            <constraint firstItem="2gw-uN-pjG" firstAttribute="top" secondItem="wxq-rk-fxg" secondAttribute="top" constant="170" id="L0l-5U-Kva"/>
+                            <constraint firstItem="wxq-rk-fxg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="r3f-S5-dRx"/>
                         </constraints>
                     </view>
                 </viewController>
