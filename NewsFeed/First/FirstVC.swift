@@ -19,6 +19,8 @@ class FirstVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.updateThemeUi()
+        
         NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
             switch result {
             case .success(let articles):
@@ -31,16 +33,13 @@ class FirstVC: UIViewController {
         self.tableView.delegate   = self
         self.searchBar.delegate   = self
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        updateThemeUi()
+        //MARK: Update after change settings
+        notificationCenter.addObserver(self, selector: #selector(updateUiAfterChangeSettings), name: .savedSettings, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        tableView.animateTableView()
+        self.tableView.animateTableView()
     }
     
     //MARK: ReadVC - WebView
@@ -52,25 +51,34 @@ class FirstVC: UIViewController {
         }
     }
     
+    //MARK: Update UI after change settings
+    @objc private func updateUiAfterChangeSettings() {
+        self.updateThemeUi()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        self.tableView.animateTableView()
+    }
+    
     //MARK: Update Ui 0 - light theme, 1 - dark
     
-    private func updateThemeUi() {
+    @objc private func updateThemeUi() {
         
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             
         case 0:
-            tableView.backgroundColor = whiteColor
-            view.backgroundColor      = pinkLight
-            navigationController?.navigationBar.barTintColor = whiteColor
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: blackColor]
-            tabBarController?.tabBar.barTintColor = whiteColor
+            tableView.backgroundColor = UIColor.whiteCustom
+            view.backgroundColor      = UIColor.pinkLightCustom
+            navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
+            tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
             
         case 1:
-            tableView.backgroundColor = blackColor
-            view.backgroundColor      = blackColor
-            navigationController?.navigationBar.barTintColor = blackColor
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: whiteColor]
-            tabBarController?.tabBar.barTintColor = blackColor
+            tableView.backgroundColor = UIColor.blackCustom
+            view.backgroundColor      = UIColor.blackCustom
+            navigationController?.navigationBar.barTintColor = UIColor.blackCustom
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+            tabBarController?.tabBar.barTintColor = UIColor.blackCustom
             
         default:
             break
@@ -107,9 +115,9 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         //UI 0 - light theme, 1 - dark
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
-            cell.backgroundColor = whiteColor
+            cell.backgroundColor = UIColor.whiteCustom
         case 1:
-            cell.backgroundColor = blackColor
+            cell.backgroundColor = UIColor.blackCustom
         default:
             break
         }
@@ -145,7 +153,7 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         
-        readLaterAction.backgroundColor = blackColor
+        readLaterAction.backgroundColor = UIColor.blackCustom
         readLaterAction.image = UIImage(systemName: "bookmark")
         let configuration = UISwipeActionsConfiguration(actions: [readLaterAction])
         configuration.performsFirstActionWithFullSwipe = false

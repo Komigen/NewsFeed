@@ -14,6 +14,7 @@ class RateVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateThemeUi()
         networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
             guard let self    = self else { return }
             self.dataArray    = currentRate
@@ -26,10 +27,9 @@ class RateVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate   = self
         searchBar.delegate   = self
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateThemeUi()
+        
+        //MARK: Update after change settings
+        notificationCenter.addObserver(self, selector: #selector(updateUiAfterChangeSettings), name: .savedSettings, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,23 +37,32 @@ class RateVC: UIViewController {
         tableView.animateTableView()
     }
     
+    //MARK: Update UI after change settings
+    @objc private func updateUiAfterChangeSettings() {
+        self.updateThemeUi()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        self.tableView.animateTableView()
+    }
+    
     //MARK: Ui 0 - light theme, 1 - dark
     
-    private func updateThemeUi() {
+    @objc private func updateThemeUi() {
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
-            tableView.backgroundColor    = whiteColor
-            self.view.backgroundColor    = whiteColor
-            currencyRatesLabel.textColor = blackColor
-            self.navigationController?.navigationBar.barTintColor = whiteColor
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: blackColor]
+            tableView.backgroundColor    = UIColor.whiteCustom
+            self.view.backgroundColor    = UIColor.whiteCustom
+            currencyRatesLabel.textColor = UIColor.blackCustom
+            self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
             
         case 1:
-            tableView.backgroundColor    = blackColor
-            self.view.backgroundColor    = blackColor
-            currencyRatesLabel.textColor = whiteColor
-            navigationController?.navigationBar.barTintColor = blackColor
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: whiteColor]
+            tableView.backgroundColor    = UIColor.blackCustom
+            self.view.backgroundColor    = UIColor.blackCustom
+            currencyRatesLabel.textColor = UIColor.whiteCustom
+            navigationController?.navigationBar.barTintColor = UIColor.blackCustom
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
             
         default: break
         }
@@ -84,9 +93,9 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
         //UI 0 - light theme, 1 - dark
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
         case 0:
-            cell.backgroundColor = whiteColor
+            cell.backgroundColor = UIColor.whiteCustom
         case 1:
-            cell.backgroundColor = blackColor
+            cell.backgroundColor = UIColor.blackCustom
         default:
             break
         }

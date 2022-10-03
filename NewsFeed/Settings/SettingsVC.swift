@@ -1,16 +1,7 @@
 import UIKit
 
 public let userDefaults = UserDefaults.standard
-
-//MARK: Using this colours. if you have to change the colors, you only need to do this here (Refactor -> Rename)
-
-public let blackColor       = UIColor.black
-public let whiteColor       = UIColor.white
-public let systemGrayColor  = UIColor.systemGray
-public let systemGray4Color = UIColor.systemGray4
-public let systemGray6Color = UIColor.systemGray6
-public let darkGrayColor    = UIColor.darkGray
-public let pinkLight        = UIColor(red: 247, green: 247, blue: 247, alpha: 1.0)
+public let notificationCenter = NotificationCenter.default
 
 public enum KeyForUserDefaults {
     static let fontKey   = "fontKey"
@@ -21,7 +12,6 @@ public enum KeyForUserDefaults {
 //MARK: Settings and UserDefaults
 
 final class SettingsVC: UIViewController {
-    lazy var firstVc = FirstVC()
     
     //MARK: General settings and constants for the application
     
@@ -34,8 +24,8 @@ final class SettingsVC: UIViewController {
     @IBOutlet weak var smallA:        UILabel!
     
     @IBOutlet weak var segmentedControlLabel: UISegmentedControl!
-    @IBOutlet weak var fontSizeLabel: UILabel!
-    @IBOutlet weak var sliderOutlet:  UISlider! {
+    @IBOutlet weak var fontSizeLabel:         UILabel!
+    @IBOutlet weak var sliderOutlet:          UISlider! {
         didSet {
             sliderOutlet.minimumValue = 16.0
             sliderOutlet.maximumValue = 22.0
@@ -61,28 +51,28 @@ final class SettingsVC: UIViewController {
         case 0:
             currentThemeMode = 0
             
-            settingsLabel.textColor = blackColor
-            smallA.textColor        = blackColor
-            largeA.textColor        = blackColor
+            settingsLabel.textColor = UIColor.blackCustom
+            smallA.textColor        = UIColor.blackCustom
+            largeA.textColor        = UIColor.blackCustom
             
-            sliderOutlet.minimumTrackTintColor = systemGrayColor
-            sliderOutlet.maximumTrackTintColor = systemGray6Color
-            segmentedControlLabel.selectedSegmentTintColor = whiteColor
-            segmentedControlLabel.backgroundColor = systemGrayColor
-            self.view.backgroundColor = whiteColor
+            sliderOutlet.minimumTrackTintColor = UIColor.systemGrayCustom
+            sliderOutlet.maximumTrackTintColor = UIColor.systemGray6Custom
+            segmentedControlLabel.selectedSegmentTintColor = UIColor.whiteCustom
+            segmentedControlLabel.backgroundColor = UIColor.systemGrayCustom
+            self.view.backgroundColor = UIColor.whiteCustom
             
         case 1:
             currentThemeMode = 1
             
-            settingsLabel.textColor = whiteColor
-            smallA.textColor        = whiteColor
-            largeA.textColor        = whiteColor
+            settingsLabel.textColor = UIColor.whiteCustom
+            smallA.textColor        = UIColor.whiteCustom
+            largeA.textColor        = UIColor.whiteCustom
             
-            sliderOutlet.minimumTrackTintColor = systemGray6Color
-            sliderOutlet.maximumTrackTintColor = darkGrayColor
-            segmentedControlLabel.selectedSegmentTintColor = darkGrayColor
-            segmentedControlLabel.backgroundColor = systemGray6Color
-            self.view.backgroundColor = blackColor
+            sliderOutlet.minimumTrackTintColor = UIColor.systemGray6Custom
+            sliderOutlet.maximumTrackTintColor = UIColor.darkGrayCustom
+            segmentedControlLabel.selectedSegmentTintColor = UIColor.darkGrayCustom
+            segmentedControlLabel.backgroundColor = UIColor.systemGray6Custom
+            self.view.backgroundColor = UIColor.blackCustom
             
         default:
             break
@@ -102,6 +92,11 @@ final class SettingsVC: UIViewController {
         if currentThemeMode != nil {
             userDefaults.set(currentThemeMode, forKey: KeyForUserDefaults.themeKey)
         }
+        
+        /* Post Notification */
+        let dict = ["currentThemeMode": userDefaults.set(currentThemeMode, forKey: KeyForUserDefaults.themeKey)]
+        notificationCenter.post(name: .savedSettings, object: self, userInfo: dict)
+
         self.dismiss(animated: true)
     }
     
@@ -120,36 +115,36 @@ final class SettingsVC: UIViewController {
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
             
         case 0:
-            sliderOutlet.minimumTrackTintColor = systemGrayColor
-            sliderOutlet.maximumTrackTintColor = systemGray6Color
+            sliderOutlet.minimumTrackTintColor = UIColor.systemGrayCustom
+            sliderOutlet.maximumTrackTintColor = UIColor.systemGray6Custom
             
-            self.view.backgroundColor = whiteColor
-            segmentedControlLabel.selectedSegmentTintColor = whiteColor
-            segmentedControlLabel.backgroundColor          = systemGrayColor
+            self.view.backgroundColor = UIColor.whiteCustom
+            segmentedControlLabel.selectedSegmentTintColor = UIColor.whiteCustom
+            segmentedControlLabel.backgroundColor          = UIColor.systemGrayCustom
             
-            settingsLabel.textColor = blackColor
-            smallA.textColor        = blackColor
-            largeA.textColor        = blackColor
+            settingsLabel.textColor = UIColor.blackCustom
+            smallA.textColor        = UIColor.blackCustom
+            largeA.textColor        = UIColor.blackCustom
             
-            self.navigationController?.navigationBar.barTintColor = whiteColor
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: blackColor]
-            self.tabBarController?.tabBar.barTintColor = whiteColor
+            self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
+            self.tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
             //            print("Presented light display mode on SettingsVc")
         case 1:
-            sliderOutlet.minimumTrackTintColor = systemGray6Color
-            sliderOutlet.maximumTrackTintColor = darkGrayColor
+            sliderOutlet.minimumTrackTintColor = UIColor.systemGray6Custom
+            sliderOutlet.maximumTrackTintColor = UIColor.darkGrayCustom
             
-            self.view.backgroundColor = blackColor
-            segmentedControlLabel.selectedSegmentTintColor = darkGrayColor
-            segmentedControlLabel.backgroundColor          = systemGray6Color
+            self.view.backgroundColor = UIColor.blackCustom
+            segmentedControlLabel.selectedSegmentTintColor = UIColor.darkGrayCustom
+            segmentedControlLabel.backgroundColor          = UIColor.systemGray6Custom
             
-            settingsLabel.textColor = whiteColor
-            smallA.textColor        = whiteColor
-            largeA.textColor        = whiteColor
+            settingsLabel.textColor = UIColor.whiteCustom
+            smallA.textColor        = UIColor.whiteCustom
+            largeA.textColor        = UIColor.whiteCustom
             
-            self.navigationController?.navigationBar.barTintColor = blackColor
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: whiteColor]
-            self.tabBarController?.tabBar.barTintColor = blackColor
+            self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
+            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+            self.tabBarController?.tabBar.barTintColor = UIColor.blackCustom
             //            print("Presented dark display mode on SettingsVc")
         default:
             break

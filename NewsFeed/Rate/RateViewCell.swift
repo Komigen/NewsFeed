@@ -14,9 +14,9 @@ class RateViewCell: UITableViewCell {
             shortNameRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: shortNameRate.textColor = blackColor
+            case 0: shortNameRate.textColor = UIColor.blackCustom
 //                print("Presented light display mode on RateVc")
-            case 1: shortNameRate.textColor = whiteColor
+            case 1: shortNameRate.textColor = UIColor.whiteCustom
 //                print("Presented dark display mode on RateVc")
             default: break
             }
@@ -28,8 +28,8 @@ class RateViewCell: UITableViewCell {
             valueRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: valueRate.textColor = blackColor
-            case 1: valueRate.textColor = whiteColor
+            case 0: valueRate.textColor = UIColor.blackCustom
+            case 1: valueRate.textColor = UIColor.whiteCustom
             default: break
             }
         }
@@ -40,8 +40,8 @@ class RateViewCell: UITableViewCell {
             dollarSymbol.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: dollarSymbol.textColor = blackColor
-            case 1: dollarSymbol.textColor = whiteColor
+            case 0: dollarSymbol.textColor = UIColor.blackCustom
+            case 1: dollarSymbol.textColor = UIColor.whiteCustom
             default: break
             }
         }

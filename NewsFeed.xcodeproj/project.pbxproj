@@ -134,8 +134,8 @@
 		B54EA24328C07D9500535572 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B54EA22D28C07C2500535572 /* Main.storyboard */,
 				B54EA23228C07C2700535572 /* LaunchScreen.storyboard */,
+				B54EA22D28C07C2500535572 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  NewsFeed
-//
-//  Created by Konstantin on 01.09.2022.
-//
-
 import UIKit
 
 @main
