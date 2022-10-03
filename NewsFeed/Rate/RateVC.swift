@@ -27,9 +27,11 @@ class RateVC: UIViewController {
         tableView.dataSource = self
         tableView.delegate   = self
         searchBar.delegate   = self
-        
-        //MARK: Update after change settings
-        notificationCenter.addObserver(self, selector: #selector(updateUiAfterChangeSettings), name: .savedSettings, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateThemeUi()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,36 +39,28 @@ class RateVC: UIViewController {
         tableView.animateTableView()
     }
     
-    //MARK: Update UI after change settings
-    @objc private func updateUiAfterChangeSettings() {
-        self.updateThemeUi()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        self.tableView.animateTableView()
-    }
-    
     //MARK: Ui 0 - light theme, 1 - dark
     
-    @objc private func updateThemeUi() {
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-        case 0:
+    private func updateThemeUi() {
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+        case true:
             tableView.backgroundColor    = UIColor.whiteCustom
             self.view.backgroundColor    = UIColor.whiteCustom
             currencyRatesLabel.textColor = UIColor.blackCustom
             self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
             
-        case 1:
+        case false:
             tableView.backgroundColor    = UIColor.blackCustom
             self.view.backgroundColor    = UIColor.blackCustom
             currencyRatesLabel.textColor = UIColor.whiteCustom
             navigationController?.navigationBar.barTintColor = UIColor.blackCustom
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-            
-        default: break
         }
         searchBar.createSettings()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -90,14 +84,12 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
             cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
         }
         
-        //UI 0 - light theme, 1 - dark
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-        case 0:
+        //UI true - light theme, false - dark
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+        case true:
             cell.backgroundColor = UIColor.whiteCustom
-        case 1:
+        case false:
             cell.backgroundColor = UIColor.blackCustom
-        default:
-            break
         }
         cell.selectionStyle = .none
         return cell
@@ -113,6 +105,9 @@ extension RateVC: UISearchBarDelegate {
         
         if searchText == "" {
             filteredData = dataArray
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         } else {
             
             filteredData = [:]
@@ -122,7 +117,6 @@ extension RateVC: UISearchBarDelegate {
                     filteredData = dataArray.filter({ $0.key.contains(word) })
                 }
             }
-            self.tableView.reloadData()
             self.tableView.animateTableView()
         }
     }

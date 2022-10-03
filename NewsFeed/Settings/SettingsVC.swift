@@ -1,7 +1,6 @@
 import UIKit
 
 public let userDefaults = UserDefaults.standard
-public let notificationCenter = NotificationCenter.default
 
 public enum KeyForUserDefaults {
     static let fontKey   = "fontKey"
@@ -17,7 +16,7 @@ final class SettingsVC: UIViewController {
     
     private var currentsSiderValue:   Float?
     private var currentFontSize:      CGFloat?
-    private var currentThemeMode:     Int?
+    private var currentThemeMode:     Bool?
     
     @IBOutlet weak var settingsLabel: UILabel!
     @IBOutlet weak var largeA:        UILabel!
@@ -32,8 +31,7 @@ final class SettingsVC: UIViewController {
         }
     }
     
-    
-    override func viewDidLoad() {
+        override func viewDidLoad() {
         super.viewDidLoad()
         updateThemeUi()
     }
@@ -47,10 +45,14 @@ final class SettingsVC: UIViewController {
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         
-        switch sender.selectedSegmentIndex {
-        case 0:
-            currentThemeMode = 0
+        if sender.selectedSegmentIndex == 0 {
+            currentThemeMode = true
+        } else if sender.selectedSegmentIndex == 1 {
+            currentThemeMode = false
+        }
+        switch currentThemeMode {
             
+        case true:
             settingsLabel.textColor = UIColor.blackCustom
             smallA.textColor        = UIColor.blackCustom
             largeA.textColor        = UIColor.blackCustom
@@ -61,8 +63,7 @@ final class SettingsVC: UIViewController {
             segmentedControlLabel.backgroundColor = UIColor.systemGrayCustom
             self.view.backgroundColor = UIColor.whiteCustom
             
-        case 1:
-            currentThemeMode = 1
+        case false:
             
             settingsLabel.textColor = UIColor.whiteCustom
             smallA.textColor        = UIColor.whiteCustom
@@ -73,8 +74,9 @@ final class SettingsVC: UIViewController {
             segmentedControlLabel.selectedSegmentTintColor = UIColor.darkGrayCustom
             segmentedControlLabel.backgroundColor = UIColor.systemGray6Custom
             self.view.backgroundColor = UIColor.blackCustom
-            
-        default:
+        case .none:
+            break
+        case .some(_):
             break
         }
     }
@@ -92,11 +94,6 @@ final class SettingsVC: UIViewController {
         if currentThemeMode != nil {
             userDefaults.set(currentThemeMode, forKey: KeyForUserDefaults.themeKey)
         }
-        
-        /* Post Notification */
-        let dict = ["currentThemeMode": userDefaults.set(currentThemeMode, forKey: KeyForUserDefaults.themeKey)]
-        notificationCenter.post(name: .savedSettings, object: self, userInfo: dict)
-
         self.dismiss(animated: true)
     }
     
@@ -108,13 +105,16 @@ final class SettingsVC: UIViewController {
         
         sliderOutlet.value = ((userDefaults.object(forKey: KeyForUserDefaults.sliderKey) as? Float) ?? sliderOutlet.value)
         
-        segmentedControlLabel.selectedSegmentIndex = ((userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int) ?? 0)
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool  ?? true {
+        case true:  segmentedControlLabel.selectedSegmentIndex = 0
+        case false: segmentedControlLabel.selectedSegmentIndex = 1
+        }
         
-        currentThemeMode = userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0
+        currentThemeMode = userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true
         
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
             
-        case 0:
+        case true:
             sliderOutlet.minimumTrackTintColor = UIColor.systemGrayCustom
             sliderOutlet.maximumTrackTintColor = UIColor.systemGray6Custom
             
@@ -130,7 +130,7 @@ final class SettingsVC: UIViewController {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
             self.tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
             //            print("Presented light display mode on SettingsVc")
-        case 1:
+        case false:
             sliderOutlet.minimumTrackTintColor = UIColor.systemGray6Custom
             sliderOutlet.maximumTrackTintColor = UIColor.darkGrayCustom
             
@@ -146,8 +146,6 @@ final class SettingsVC: UIViewController {
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
             self.tabBarController?.tabBar.barTintColor = UIColor.blackCustom
             //            print("Presented dark display mode on SettingsVc")
-        default:
-            break
         }
     }
 }

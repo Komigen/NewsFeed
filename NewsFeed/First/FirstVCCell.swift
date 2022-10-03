@@ -6,12 +6,11 @@ class FirstVCCell: UITableViewCell {
         didSet {
             titleText.font.withSize(17.0)
             
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: titleText.textColor = UIColor.blackCustom
+            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            case true: titleText.textColor = UIColor.blackCustom
                 print("Presented light display mode on RateVc")
-            case 1: titleText.textColor = UIColor.whiteCustom
+            case false: titleText.textColor = UIColor.whiteCustom
                 print("Presented dark display mode on RateVc")
-            default: break
             }
         }
     }
@@ -19,11 +18,7 @@ class FirstVCCell: UITableViewCell {
     @IBOutlet weak var authorText: UILabel! {
         didSet {
             authorText.font.withSize(13.0)
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: authorText.textColor = UIColor.blackCustom
-            case 1: authorText.textColor = UIColor.whiteCustom
-            default: break
-            }
+            authorText.textColor = UIColor.systemGrayCustom
         }
     }
     
@@ -32,10 +27,9 @@ class FirstVCCell: UITableViewCell {
             imagePost.layer.cornerRadius = 8.0
             imagePost.clipsToBounds = true
             imagePost.contentMode = .scaleAspectFill
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: imagePost.backgroundColor = UIColor.whiteCustom
-            case 1: imagePost.backgroundColor = UIColor.blackCustom
-            default: break
+            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            case true:  imagePost.backgroundColor = UIColor.whiteCustom
+            case false: imagePost.backgroundColor = UIColor.blackCustom
             }
         }
     }

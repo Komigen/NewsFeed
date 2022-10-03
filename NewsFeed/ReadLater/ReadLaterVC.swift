@@ -17,15 +17,19 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateThemeUi()
 
         realm = try! Realm()
         
         self.tableView.dataSource = self
         self.tableView.delegate   = self
-        
-        //MARK: Update after change settings
-        notificationCenter.addObserver(self, selector: #selector(updateUiAfterChangeSettings), name: .savedSettings, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateThemeUi()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,32 +37,21 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         self.tableView.animateTableView()
     }
     
-    //MARK: Update UI after change settings
-    @objc private func updateUiAfterChangeSettings() {
-        self.updateThemeUi()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        self.tableView.animateTableView()
-    }
-    
     //MARK: Update Ui - 0 - light theme, 1 - dark
     
-    @objc private func updateThemeUi() {
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+    private func updateThemeUi() {
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
             
-        case 0:
+        case true:
             tableView.backgroundColor = UIColor.whiteCustom
             self.view.backgroundColor = UIColor.pinkLightCustom
             self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-        case 1:
+        case false:
             tableView.backgroundColor = UIColor.blackCustom
             self.view.backgroundColor = UIColor.blackCustom
             self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-        default:
-            break
         }
     }
     
@@ -122,14 +115,12 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         cell.shortContentLabel.text = currentPost.shortContent
         cell.imagePost.downloadImagePost(stringUrl: currentPost.urlToImage ?? "")
         
-        //UI 0 - light theme, 1 - dark
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-        case 0:
+        //UI true - light theme, false - dark
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+        case true:
             cell.backgroundColor = UIColor.whiteCustom
-        case 1:
+        case false:
             cell.backgroundColor = UIColor.blackCustom
-        default:
-            break
         }
         cell.selectionStyle = .none
         

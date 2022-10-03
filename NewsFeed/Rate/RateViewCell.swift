@@ -13,12 +13,11 @@ class RateViewCell: UITableViewCell {
         didSet {
             shortNameRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: shortNameRate.textColor = UIColor.blackCustom
+            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            case true:  shortNameRate.textColor = UIColor.blackCustom
 //                print("Presented light display mode on RateVc")
-            case 1: shortNameRate.textColor = UIColor.whiteCustom
+            case false: shortNameRate.textColor = UIColor.whiteCustom
 //                print("Presented dark display mode on RateVc")
-            default: break
             }
         }
     }
@@ -27,10 +26,9 @@ class RateViewCell: UITableViewCell {
         didSet {
             valueRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: valueRate.textColor = UIColor.blackCustom
-            case 1: valueRate.textColor = UIColor.whiteCustom
-            default: break
+            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            case true:  valueRate.textColor = UIColor.blackCustom
+            case false: valueRate.textColor = UIColor.whiteCustom
             }
         }
     }
@@ -39,10 +37,9 @@ class RateViewCell: UITableViewCell {
         didSet {
             dollarSymbol.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.fontKey) as? CGFloat ?? 16.0)
             
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-            case 0: dollarSymbol.textColor = UIColor.blackCustom
-            case 1: dollarSymbol.textColor = UIColor.whiteCustom
-            default: break
+            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            case true:  dollarSymbol.textColor = UIColor.blackCustom
+            case false: dollarSymbol.textColor = UIColor.whiteCustom
             }
         }
     }

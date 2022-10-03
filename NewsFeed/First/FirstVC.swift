@@ -18,9 +18,7 @@ class FirstVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.updateThemeUi()
-        
+                
         NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
             switch result {
             case .success(let articles):
@@ -32,16 +30,18 @@ class FirstVC: UIViewController {
         self.tableView.dataSource = self
         self.tableView.delegate   = self
         self.searchBar.delegate   = self
-        
-        //MARK: Update after change settings
-        notificationCenter.addObserver(self, selector: #selector(updateUiAfterChangeSettings), name: .savedSettings, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateThemeUi()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.tableView.animateTableView()
     }
-    
+        
     //MARK: ReadVC - WebView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,39 +51,30 @@ class FirstVC: UIViewController {
         }
     }
     
-    //MARK: Update UI after change settings
-    @objc private func updateUiAfterChangeSettings() {
-        self.updateThemeUi()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        self.tableView.animateTableView()
-    }
-    
     //MARK: Update Ui 0 - light theme, 1 - dark
     
-    @objc private func updateThemeUi() {
+    private func updateThemeUi() {
         
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
             
-        case 0:
+        case true:
             tableView.backgroundColor = UIColor.whiteCustom
             view.backgroundColor      = UIColor.pinkLightCustom
             navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
             tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
             
-        case 1:
+        case false:
             tableView.backgroundColor = UIColor.blackCustom
             view.backgroundColor      = UIColor.blackCustom
             navigationController?.navigationBar.barTintColor = UIColor.blackCustom
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
             tabBarController?.tabBar.barTintColor = UIColor.blackCustom
-            
-        default:
-            break
         }
         searchBar.createSettings()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -112,14 +103,12 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         }()
         cell.imagePost.downloadImagePost(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
         
-        //UI 0 - light theme, 1 - dark
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Int ?? 0 {
-        case 0:
+        //UI true - light theme, false - dark
+        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+        case true:
             cell.backgroundColor = UIColor.whiteCustom
-        case 1:
+        case false:
             cell.backgroundColor = UIColor.blackCustom
-        default:
-            break
         }
         cell.selectionStyle = .none
         return cell
@@ -161,7 +150,7 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//MARK: Reload postsArray & reload TableView
+//MARK: Reload postsArray
 
 extension FirstVC {
     
@@ -175,9 +164,6 @@ extension FirstVC {
                                                                  publishedAt: $0.publishedAt,
                                                                  content: $0.content)
         })
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
 }
 
