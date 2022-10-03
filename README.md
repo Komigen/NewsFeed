@@ -12,10 +12,6 @@
 - Отдельный экран настроек позволяет выбирать между темной и светлой темой, а так же настраивать размер шрифта.
 - Использованы API: https://newsapi.org & https://coinlayer.com
 
-  
-## Как запустить:
 
-```
-???
-```
-
+![](https://github.com/Komigen/NewsFeed/blob/main/Screen1.gif)
+![](https://github.com/Komigen/NewsFeed/blob/main/Screen2.gif)
