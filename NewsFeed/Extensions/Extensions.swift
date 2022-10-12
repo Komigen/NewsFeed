@@ -55,7 +55,7 @@ extension UIImageView {
             }
         }
         task.resume()
-                print("SUCCESSED downloading ImageCoin")
+//                print("SUCCESSED downloading ImageCoin")
     }
 }
 
