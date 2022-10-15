@@ -701,13 +701,13 @@ In a court filing, Musk said the influential social media platform covered up se
         <segue reference="DC1-bg-dKM"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="bitcoinsign.square.fill" catalog="system" width="32" height="32"/>
-        <image name="bookmark" catalog="system" width="32" height="32"/>
+        <image name="bitcoinsign.square.fill" catalog="system" width="128" height="114"/>
+        <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="coinLayer" width="1170" height="407"/>
-        <image name="gearshape" catalog="system" width="32" height="32"/>
-        <image name="house.fill" catalog="system" width="32" height="32"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="newsApi" width="1097" height="376"/>
-        <image name="square.text.square" catalog="system" width="32" height="32"/>
+        <image name="square.text.square" catalog="system" width="128" height="114"/>
         <namedColor name="ColorSetForBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
