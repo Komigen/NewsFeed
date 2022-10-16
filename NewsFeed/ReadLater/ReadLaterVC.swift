@@ -14,7 +14,6 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     @IBOutlet weak var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -111,7 +110,7 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             }
         }()
         cell.dateLabel.text?.getFormattedDate(stringDate: currentPost.date)
-        cell.titleLabel.text        = currentPost.title
+        cell.titleLabel.text = currentPost.title
         cell.shortContentLabel.text = currentPost.shortContent
         cell.imagePost.downloadImagePost(stringUrl: currentPost.urlToImage ?? "")
         
@@ -125,9 +124,9 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         cell.selectionStyle = .none
         
         let layer = cell.layer
-        layer.borderWidth  = 2.0
+        layer.borderWidth = 2.0
         layer.cornerRadius = 8.0
-        layer.borderColor  = UIColor.gray.withAlphaComponent(0.1).cgColor
+        layer.borderColor = UIColor.gray.withAlphaComponent(0.1).cgColor
         
         return cell
     }

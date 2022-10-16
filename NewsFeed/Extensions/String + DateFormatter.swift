@@ -1,7 +1,5 @@
 import UIKit
 
-//MARK: Date Formatter
-
 extension String {
     
     public mutating func getFormattedDate(stringDate: String?) {
@@ -13,13 +11,11 @@ extension String {
         dateFormatterPrint.dateFormat = "MM-dd-yyyy HH:mm"
         
         let date: Date? = dateFormatterGet.date(from: "2018-02-01T19:10:04+00:00")
-        
-        self = dateFormatterPrint.string(from: date!)
+     
+        if let safeDate = date {
+            self = dateFormatterPrint.string(from: safeDate)
+        }
     }
 }
 
-//MARK: For Settings VC
 
-extension NSNotification.Name {
-    static let savedSettings = NSNotification.Name.init(rawValue: "savedSettings")
-}

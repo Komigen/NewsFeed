@@ -14,22 +14,22 @@ final class CurrentPostModel {
     let content:            String?
     
     
-   required init(sourceName:         String?,
-                 author:             String?,
-                 title:              String?,
+   required init(sourceName: String?,
+                 author: String?,
+                 title: String?,
                  articleDescription: String?,
-                 url:                String?,
-                 urlToImage:         String?,
-                 publishedAt:        String?,
-                 content:            String?
+                 url: String?,
+                 urlToImage: String?,
+                 publishedAt: String?,
+                 content: String?
     ){
-        self.sourceName         = sourceName
-        self.author             = author
-        self.title              = title
+        self.sourceName = sourceName
+        self.author = author
+        self.title = title
         self.articleDescription = articleDescription
-        self.url                = url
-        self.urlToImage         = urlToImage
-        self.publishedAt        = publishedAt
-        self.content            = content
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
+        self.content = content
     }
 }

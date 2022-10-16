@@ -7,8 +7,8 @@ class FirstVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     
     private var createStringUrl = CreateStringUrl()
-    private var imagesArray     = [UIImage?]()
-    private var postsArray      = [CurrentPostModel]()
+    private var imagesArray = [UIImage?]()
+    private var postsArray = [CurrentPostModel]()
     
     //MARK: Realm
     
@@ -28,8 +28,8 @@ class FirstVC: UIViewController {
         }
         
         self.tableView.dataSource = self
-        self.tableView.delegate   = self
-        self.searchBar.delegate   = self
+        self.tableView.delegate = self
+        self.searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,14 +59,14 @@ class FirstVC: UIViewController {
             
         case true:
             tableView.backgroundColor = UIColor.whiteCustom
-            view.backgroundColor      = UIColor.pinkLightCustom
+            view.backgroundColor = UIColor.pinkLightCustom
             navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
             tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
             
         case false:
             tableView.backgroundColor = UIColor.blackCustom
-            view.backgroundColor      = UIColor.blackCustom
+            view.backgroundColor = UIColor.blackCustom
             navigationController?.navigationBar.barTintColor = UIColor.blackCustom
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
             tabBarController?.tabBar.barTintColor = UIColor.blackCustom
@@ -128,12 +128,12 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
                 if let currentArticle = self?.postsArray[indexPath.item] {
                     
                     let savedPost = PostRealmModel()
-                    savedPost.date         = currentArticle.publishedAt ?? ""
-                    savedPost.title        = currentArticle.title ?? ""
+                    savedPost.date = currentArticle.publishedAt ?? ""
+                    savedPost.title = currentArticle.title ?? ""
                     savedPost.shortContent = currentArticle.content ?? ""
-                    savedPost.urlToImage   = currentArticle.urlToImage ?? ""
-                    savedPost.source       = currentArticle.sourceName ?? ""
-                    savedPost.url          = currentArticle.url ?? ""
+                    savedPost.urlToImage = currentArticle.urlToImage ?? ""
+                    savedPost.source = currentArticle.sourceName ?? ""
+                    savedPost.url = currentArticle.url ?? ""
                     
                     try! self?.realm.write{
                         self?.realm.add(savedPost)
@@ -150,7 +150,7 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//MARK: Reload postsArray
+//MARK: Extensions
 
 extension FirstVC {
     
@@ -167,7 +167,6 @@ extension FirstVC {
     }
 }
 
-//MARK: SearchBar
 
 extension FirstVC: UISearchBarDelegate {
     

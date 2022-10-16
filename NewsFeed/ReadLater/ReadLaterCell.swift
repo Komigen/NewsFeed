@@ -2,29 +2,29 @@ import UIKit
 
 class ReadLaterCell: UITableViewCell {
     
-    @IBOutlet weak var imagePost:         UIImageView!{
+    @IBOutlet weak var imagePost: UIImageView!{
         didSet {
-            imagePost.layer.cornerRadius  = 8.0
-            imagePost.clipsToBounds       = true
+            imagePost.layer.cornerRadius = 8.0
+            imagePost.clipsToBounds = true
             imagePost.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-            imagePost.contentMode         = .scaleAspectFill
+            imagePost.contentMode = .scaleAspectFill
         }
     }
-    @IBOutlet weak var sourceLabel:       UILabel! {
+    @IBOutlet weak var sourceLabel: UILabel! {
         didSet {
             sourceLabel.textColor = UIColor.systemGrayCustom
         }
     }
-    @IBOutlet weak var dateLabel:         UILabel! {
+    @IBOutlet weak var dateLabel: UILabel! {
         didSet {
             dateLabel.textColor = UIColor.systemGrayCustom
         }
     }
-    @IBOutlet weak var titleLabel:        UILabel!  {
+    @IBOutlet weak var titleLabel: UILabel!  {
         didSet {
             titleLabel.font.withSize(26.0)
             switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-            case true:  titleLabel.textColor = UIColor.blackCustom
+            case true: titleLabel.textColor = UIColor.blackCustom
             case false: titleLabel.textColor = UIColor.whiteCustom
             }
         }

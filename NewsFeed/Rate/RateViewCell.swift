@@ -5,7 +5,7 @@ class RateViewCell: UITableViewCell {
     @IBOutlet weak var imageIcon: UIImageView! {
         didSet {
             imageIcon.layer.cornerRadius = 8.0
-            imageIcon.clipsToBounds      = true
+            imageIcon.clipsToBounds = true
         }
     }
     

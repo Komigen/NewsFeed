@@ -4,20 +4,20 @@ private var networkManagerCoinLayer = NetworkManagerCoinLayer()
 
 class RateVC: UIViewController {
     
-    @IBOutlet weak var tableView:            UITableView!
-    @IBOutlet weak var searchBar:            UISearchBar!
-    @IBOutlet weak var currencyRatesLabel:   UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var currencyRatesLabel: UILabel!
     @IBOutlet weak var settingsButtonOutlet: UIBarButtonItem!
     
-    private var dataArray    = [String: Double]()
+    private var dataArray = [String: Double]()
     private var filteredData = [String: Double]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateThemeUi()
         networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
-            guard let self    = self else { return }
-            self.dataArray    = currentRate
+            guard let self = self else { return }
+            self.dataArray = currentRate
             self.filteredData = self.dataArray
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -25,8 +25,8 @@ class RateVC: UIViewController {
         }
         
         tableView.dataSource = self
-        tableView.delegate   = self
-        searchBar.delegate   = self
+        tableView.delegate = self
+        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,15 +44,15 @@ class RateVC: UIViewController {
     private func updateThemeUi() {
         switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
         case true:
-            tableView.backgroundColor    = UIColor.whiteCustom
-            self.view.backgroundColor    = UIColor.whiteCustom
+            tableView.backgroundColor = UIColor.whiteCustom
+            self.view.backgroundColor = UIColor.whiteCustom
             currencyRatesLabel.textColor = UIColor.blackCustom
             self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
             self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
             
         case false:
-            tableView.backgroundColor    = UIColor.blackCustom
-            self.view.backgroundColor    = UIColor.blackCustom
+            tableView.backgroundColor = UIColor.blackCustom
+            self.view.backgroundColor = UIColor.blackCustom
             currencyRatesLabel.textColor = UIColor.whiteCustom
             navigationController?.navigationBar.barTintColor = UIColor.blackCustom
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
@@ -64,7 +64,7 @@ class RateVC: UIViewController {
     }
 }
 
-//MARK: TableView delegate
+//MARK: Extension - TableView
 
 extension RateVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -76,12 +76,12 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RateCell", for: indexPath) as! RateViewCell
         
         let values = Array(filteredData.values)
-        let keys   = Array(filteredData.keys)
+        let keys = Array(filteredData.keys)
         
         cell.shortNameRate.text = String(keys[indexPath.row])
-        cell.valueRate.text     = String(values[indexPath.row])
-        if cell.shortNameRate.text != nil {
-            cell.imageIcon.downloadImageCoin(shortName: cell.shortNameRate.text!)
+        cell.valueRate.text = String(values[indexPath.row])
+        if let safeText = cell.shortNameRate.text {
+            cell.imageIcon.downloadImageCoin(shortName: safeText)
         }
         
         //UI true - light theme, false - dark
@@ -97,7 +97,7 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
 }
 
 
-//MARK: UISearchBarDelegate
+//MARK: Extension - SearchBar
 
 extension RateVC: UISearchBarDelegate {
     

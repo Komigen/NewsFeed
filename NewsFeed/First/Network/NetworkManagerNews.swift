@@ -12,8 +12,8 @@ final class NetworkManagerNewsApi {
         let task = session.dataTask(with: request as URLRequest) { (data, _, error) -> Void in
             DispatchQueue.main.async {
                 
-                if error != nil {
-                    print(error!)
+                if let safeError = error {
+                    print(safeError)
                 }
                 
                 if let safeData = data {
@@ -41,13 +41,13 @@ struct ModelNews: Codable {
 }
 
 struct Article: Codable {
-    var author: String?
-    var title: String?
+    var author:             String?
+    var title:              String?
     var articleDescription: String?
-    var url: String?
-    var urlToImage: String?
-    var publishedAt: String?
-    var content: String?
+    var url:                String?
+    var urlToImage:         String?
+    var publishedAt:        String?
+    var content:            String?
     
     var source: Source?
     

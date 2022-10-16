@@ -3,7 +3,7 @@ import WebKit
 
 class ReadVC: UIViewController {
     
-    private let webView   = WKWebView()
+    private let webView = WKWebView()
     var stringUrl = ""
     
     override func viewDidLoad() {

@@ -1,7 +1,7 @@
 import UIKit
 
-private let apiKey1       = "6668744690fd8c840e335ed7d0ca796f"
-private let apiKey2       = "bb5e94afb7945f8762b53977431c32ea"
+private let apiKey1 = "6668744690fd8c840e335ed7d0ca796f"
+private let apiKey2 = "bb5e94afb7945f8762b53977431c32ea"
 fileprivate let urlString = "http://api.coinlayer.com/api/live?access_key=\(apiKey2)&target=USD"
 
 final class NetworkManagerCoinLayer {
@@ -15,8 +15,8 @@ final class NetworkManagerCoinLayer {
         let task = session.dataTask(with: url) { (data, _, error) in
             DispatchQueue.main.async {
                 
-                if error != nil {
-                    print(error!)
+                if let safeError = error {
+                    print(safeError)
                 }
                 
                 if let safeData = data {

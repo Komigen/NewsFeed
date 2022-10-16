@@ -1,7 +1,5 @@
 import UIKit
 
-//MARK: Animated tableView
-
 extension UITableView {
     
     public func animateTableView() {
