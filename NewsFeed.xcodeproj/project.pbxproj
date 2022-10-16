@@ -31,7 +31,8 @@
 		B5DB843828FB17970081E32A /* UISearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB843728FB17970081E32A /* UISearchBar.swift */; };
 		B5DB843A28FB17C80081E32A /* UITableView + Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB843928FB17C80081E32A /* UITableView + Animations.swift */; };
 		B5DB843C28FBEDCB0081E32A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB843B28FBEDCB0081E32A /* UIColor.swift */; };
-		B5DB843E28FBEE3E0081E32A /* NSNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB843D28FBEE3E0081E32A /* NSNotification.swift */; };
+		B5DB844228FBFE4B0081E32A /* ModelNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB844128FBFE4B0081E32A /* ModelNews.swift */; };
+		B5DB844428FC1C490081E32A /* AlertBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DB844328FC1C490081E32A /* AlertBuilder.swift */; };
 		B5EF88B728DB067800C1F4AF /* ReadLaterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EF88B628DB067800C1F4AF /* ReadLaterCell.swift */; };
 		ED976A0DA207D27EF8A587F9 /* Pods_NewsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 196F8389017E02D483AEEDC9 /* Pods_NewsFeed.framework */; };
 /* End PBXBuildFile section */
@@ -65,7 +66,8 @@
 		B5DB843728FB17970081E32A /* UISearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchBar.swift; sourceTree = "<group>"; };
 		B5DB843928FB17C80081E32A /* UITableView + Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView + Animations.swift"; sourceTree = "<group>"; };
 		B5DB843B28FBEDCB0081E32A /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		B5DB843D28FBEE3E0081E32A /* NSNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotification.swift; sourceTree = "<group>"; };
+		B5DB844128FBFE4B0081E32A /* ModelNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelNews.swift; sourceTree = "<group>"; };
+		B5DB844328FC1C490081E32A /* AlertBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBuilder.swift; sourceTree = "<group>"; };
 		B5EF88B628DB067800C1F4AF /* ReadLaterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadLaterCell.swift; sourceTree = "<group>"; };
 		C184CA1DCCD23CA9A6644359 /* Pods-NewsFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsFeed.release.xcconfig"; path = "Target Support Files/Pods-NewsFeed/Pods-NewsFeed.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B54EA24528C0802400535572 /* NetworkManagerNews.swift */,
+				B5DB844128FBFE4B0081E32A /* ModelNews.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -102,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				B53E9EF628E6D55400055A82 /* String + DateFormatter.swift */,
-				B5DB843D28FBEE3E0081E32A /* NSNotification.swift */,
 				B5DB843928FB17C80081E32A /* UITableView + Animations.swift */,
 				B5DB843528FB15C90081E32A /* UIImageView - DownloadImage.swift */,
 				B5DB843728FB17970081E32A /* UISearchBar.swift */,
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */,
+				B5DB844328FC1C490081E32A /* AlertBuilder.swift */,
 				B52EDAC528C71C6800594D97 /* FirstVCCell.swift */,
 				B5CE5AA228C208780076BE6F /* SupportData.swift */,
 				B5CE5AB028C622890076BE6F /* CurrentPostModel.swift */,
@@ -344,7 +347,6 @@
 				B54EA22828C07C2500535572 /* AppDelegate.swift in Sources */,
 				B5CE5A8C28C111CA0076BE6F /* FirstVC.swift in Sources */,
 				B5CE5A8128C10AFE0076BE6F /* RateVC.swift in Sources */,
-				B5DB843E28FBEE3E0081E32A /* NSNotification.swift in Sources */,
 				B5CE5AAC28C21EE30076BE6F /* ModelCoinLayer.swift in Sources */,
 				B5DB843628FB15C90081E32A /* UIImageView - DownloadImage.swift in Sources */,
 				B5DB843C28FBEDCB0081E32A /* UIColor.swift in Sources */,
@@ -352,9 +354,11 @@
 				B52EDAC628C71C6800594D97 /* FirstVCCell.swift in Sources */,
 				B5CE5AB128C622890076BE6F /* CurrentPostModel.swift in Sources */,
 				B5CE5AA928C21BF80076BE6F /* NetworkManagerCoinLayer.swift in Sources */,
+				B5DB844428FC1C490081E32A /* AlertBuilder.swift in Sources */,
 				B54EA22A28C07C2500535572 /* SceneDelegate.swift in Sources */,
 				B53E9EF328DDEC8D00055A82 /* PostsModel.swift in Sources */,
 				B5EF88B728DB067800C1F4AF /* ReadLaterCell.swift in Sources */,
+				B5DB844228FBFE4B0081E32A /* ModelNews.swift in Sources */,
 				B52EDACD28C88A9300594D97 /* CreateUrlString.swift in Sources */,
 				B5CE5AA328C208780076BE6F /* SupportData.swift in Sources */,
 				B5CE5A8328C10B1C0076BE6F /* ReadVC.swift in Sources */,

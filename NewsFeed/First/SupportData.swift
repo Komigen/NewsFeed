@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: Support data for creating custom a request
 
-public enum LanguagesCodes: String {
+enum LanguagesCodes: String {
     case Arabic = "ar"
     case German = "de"
     case English = "en"
@@ -18,7 +18,7 @@ public enum LanguagesCodes: String {
     case Chinese = "zh"
 }
 
-public enum CountrysCodes: String {
+enum CountrysCodes: String {
     case UnitedArabEmirates = "ae"
     case Argentina = "ar"
     case Austria = "at"

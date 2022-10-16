@@ -1,8 +1,6 @@
 import UIKit
 
-private var networkManagerCoinLayer = NetworkManagerCoinLayer()
-
-class RateVC: UIViewController {
+final class RateVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -11,18 +9,12 @@ class RateVC: UIViewController {
     
     private var dataArray = [String: Double]()
     private var filteredData = [String: Double]()
+    private var networkManagerCoinLayer = NetworkManagerCoinLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateThemeUi()
-        networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
-            guard let self = self else { return }
-            self.dataArray = currentRate
-            self.filteredData = self.dataArray
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -31,36 +23,45 @@ class RateVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateThemeUi()
+        
+        networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
+            guard let self = self else { return }
+            self.dataArray = currentRate
+            self.filteredData = self.dataArray
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.updateThemeUi()
         tableView.animateTableView()
     }
     
-    //MARK: Ui 0 - light theme, 1 - dark
+    //MARK: Update Ui
     
     private func updateThemeUi() {
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-        case true:
-            tableView.backgroundColor = UIColor.whiteCustom
-            self.view.backgroundColor = UIColor.whiteCustom
-            currencyRatesLabel.textColor = UIColor.blackCustom
-            self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-            
-        case false:
-            tableView.backgroundColor = UIColor.blackCustom
-            self.view.backgroundColor = UIColor.blackCustom
-            currencyRatesLabel.textColor = UIColor.whiteCustom
-            navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+        
+        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
+        if let safeAnswer = savedAnswer {
+            if safeAnswer {
+                tableView.backgroundColor = UIColor.whiteCustom
+                self.view.backgroundColor = UIColor.whiteCustom
+                currencyRatesLabel.textColor = UIColor.blackCustom
+                self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
+            } else {
+                tableView.backgroundColor = UIColor.blackCustom
+                self.view.backgroundColor = UIColor.blackCustom
+                currencyRatesLabel.textColor = UIColor.whiteCustom
+                navigationController?.navigationBar.barTintColor = UIColor.blackCustom
+                navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+            }
         }
         searchBar.createSettings()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 }
 
@@ -84,18 +85,18 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
             cell.imageIcon.downloadImageCoin(shortName: safeText)
         }
         
-        //UI true - light theme, false - dark
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-        case true:
-            cell.backgroundColor = UIColor.whiteCustom
-        case false:
-            cell.backgroundColor = UIColor.blackCustom
+        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
+        if let safeAnswer = savedAnswer {
+            if safeAnswer {
+                cell.backgroundColor = UIColor.whiteCustom
+            } else {
+                cell.backgroundColor = UIColor.blackCustom
+            }
         }
         cell.selectionStyle = .none
         return cell
     }
 }
-
 
 //MARK: Extension - SearchBar
 

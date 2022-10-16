@@ -6,7 +6,7 @@ class FirstVCCell: UITableViewCell {
         didSet {
             titleText.font.withSize(17.0)
             
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            switch userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool ?? true {
             case true: titleText.textColor = UIColor.blackCustom
                 print("Presented light display mode on RateVc")
             case false: titleText.textColor = UIColor.whiteCustom
@@ -27,7 +27,7 @@ class FirstVCCell: UITableViewCell {
             imagePost.layer.cornerRadius = 8.0
             imagePost.clipsToBounds = true
             imagePost.contentMode = .scaleAspectFill
-            switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
+            switch userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool ?? true {
             case true:  imagePost.backgroundColor = UIColor.whiteCustom
             case false: imagePost.backgroundColor = UIColor.blackCustom
             }

@@ -2,7 +2,7 @@ import UIKit
 
 extension UITableView {
     
-    public func animateTableView() {
+    func animateTableView() {
         self.reloadData()
         
         let cells = self.visibleCells

@@ -1,12 +1,12 @@
 import UIKit
 import RealmSwift
 
-class FirstVC: UIViewController {
+final class FirstVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var createStringUrl = CreateStringUrl()
+    private var createStringUrl = NetworkManagerNewsApi()
     private var imagesArray = [UIImage?]()
     private var postsArray = [CurrentPostModel]()
     
@@ -18,30 +18,32 @@ class FirstVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byCountrysHeadlines(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
-            switch result {
-            case .success(let articles):
-                self?.reloadPostsArray(articles: articles)
-            case .failure: break
-            }
-        }
         
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.searchBar.delegate = self
     }
     
+    //MARK: Запрос в сеть
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateThemeUi()
+        NetworkManagerNewsApi().fetchData(urlString: createStringUrl.createURL(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
+            switch result {
+            case .success(let articles):
+                self?.reloadPostsArray(articles: articles)
+            case .failure: break
+                // COMMENT: обработка ошибки, например, показать юзеру alert с надписью "Ошибка сети"
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.updateThemeUi()
         self.tableView.animateTableView()
     }
-        
+    
     //MARK: ReadVC - WebView
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,34 +53,32 @@ class FirstVC: UIViewController {
         }
     }
     
-    //MARK: Update Ui 0 - light theme, 1 - dark
+    //MARK: Update Ui
     
     private func updateThemeUi() {
         
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-            
-        case true:
-            tableView.backgroundColor = UIColor.whiteCustom
-            view.backgroundColor = UIColor.pinkLightCustom
-            navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-            tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
-            
-        case false:
-            tableView.backgroundColor = UIColor.blackCustom
-            view.backgroundColor = UIColor.blackCustom
-            navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-            tabBarController?.tabBar.barTintColor = UIColor.blackCustom
+        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
+        if let safeAnswer = savedAnswer {
+            if safeAnswer {
+                tableView.backgroundColor = UIColor.whiteCustom
+                view.backgroundColor = UIColor.pinkLightCustom
+                navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
+                navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
+                tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
+            } else {
+                tableView.backgroundColor = UIColor.blackCustom
+                view.backgroundColor = UIColor.blackCustom
+                navigationController?.navigationBar.barTintColor = UIColor.blackCustom
+                navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+                tabBarController?.tabBar.barTintColor = UIColor.blackCustom
+            }
         }
         searchBar.createSettings()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
 }
 
-//MARK: TableView
+//MARK: Extension - TableView
 
 extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     
@@ -103,12 +103,13 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         }()
         cell.imagePost.downloadImagePost(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
         
-        //UI true - light theme, false - dark
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-        case true:
-            cell.backgroundColor = UIColor.whiteCustom
-        case false:
-            cell.backgroundColor = UIColor.blackCustom
+        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
+        if let safeAnswer = savedAnswer {
+            if safeAnswer {
+                cell.backgroundColor = UIColor.whiteCustom
+            } else {
+                cell.backgroundColor = UIColor.blackCustom
+            }
         }
         cell.selectionStyle = .none
         return cell
@@ -150,7 +151,7 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-//MARK: Extensions
+//MARK: Extension - ReloadPosts
 
 extension FirstVC {
     
@@ -167,16 +168,18 @@ extension FirstVC {
     }
 }
 
+//MARK: Extension - UISearchBarDelegate
 
 extension FirstVC: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        if searchBar.text != "" {
-            NetworkManagerNewsApi().fetchData(urlString: createStringUrl.byPhrase(phrase: searchBar.text!)) { [weak self] result in
+        if let _ = searchBar.text {
+            NetworkManagerNewsApi().fetchData(urlString: createStringUrl.createURL(phrase: searchBar.text!)) { [weak self] result in
                 switch result {
                 case .success(let articles):
                     self?.reloadPostsArray(articles: articles)
+                    // ОШИБКА. Данные существующих ячеек не обновляются
                 case .failure: break
                 }
             }

@@ -4,7 +4,7 @@ import UIKit
 
 extension UISearchBar {
     
-    public func createSettings() {
+    func createSettings() {
         self.layer.cornerRadius = 16.0
         self.clipsToBounds = true
         self.barTintColor = UIColor.clear

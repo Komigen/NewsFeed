@@ -1,7 +1,7 @@
 import UIKit
 import RealmSwift
 
-class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class ReadLaterVC: UIViewController {
     
     //MARK: Realm
     
@@ -16,7 +16,7 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         realm = try! Realm()
         
         self.tableView.dataSource = self
@@ -26,9 +26,7 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateThemeUi()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+        self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -36,25 +34,24 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         self.tableView.animateTableView()
     }
     
-    //MARK: Update Ui - 0 - light theme, 1 - dark
+    //MARK: Update Ui
     
     private func updateThemeUi() {
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-            
-        case true:
-            tableView.backgroundColor = UIColor.whiteCustom
-            self.view.backgroundColor = UIColor.pinkLightCustom
-            self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-        case false:
-            tableView.backgroundColor = UIColor.blackCustom
-            self.view.backgroundColor = UIColor.blackCustom
-            self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-            self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
+        if let safeAnswer = savedAnswer {
+            if safeAnswer {
+                tableView.backgroundColor = UIColor.whiteCustom
+                self.view.backgroundColor = UIColor.pinkLightCustom
+                self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
+            } else {
+                tableView.backgroundColor = UIColor.blackCustom
+                self.view.backgroundColor = UIColor.blackCustom
+                self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
+            }
         }
     }
-    
-    
     //MARK: Delete action row
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -82,20 +79,18 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
             readVc.stringUrl = postsArray[indexPath.item].url ?? ""
         }
     }
-    
-    //MARK: TableView
+}
+
+//MARK: Extension - TableView
+
+extension ReadLaterVC: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if !postsArray.isEmpty {
-            return postsArray.count
-        } else {
-            return 0
-        }
+        postsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -114,12 +109,14 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         cell.shortContentLabel.text = currentPost.shortContent
         cell.imagePost.downloadImagePost(stringUrl: currentPost.urlToImage ?? "")
         
-        //UI true - light theme, false - dark
-        switch userDefaults.object(forKey: KeyForUserDefaults.themeKey) as? Bool ?? true {
-        case true:
-            cell.backgroundColor = UIColor.whiteCustom
-        case false:
-            cell.backgroundColor = UIColor.blackCustom
+        //Update UI
+        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
+        if let safeAnswer = savedAnswer {
+            if safeAnswer {
+                cell.backgroundColor = UIColor.whiteCustom
+            } else {
+                cell.backgroundColor = UIColor.blackCustom
+            }
         }
         cell.selectionStyle = .none
         
@@ -137,3 +134,4 @@ class ReadLaterVC: UIViewController, UITableViewDataSource, UITableViewDelegate 
         return 530.0
     }
 }
+
