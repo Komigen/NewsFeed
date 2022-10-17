@@ -17,10 +17,8 @@ class RateViewCell: UITableViewCell {
             if let safeAnswer = savedAnswer {
                 if safeAnswer {
                     shortNameRate.textColor = UIColor.blackCustom
-                    //print("Presented light display mode on RateVc")
                 } else {
                     shortNameRate.textColor = UIColor.whiteCustom
-                    //print("Presented dark display mode on RateVc")
                 }
             }
         }

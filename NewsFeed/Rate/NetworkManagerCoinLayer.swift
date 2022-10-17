@@ -15,7 +15,6 @@ final class NetworkManagerCoinLayer {
             
             if let safeError = error {
                 print(safeError)
-                //Отобразить ошибку в UI
             }
             
             if let safeData = data {
@@ -32,7 +31,6 @@ final class NetworkManagerCoinLayer {
             self.arrayRate = currentData.rates
         } catch {
             print("ERROR: parse JSON CoinLayer")
-            //Отобразить ошибку в UI
         }
     }
 }

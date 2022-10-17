@@ -127,7 +127,7 @@ final class SettingsVC: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
                 self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
                 self.tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
-                //            print("Presented light display mode on SettingsVc")
+                print("Presented light display mode on SettingsVc")
             } else {
                 segmentedControlLabel.selectedSegmentIndex = 1
                 
@@ -145,7 +145,7 @@ final class SettingsVC: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
                 self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
                 self.tabBarController?.tabBar.barTintColor = UIColor.blackCustom
-                //            print("Presented dark display mode on SettingsVc")
+                print("Presented dark display mode on SettingsVc")
             }
         }
     }

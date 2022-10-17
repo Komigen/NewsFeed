@@ -33,7 +33,6 @@ final class FirstVC: UIViewController {
             case .success(let articles):
                 self?.reloadPostsArray(articles: articles)
             case .failure: break
-                // COMMENT: обработка ошибки, например, показать юзеру alert с надписью "Ошибка сети"
             }
         }
     }
@@ -179,7 +178,6 @@ extension FirstVC: UISearchBarDelegate {
                 switch result {
                 case .success(let articles):
                     self?.reloadPostsArray(articles: articles)
-                    // ОШИБКА. Данные существующих ячеек не обновляются
                 case .failure: break
                 }
             }
