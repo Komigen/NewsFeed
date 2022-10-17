@@ -24,7 +24,7 @@ final class RateVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        networkManagerCoinLayer.fetchDataRates { [weak self] currentRate in
+        networkManagerCoinLayer.fetchDataRates(viewController: self) { [weak self] currentRate in
             guard let self = self else { return }
             self.dataArray = currentRate
             self.filteredData = self.dataArray

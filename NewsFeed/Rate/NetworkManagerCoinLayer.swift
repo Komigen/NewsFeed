@@ -1,12 +1,10 @@
 import UIKit
 
 final class NetworkManagerCoinLayer {
-    
-    
-    
+        
     private var arrayRate = [String: Double]()
     
-    func fetchDataRates(completion: @escaping([String: Double]) -> Void) {
+    func fetchDataRates(viewController: UIViewController, completion: @escaping([String: Double]) -> Void) {
         
         guard let url = URL(string: createURL()) else { print("ERROR: URL-address not valid.")
             return }
@@ -14,7 +12,10 @@ final class NetworkManagerCoinLayer {
         let task = session.dataTask(with: url) { (data, _, error) in
             
             if let safeError = error {
-                print(safeError)
+                print(safeError.localizedDescription)
+                DispatchQueue.main.async {
+                    viewController.present(createAlertController().createErrorAlert(), animated: true)
+                }
             }
             
             if let safeData = data {

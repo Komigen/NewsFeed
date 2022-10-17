@@ -1,19 +1,23 @@
 import Foundation
+import UIKit
 
 final class NetworkManagerNewsApi {
     
-    func fetchData(urlString: String, completion: @escaping (Result<[Article], Error>) -> Void) {
+    func fetchData(viewController: UIViewController, urlString: String, completion: @escaping (Result<[Article], Error>) -> Void) {
         
         guard let url = URL(string: urlString) else { print("ERROR: posts URL-address not valid.")
             return }
         
-        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 10.0)
+        let request = URLRequest(url: url)
         
         let session = URLSession.shared
         let task = session.dataTask(with: request as URLRequest) { (data, _, error) -> Void in
             
             if let safeError = error {
-                print(safeError)
+                print(safeError.localizedDescription)
+                DispatchQueue.main.async {
+                    viewController.present(createAlertController().createErrorAlert(), animated: true)
+                }
             }
             
             if let safeData = data {

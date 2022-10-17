@@ -28,11 +28,14 @@ final class FirstVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NetworkManagerNewsApi().fetchData(urlString: createStringUrl.createURL(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
+        NetworkManagerNewsApi().fetchData(viewController: self, urlString: createStringUrl.createURL(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
             switch result {
             case .success(let articles):
                 self?.reloadPostsArray(articles: articles)
-            case .failure: break
+            case .failure:
+                DispatchQueue.main.async {
+                self?.present(createAlertController().createErrorAlert(), animated: true)
+                }
             }
         }
     }
@@ -174,7 +177,7 @@ extension FirstVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if let _ = searchBar.text {
-            NetworkManagerNewsApi().fetchData(urlString: createStringUrl.createURL(phrase: searchBar.text!)) { [weak self] result in
+            NetworkManagerNewsApi().fetchData(viewController: self, urlString: createStringUrl.createURL(phrase: searchBar.text!)) { [weak self] result in
                 switch result {
                 case .success(let articles):
                     self?.reloadPostsArray(articles: articles)
