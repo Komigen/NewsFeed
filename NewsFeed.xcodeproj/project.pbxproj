@@ -144,6 +144,7 @@
 				B54EA24328C07D9500535572 /* View */,
 				B54EA24428C07DC900535572 /* SupportFiles */,
 				B53E9EF828E6D77800055A82 /* Extensions */,
+				B5E2421028FDE5D50029F755 /* AlertFactory */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -197,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				B5CE5A8A28C111CA0076BE6F /* FirstVC.swift */,
-				B5DB844328FC1C490081E32A /* AlertFactory.swift */,
 				B52EDAC528C71C6800594D97 /* FirstVCCell.swift */,
 				B5CE5AA228C208780076BE6F /* SupportData.swift */,
 				B5CE5AB028C622890076BE6F /* CurrentPostModel.swift */,
@@ -216,6 +216,15 @@
 				B5CE5AAB28C21EE30076BE6F /* ModelCoinLayer.swift */,
 			);
 			path = Rate;
+			sourceTree = "<group>";
+		};
+		B5E2421028FDE5D50029F755 /* AlertFactory */ = {
+			isa = PBXGroup;
+			children = (
+				B5DB844328FC1C490081E32A /* AlertFactory.swift */,
+			);
+			name = AlertFactory;
+			path = First;
 			sourceTree = "<group>";
 		};
 		F510740E3C37FF7ED5458EC5 /* Pods */ = {
