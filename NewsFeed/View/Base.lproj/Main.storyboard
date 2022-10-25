@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UwR-uI-eMg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UwR-uI-eMg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -24,11 +25,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="i7f-ch-ca4">
-                                <rect key="frame" x="17" y="139" width="380" height="757"/>
+                                <rect key="frame" x="17" y="148" width="380" height="748"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FirstCell" focusStyle="custom" rowHeight="110" id="f9G-UU-0ny" customClass="FirstVCCell" customModule="NewsFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="380" height="110"/>
+                                        <rect key="frame" x="0.0" y="50" width="380" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="f9G-UU-0ny" id="3Dp-k1-BHe">
                                             <rect key="frame" x="0.0" y="0.0" width="380" height="110"/>
@@ -81,7 +82,6 @@
                                             <outlet property="authorText" destination="CWn-hI-uo6" id="OdH-Q0-CLG"/>
                                             <outlet property="imagePost" destination="4FK-8y-GGd" id="Lhk-OW-u4y"/>
                                             <outlet property="titleText" destination="jYt-3F-Vsr" id="tO1-HK-dMR"/>
-                                            <segue destination="PkM-Mv-sXI" kind="show" identifier="webView" id="DC1-bg-dKM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -91,7 +91,7 @@
                                 </connections>
                             </tableView>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="BRX-ac-NSj">
-                                <rect key="frame" x="9" y="88" width="396" height="51"/>
+                                <rect key="frame" x="9" y="92" width="396" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" enablesReturnKeyAutomatically="YES" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes"/>
@@ -126,7 +126,7 @@
                             </imageReference>
                             <color key="tintColor" systemColor="systemGrayColor"/>
                             <connections>
-                                <segue destination="waw-Tg-Mme" kind="presentation" modalPresentationStyle="fullScreen" id="qpM-y8-qt7"/>
+                                <action selector="settingsBarButton:" destination="1ji-hm-Ek0" id="6CD-5O-MKr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -143,13 +143,13 @@
         <!--Settings-->
         <scene sceneID="GXM-ka-pqe">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="pRo-s4-fFb" userLabel="Settings" customClass="SettingsVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pRo-s4-fFb" userLabel="Settings" customClass="SettingsVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L0P-TX-2on">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="S4b-2Z-Drv">
-                                <rect key="frame" x="20" y="159.5" width="374" height="89"/>
+                                <rect key="frame" x="20" y="119.5" width="374" height="89"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7j-GZ-yKM">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="18"/>
@@ -179,7 +179,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvS-dU-WZf">
-                                <rect key="frame" x="20" y="98" width="374" height="31.5"/>
+                                <rect key="frame" x="20" y="58" width="374" height="31.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31.5" id="Hb3-KA-s2s"/>
                                 </constraints>
@@ -188,7 +188,7 @@
                                 <color key="highlightedColor" name="NavigatonButton"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="grb-LH-i7H">
-                                <rect key="frame" x="20" y="295.5" width="374" height="33.5"/>
+                                <rect key="frame" x="20" y="255.5" width="374" height="33.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sqM-Zb-4vz" userLabel="Low">
                                         <rect key="frame" x="0.0" y="0.0" width="12" height="33.5"/>
@@ -217,13 +217,13 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfc-Qr-Vf2">
-                                <rect key="frame" x="20" y="273.5" width="374" height="18"/>
+                                <rect key="frame" x="20" y="233.5" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qji-yg-MxE" userLabel="Example Font Size">
-                                <rect key="frame" x="20" y="341" width="374" height="150"/>
+                                <rect key="frame" x="20" y="301" width="374" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="oJy-W2-QgZ"/>
                                 </constraints>
@@ -274,6 +274,17 @@ In a court filing, Musk said the influential social media platform covered up se
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNC-TF-hS6">
+                                <rect key="frame" x="157" y="491" width="100" height="34.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="PZn-Tg-tZg"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Save"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="pRo-s4-fFb" eventType="touchUpInside" id="hfj-OF-gCP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hWv-iS-saO"/>
                         <color key="backgroundColor" name="ColorSetForBackground"/>
@@ -287,6 +298,7 @@ In a court filing, Musk said the influential social media platform covered up se
                             <constraint firstItem="QvS-dU-WZf" firstAttribute="leading" secondItem="hWv-iS-saO" secondAttribute="leading" constant="20" id="Jxb-Ir-oFD"/>
                             <constraint firstItem="BzT-pf-0oJ" firstAttribute="leading" secondItem="hWv-iS-saO" secondAttribute="leading" constant="20" id="MLe-Ww-8GZ"/>
                             <constraint firstItem="nX4-Eh-2J4" firstAttribute="top" secondItem="ko9-il-76d" secondAttribute="bottom" constant="10" id="NNV-vU-vNs"/>
+                            <constraint firstItem="UNC-TF-hS6" firstAttribute="centerX" secondItem="L0P-TX-2on" secondAttribute="centerX" id="NT7-pm-fWd"/>
                             <constraint firstItem="hWv-iS-saO" firstAttribute="trailing" secondItem="QvS-dU-WZf" secondAttribute="trailing" constant="20" id="Tsh-f5-8cv"/>
                             <constraint firstItem="grb-LH-i7H" firstAttribute="leading" secondItem="hWv-iS-saO" secondAttribute="leading" constant="20" id="UEZ-wG-6Pq"/>
                             <constraint firstItem="ChF-6k-RUi" firstAttribute="trailing" secondItem="BzT-pf-0oJ" secondAttribute="trailing" id="ZGG-zv-mhT"/>
@@ -299,6 +311,7 @@ In a court filing, Musk said the influential social media platform covered up se
                             <constraint firstItem="S4b-2Z-Drv" firstAttribute="leading" secondItem="hWv-iS-saO" secondAttribute="leading" constant="20" id="hBK-dk-vcv"/>
                             <constraint firstItem="hWv-iS-saO" firstAttribute="trailing" secondItem="Qji-yg-MxE" secondAttribute="trailing" constant="20" id="iO8-2r-SqR"/>
                             <constraint firstItem="jfc-Qr-Vf2" firstAttribute="top" secondItem="S4b-2Z-Drv" secondAttribute="bottom" constant="25" id="iRH-iG-APr"/>
+                            <constraint firstItem="UNC-TF-hS6" firstAttribute="top" secondItem="Qji-yg-MxE" secondAttribute="bottom" constant="40" id="icE-N6-J7e"/>
                             <constraint firstItem="nX4-Eh-2J4" firstAttribute="leading" secondItem="hWv-iS-saO" secondAttribute="leading" constant="20" id="ik5-sq-1Wx"/>
                             <constraint firstItem="QvS-dU-WZf" firstAttribute="top" secondItem="hWv-iS-saO" secondAttribute="top" constant="10" id="mGM-4G-VBn"/>
                             <constraint firstItem="ChF-6k-RUi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ko9-il-76d" secondAttribute="trailing" constant="8" symbolic="YES" id="mot-Wb-am8"/>
@@ -311,11 +324,7 @@ In a court filing, Musk said the influential social media platform covered up se
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="0YA-GT-kGD">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pp5-XG-mI6">
-                            <connections>
-                                <action selector="saveButton:" destination="pRo-s4-fFb" id="hgG-Fv-myW"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pp5-XG-mI6"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -329,22 +338,22 @@ In a court filing, Musk said the influential social media platform covered up se
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JBo-W0-ET8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5653.6231884057979" y="-92.410714285714278"/>
+            <point key="canvasLocation" x="5595.652173913044" y="752.67857142857144"/>
         </scene>
         <!--ReadLater-->
         <scene sceneID="cgx-Py-AJ9">
             <objects>
-                <viewController id="rLe-hO-fWs" userLabel="ReadLater" customClass="ReadLaterVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReadLaterVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rLe-hO-fWs" userLabel="ReadLater" customClass="ReadLaterVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s2M-ff-1qw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tNU-8k-Y2S">
-                                <rect key="frame" x="17" y="88" width="380" height="808"/>
+                                <rect key="frame" x="17" y="92" width="380" height="804"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReadLaterCell" rowHeight="530" id="BzE-fo-E8n" customClass="ReadLaterCell" customModule="NewsFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="380" height="530"/>
+                                        <rect key="frame" x="0.0" y="50" width="380" height="530"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BzE-fo-E8n" id="E81-NL-49I">
                                             <rect key="frame" x="0.0" y="0.0" width="380" height="530"/>
@@ -415,7 +424,6 @@ In a court filing, Musk said the influential social media platform covered up se
                                             <outlet property="shortContentLabel" destination="c0o-0I-7Ck" id="pVQ-rw-cYn"/>
                                             <outlet property="sourceLabel" destination="uRy-9W-CJJ" id="8WB-ph-pc0"/>
                                             <outlet property="titleLabel" destination="vau-9n-8CN" id="hzz-7V-kyg"/>
-                                            <segue destination="PkM-Mv-sXI" kind="show" id="a8r-fs-ytL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -441,7 +449,7 @@ In a court filing, Musk said the influential social media platform covered up se
                             </imageReference>
                             <color key="tintColor" systemColor="systemGrayColor"/>
                             <connections>
-                                <segue destination="waw-Tg-Mme" kind="presentation" modalPresentationStyle="fullScreen" id="GeL-R0-bjH"/>
+                                <action selector="settingsBarButton:" destination="rLe-hO-fWs" id="Hcs-5A-8R9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -462,23 +470,23 @@ In a court filing, Musk said the influential social media platform covered up se
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="DcD-xa-UHF">
-                                <rect key="frame" x="12" y="136.5" width="390" height="51"/>
+                                <rect key="frame" x="12" y="140.5" width="390" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" keyboardAppearance="alert" returnKeyType="search" enablesReturnKeyAutomatically="YES" smartDashesType="yes" smartInsertDeleteType="yes" smartQuotesType="yes" textContentType="name"/>
                             </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crypto Rate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6p-EG-fSB">
-                                <rect key="frame" x="20" y="101" width="145" height="31.5"/>
+                                <rect key="frame" x="20" y="105" width="145" height="31.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                 <color key="textColor" name="ColorSetForBarButton"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="86G-R1-PiC">
-                                <rect key="frame" x="20" y="191.5" width="374" height="704.5"/>
+                                <rect key="frame" x="20" y="200.5" width="374" height="695.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RateCell" rowHeight="66" id="ywt-9k-yh3" userLabel="RateCell" customClass="RateViewCell" customModule="NewsFeed" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="374" height="66"/>
+                                        <rect key="frame" x="0.0" y="50" width="374" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ywt-9k-yh3" id="meu-ez-KXu">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="66"/>
@@ -567,14 +575,13 @@ In a court filing, Musk said the influential social media platform covered up se
                             </imageReference>
                             <color key="tintColor" systemColor="systemGrayColor"/>
                             <connections>
-                                <segue destination="waw-Tg-Mme" kind="presentation" modalPresentationStyle="fullScreen" id="iK3-2h-KSc"/>
+                                <action selector="SettingsBarButton:" destination="GX8-tR-daD" id="2j1-iE-fWL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="currencyRatesLabel" destination="N6p-EG-fSB" id="gZZ-gD-OUr"/>
                         <outlet property="searchBar" destination="DcD-xa-UHF" id="FTX-Hl-kTR"/>
-                        <outlet property="settingsButtonOutlet" destination="6UX-ea-R15" id="uit-B5-PkU"/>
                         <outlet property="tableView" destination="86G-R1-PiC" id="fp7-Wa-zn7"/>
                     </connections>
                 </viewController>
@@ -585,7 +592,7 @@ In a court filing, Musk said the influential social media platform covered up se
         <!--Read-->
         <scene sceneID="24a-MN-ezY">
             <objects>
-                <viewController id="PkM-Mv-sXI" userLabel="Read" customClass="ReadVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReadVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PkM-Mv-sXI" userLabel="Read" customClass="ReadVC" customModule="NewsFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZsH-v4-EGD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -605,7 +612,7 @@ In a court filing, Musk said the influential social media platform covered up se
                     <tabBarItem key="tabBarItem" image="house.fill" catalog="system" id="Msy-Kw-Ri5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sHU-kV-Ouh">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -624,7 +631,7 @@ In a court filing, Musk said the influential social media platform covered up se
                     <tabBarItem key="tabBarItem" title="" image="bookmark" catalog="system" id="lXX-eH-UWZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MJe-x7-li6">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -643,7 +650,7 @@ In a court filing, Musk said the influential social media platform covered up se
                     <tabBarItem key="tabBarItem" title="" image="bitcoinsign.square.fill" catalog="system" id="362-iO-TXK"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iQ8-v0-Nhv">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -654,25 +661,6 @@ In a court filing, Musk said the influential social media platform covered up se
                 <placeholder placeholderIdentifier="IBFirstResponder" id="veK-Z6-vDs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2513.04347826087" y="1727.6785714285713"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Z7l-zR-iyX">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="waw-Tg-Mme" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="wHW-NT-7zP"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="xoR-Lq-Scd">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="pRo-s4-fFb" kind="relationship" relationship="rootViewController" id="x74-gU-OZy"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wCe-Ic-Eja" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4744.927536231884" y="-92.410714285714278"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="6Nb-TM-jTS">
@@ -696,16 +684,12 @@ In a court filing, Musk said the influential social media platform covered up se
             <point key="canvasLocation" x="1602.8985507246377" y="1007.8125"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="iK3-2h-KSc"/>
-        <segue reference="DC1-bg-dKM"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="bitcoinsign.square.fill" catalog="system" width="128" height="114"/>
-        <image name="bookmark" catalog="system" width="112" height="128"/>
+        <image name="bookmark" catalog="system" width="110" height="128"/>
         <image name="coinLayer" width="1170" height="407"/>
-        <image name="gearshape" catalog="system" width="128" height="121"/>
-        <image name="house.fill" catalog="system" width="128" height="106"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
         <image name="newsApi" width="1097" height="376"/>
         <image name="square.text.square" catalog="system" width="128" height="114"/>
         <namedColor name="ColorSetForBackground">
@@ -718,7 +702,7 @@ In a court filing, Musk said the influential social media platform covered up se
             <color red="0.11400000005960464" green="0.11400000005960464" blue="0.11800000071525574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
@@ -736,7 +720,7 @@ In a court filing, Musk said the influential social media platform covered up se
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

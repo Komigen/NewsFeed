@@ -34,7 +34,7 @@ final class FirstVC: UIViewController {
                 self?.reloadPostsArray(articles: articles)
             case .failure:
                 DispatchQueue.main.async {
-                self?.present(createAlertController().createErrorAlert(), animated: true)
+                    self?.present(createAlertController().createErrorAlert(), animated: true)
                 }
             }
         }
@@ -44,15 +44,6 @@ final class FirstVC: UIViewController {
         super.viewDidAppear(animated)
         self.updateThemeUi()
         self.tableView.animateTableView()
-    }
-    
-    //MARK: ReadVC - WebView
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let readVc = segue.destination as? ReadVC {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            readVc.stringUrl = postsArray[indexPath.item].url ?? ""
-        }
     }
     
     //MARK: Update Ui
@@ -77,6 +68,25 @@ final class FirstVC: UIViewController {
         }
         searchBar.createSettings()
         self.tableView.reloadData()
+    }
+    
+    //MARK: ReadVC - WebView
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath == tableView.indexPathForSelectedRow else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let readVC = storyboard.instantiateViewController(identifier: "ReadVC") as? ReadVC else { return }
+        readVC.stringUrl = postsArray[indexPath.item].url ?? ""
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(readVC, animated: true)
+        }
+    }
+    
+    //MARK: FirstVC - SettingsVC
+    
+    @IBAction func settingsBarButton(_ sender: UIBarButtonItem) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

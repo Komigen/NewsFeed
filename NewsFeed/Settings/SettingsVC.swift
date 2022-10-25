@@ -82,8 +82,7 @@ final class SettingsVC: UIViewController {
         }
     }
     
-    @IBAction func saveButton(_ sender: UIBarButtonItem) {
-        
+    @IBAction func saveButton(_ sender: UIButton) {
         if let _ = currentFontSize{
             userDefaults.set(currentFontSize, forKey: KeyForUserDefaults.font)
         }
@@ -95,6 +94,7 @@ final class SettingsVC: UIViewController {
         if let _ = isLightTheme {
             userDefaults.set(isLightTheme, forKey: KeyForUserDefaults.isLightTheme)
         }
+        navigationController?.popViewController(animated: true)
         self.dismiss(animated: true)
     }
     

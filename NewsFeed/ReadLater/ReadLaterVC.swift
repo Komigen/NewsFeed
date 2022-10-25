@@ -71,13 +71,23 @@ final class ReadLaterVC: UIViewController {
         }
     }
     
-    //MARK: ReadVC - WebView
+    //MARK: ReadLaterVC - WebView
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let readVc = segue.destination as? ReadVC {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            readVc.stringUrl = postsArray[indexPath.item].url ?? ""
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath == tableView.indexPathForSelectedRow else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let readVC = storyboard.instantiateViewController(identifier: "ReadVC") as? ReadVC else { return }
+        readVC.stringUrl = postsArray[indexPath.item].url ?? ""
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(readVC, animated: true)
         }
+    }
+    
+    //MARK: ReadVC - SettingsVC
+    
+    @IBAction func settingsBarButton(_ sender: UIBarButtonItem) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

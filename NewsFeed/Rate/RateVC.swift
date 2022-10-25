@@ -5,16 +5,13 @@ final class RateVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var currencyRatesLabel: UILabel!
-    @IBOutlet weak var settingsButtonOutlet: UIBarButtonItem!
     
     private var dataArray = [String: Double]()
     private var filteredData = [String: Double]()
     private var networkManagerCoinLayer = NetworkManagerCoinLayer()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        updateThemeUi()
-        
+        super.viewDidLoad()        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -63,7 +60,15 @@ final class RateVC: UIViewController {
         searchBar.createSettings()
         self.tableView.reloadData()
     }
+    
+    //MARK: RateVC - SettingsVC
+    
+    @IBAction func SettingsBarButton(_ sender: UIBarButtonItem) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "SettingsVC") else { return }
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
+
 
 //MARK: Extension - TableView
 
