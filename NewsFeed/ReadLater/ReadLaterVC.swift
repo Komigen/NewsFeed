@@ -25,7 +25,6 @@ final class ReadLaterVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateThemeUi()
         self.tableView.reloadData()
     }
     
@@ -34,24 +33,6 @@ final class ReadLaterVC: UIViewController {
         self.tableView.animateTableView()
     }
     
-    //MARK: Update Ui
-    
-    private func updateThemeUi() {
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                tableView.backgroundColor = UIColor.whiteCustom
-                self.view.backgroundColor = UIColor.pinkLightCustom
-                self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-            } else {
-                tableView.backgroundColor = UIColor.blackCustom
-                self.view.backgroundColor = UIColor.blackCustom
-                self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-            }
-        }
-    }
     //MARK: Delete action row
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -118,16 +99,6 @@ extension ReadLaterVC: UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = currentPost.title
         cell.shortContentLabel.text = currentPost.shortContent
         cell.imagePost.downloadImagePost(stringUrl: currentPost.urlToImage ?? "")
-        
-        //Update UI
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                cell.backgroundColor = UIColor.whiteCustom
-            } else {
-                cell.backgroundColor = UIColor.blackCustom
-            }
-        }
         cell.selectionStyle = .none
         
         let layer = cell.layer

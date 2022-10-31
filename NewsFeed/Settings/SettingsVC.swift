@@ -3,9 +3,8 @@ import UIKit
 let userDefaults = UserDefaults.standard
 
 enum KeyForUserDefaults {
-    static let font = "font"
-    static let isLightTheme = "theme"
     static let slider = "slider"
+    static let isLightTheme = "isLightTheme"
 }
 
 //MARK: Settings and UserDefaults
@@ -15,7 +14,6 @@ final class SettingsVC: UIViewController {
     //MARK: General settings and constants for the application
     
     private var currentsSiderValue: Float?
-    private var currentFontSize: CGFloat?
     private var isLightTheme: Bool?
     
     @IBOutlet weak var settingsLabel: UILabel!
@@ -24,6 +22,7 @@ final class SettingsVC: UIViewController {
     
     @IBOutlet weak var segmentedControlLabel: UISegmentedControl!
     @IBOutlet weak var fontSizeLabel: UILabel!
+    
     @IBOutlet weak var sliderOutlet: UISlider! {
         didSet {
             sliderOutlet.minimumValue = 16.0
@@ -44,48 +43,26 @@ final class SettingsVC: UIViewController {
     @IBAction func fontSizeSlider(_ sender: UISlider) {
         let senderValue = CGFloat(sender.value)
         fontSizeLabel.font = UIFont(name: fontSizeLabel.font.fontName, size: senderValue)
-        currentFontSize = senderValue
         currentsSiderValue = Float(senderValue)
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
+            let window = UIApplication.shared.keyWindow
+            window?.overrideUserInterfaceStyle = .light
+            
             isLightTheme = true
-        } else if sender.selectedSegmentIndex == 1 {
+        } else {
+            let window = UIApplication.shared.keyWindow
+            window?.overrideUserInterfaceStyle = .dark
+            
             isLightTheme = false
-        }
-        if let safeIsLightTheme = isLightTheme {
-            if safeIsLightTheme {
-                settingsLabel.textColor = UIColor.blackCustom
-                smallA.textColor = UIColor.blackCustom
-                largeA.textColor = UIColor.blackCustom
-                
-                sliderOutlet.minimumTrackTintColor = UIColor.systemGrayCustom
-                sliderOutlet.maximumTrackTintColor = UIColor.systemGray6Custom
-                segmentedControlLabel.selectedSegmentTintColor = UIColor.whiteCustom
-                segmentedControlLabel.backgroundColor = UIColor.systemGrayCustom
-                self.view.backgroundColor = UIColor.whiteCustom
-                
-            } else {
-                
-                settingsLabel.textColor = UIColor.whiteCustom
-                smallA.textColor = UIColor.whiteCustom
-                largeA.textColor = UIColor.whiteCustom
-                
-                sliderOutlet.minimumTrackTintColor = UIColor.systemGray6Custom
-                sliderOutlet.maximumTrackTintColor = UIColor.darkGrayCustom
-                segmentedControlLabel.selectedSegmentTintColor = UIColor.darkGrayCustom
-                segmentedControlLabel.backgroundColor = UIColor.systemGray6Custom
-                self.view.backgroundColor = UIColor.blackCustom
-            }
         }
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-        if let _ = currentFontSize{
-            userDefaults.set(currentFontSize, forKey: KeyForUserDefaults.font)
-        }
+        
         
         if let _ = currentsSiderValue {
             userDefaults.set(currentsSiderValue, forKey: KeyForUserDefaults.slider)
@@ -102,56 +79,16 @@ final class SettingsVC: UIViewController {
     
     private func updateThemeUi() {
         
-        fontSizeLabel.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.font) as? CGFloat ?? 19.0)
-        
         sliderOutlet.value = ((userDefaults.object(forKey: KeyForUserDefaults.slider) as? Float) ?? sliderOutlet.value)
+        fontSizeLabel.font = UIFont(name: fontSizeLabel.font.fontName, size: CGFloat(sliderOutlet.value))
         
-        isLightTheme = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool ?? true
-        
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                segmentedControlLabel.selectedSegmentIndex = 0
-                
-                sliderOutlet.minimumTrackTintColor = UIColor.systemGrayCustom
-                sliderOutlet.maximumTrackTintColor = UIColor.systemGray6Custom
-                
-                self.view.backgroundColor = UIColor.whiteCustom
-                segmentedControlLabel.selectedSegmentTintColor = UIColor.whiteCustom
-                segmentedControlLabel.backgroundColor = UIColor.systemGrayCustom
-                
-                settingsLabel.textColor = UIColor.blackCustom
-                smallA.textColor = UIColor.blackCustom
-                largeA.textColor = UIColor.blackCustom
-                
-                self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-                self.tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
-                print("Presented light display mode on SettingsVc")
+        segmentedControlLabel.selectedSegmentIndex = {
+            let theme = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool ?? true
+            if theme {
+                return 0
             } else {
-                segmentedControlLabel.selectedSegmentIndex = 1
-                
-                sliderOutlet.minimumTrackTintColor = UIColor.systemGray6Custom
-                sliderOutlet.maximumTrackTintColor = UIColor.darkGrayCustom
-                
-                self.view.backgroundColor = UIColor.blackCustom
-                segmentedControlLabel.selectedSegmentTintColor = UIColor.darkGrayCustom
-                segmentedControlLabel.backgroundColor = UIColor.systemGray6Custom
-                
-                settingsLabel.textColor = UIColor.whiteCustom
-                smallA.textColor = UIColor.whiteCustom
-                largeA.textColor = UIColor.whiteCustom
-                
-                self.navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-                self.tabBarController?.tabBar.barTintColor = UIColor.blackCustom
-                print("Presented dark display mode on SettingsVc")
+                return 1
             }
-        }
+        }()
     }
-}
-
-
-extension NSNotification.Name {
-    static let savedSettings = NSNotification.Name.init(rawValue: "savedSettings")
 }

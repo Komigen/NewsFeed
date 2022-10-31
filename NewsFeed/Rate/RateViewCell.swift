@@ -2,6 +2,8 @@ import UIKit
 
 class RateViewCell: UITableViewCell {
     
+    private var fontSize = CGFloat((userDefaults.object(forKey: KeyForUserDefaults.slider) as? Float ?? 19.0))
+    
     @IBOutlet weak var imageIcon: UIImageView! {
         didSet {
             imageIcon.layer.cornerRadius = 8.0
@@ -11,48 +13,21 @@ class RateViewCell: UITableViewCell {
     
     @IBOutlet weak var shortNameRate: UILabel! {
         didSet {
-            shortNameRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.font) as? CGFloat ?? 16.0)
-            
-            let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-            if let safeAnswer = savedAnswer {
-                if safeAnswer {
-                    shortNameRate.textColor = UIColor.blackCustom
-                } else {
-                    shortNameRate.textColor = UIColor.whiteCustom
-                }
-            }
+            shortNameRate.font.withSize(fontSize)
         }
     }
     
     @IBOutlet weak var valueRate: UILabel! {
         didSet {
-            valueRate.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.font) as? CGFloat ?? 16.0)
-            
-            let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-            if let safeAnswer = savedAnswer {
-                if safeAnswer {
-                    valueRate.textColor = UIColor.blackCustom
-                } else {
-                    valueRate.textColor = UIColor.whiteCustom
-                }
-            }
+            valueRate.font.withSize(fontSize)
         }
     }
     
     @IBOutlet weak private var dollarSymbol: UILabel! {
         didSet {
-            dollarSymbol.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.font) as? CGFloat ?? 16.0)
-            
-            let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-            if let safeAnswer = savedAnswer {
-                if safeAnswer {
-                    dollarSymbol.textColor = UIColor.blackCustom
-                } else {
-                    dollarSymbol.textColor = UIColor.whiteCustom
-                }
-            }
+            dollarSymbol.font.withSize(fontSize)
         }
     }
 }
-    
-    
+
+

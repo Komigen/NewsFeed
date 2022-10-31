@@ -23,18 +23,11 @@ class ReadLaterCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!  {
         didSet {
             titleLabel.font.withSize(26.0)
-            let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-            if let safeAnswer = savedAnswer {
-                if safeAnswer {
-                } else { titleLabel.textColor = UIColor.blackCustom
-                    titleLabel.textColor = UIColor.whiteCustom
-                }
-            }
         }
     }
     @IBOutlet weak var shortContentLabel: UILabel!{
         didSet {
-            shortContentLabel.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.font) as? CGFloat ?? 16.0)
+            shortContentLabel.font.withSize(userDefaults.object(forKey: KeyForUserDefaults.slider) as? CGFloat ?? 16.0)
             shortContentLabel.textColor = UIColor.systemGrayCustom
         }
     }

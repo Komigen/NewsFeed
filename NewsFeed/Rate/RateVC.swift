@@ -33,32 +33,7 @@ final class RateVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.updateThemeUi()
         tableView.animateTableView()
-    }
-    
-    //MARK: Update Ui
-    
-    private func updateThemeUi() {
-        
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                tableView.backgroundColor = UIColor.whiteCustom
-                self.view.backgroundColor = UIColor.whiteCustom
-                currencyRatesLabel.textColor = UIColor.blackCustom
-                self.navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-            } else {
-                tableView.backgroundColor = UIColor.blackCustom
-                self.view.backgroundColor = UIColor.blackCustom
-                currencyRatesLabel.textColor = UIColor.whiteCustom
-                navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-                navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-            }
-        }
-        searchBar.createSettings()
-        self.tableView.reloadData()
     }
     
     //MARK: RateVC - SettingsVC
@@ -89,15 +64,7 @@ extension RateVC: UITableViewDataSource, UITableViewDelegate {
         if let safeText = cell.shortNameRate.text {
             cell.imageIcon.downloadImageCoin(shortName: safeText)
         }
-        
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                cell.backgroundColor = UIColor.whiteCustom
-            } else {
-                cell.backgroundColor = UIColor.blackCustom
-            }
-        }
+
         cell.selectionStyle = .none
         return cell
     }

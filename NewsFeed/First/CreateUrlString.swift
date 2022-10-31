@@ -13,9 +13,4 @@ extension NetworkManagerNewsApi {
     func createURL(countryCodes: String) -> String {
         return "https://newsapi.org/v2/top-headlines?country=\(countryCodes)&apiKey=\(apiKey)"
     }
-    
-    //MARK: Top headlines by Phrase
-//    func createURL(phrase: String) -> String {
-//        return "https://newsapi.org/v2/top-headlines?q=\(phrase)&apiKey=\(apiKey)"
-//    }
 }

@@ -20,8 +20,8 @@ final class FirstVC: UIViewController {
         super.viewDidLoad()
         
         self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.searchBar.delegate = self
+        self.tableView.delegate   = self
+        self.searchBar.delegate   = self
     }
     
     //MARK: Запрос в сеть
@@ -42,32 +42,7 @@ final class FirstVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.updateThemeUi()
         self.tableView.animateTableView()
-    }
-    
-    //MARK: Update Ui
-    
-    private func updateThemeUi() {
-        
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                tableView.backgroundColor = UIColor.whiteCustom
-                view.backgroundColor = UIColor.pinkLightCustom
-                navigationController?.navigationBar.barTintColor = UIColor.whiteCustom
-                navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blackCustom]
-                tabBarController?.tabBar.barTintColor = UIColor.whiteCustom
-            } else {
-                tableView.backgroundColor = UIColor.blackCustom
-                view.backgroundColor = UIColor.blackCustom
-                navigationController?.navigationBar.barTintColor = UIColor.blackCustom
-                navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.whiteCustom]
-                tabBarController?.tabBar.barTintColor = UIColor.blackCustom
-            }
-        }
-        searchBar.createSettings()
-        self.tableView.reloadData()
     }
     
     //MARK: ReadVC - WebView
@@ -108,7 +83,7 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
         cell.titleText.text = postsArray[indexPath.item].title
         cell.authorText.text = {
             if let author = postsArray[indexPath.item].author {
-                return "Opinion by \(author)"
+                return "\(author)"
             } else {
                 return "Author unknown"
             }
