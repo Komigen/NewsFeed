@@ -16,7 +16,6 @@ extension UIImageView {
             }
         }
         task.resume()
-//        print("SUCCESSED downloading ImagePost")
     }
     
     func downloadImageCoin(shortName: String) {

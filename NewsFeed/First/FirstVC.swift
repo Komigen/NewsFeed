@@ -31,7 +31,7 @@ final class FirstVC: UIViewController {
         NetworkManagerNewsApi().fetchData(viewController: self, urlString: createStringUrl.createURL(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
             switch result {
             case .success(let articles):
-                self?.reloadPostsArray(articles: articles)
+                    self?.reloadPostsArray(articles: articles)
             case .failure:
                 DispatchQueue.main.async {
                     self?.present(createAlertController().createErrorAlert(), animated: true)
@@ -89,16 +89,8 @@ extension FirstVC: UITableViewDataSource, UITableViewDelegate {
             }
         }()
         cell.imagePost.downloadImagePost(stringUrl: postsArray[indexPath.item].urlToImage ?? "")
-        
-        let savedAnswer = userDefaults.object(forKey: KeyForUserDefaults.isLightTheme) as? Bool
-        if let safeAnswer = savedAnswer {
-            if safeAnswer {
-                cell.backgroundColor = UIColor.whiteCustom
-            } else {
-                cell.backgroundColor = UIColor.blackCustom
-            }
-        }
         cell.selectionStyle = .none
+        
         return cell
     }
     

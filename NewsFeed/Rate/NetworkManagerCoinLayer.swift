@@ -17,7 +17,7 @@ final class NetworkManagerCoinLayer {
                     viewController.present(createAlertController().createErrorAlert(), animated: true)
                 }
             }
-            
+
             if let safeData = data {
                 self.parseJSON(withData: safeData)
                 completion(self.arrayRate)
@@ -30,8 +30,8 @@ final class NetworkManagerCoinLayer {
         do {
             let currentData = try JSONDecoder().decode(RatesModel.self, from: data)
             self.arrayRate = currentData.rates
-        } catch {
-            print("ERROR: parse JSON CoinLayer")
+        } catch let error {
+            print("ERROR: parse JSON CoinLayer. \(error.localizedDescription). Необходимо заменить ключ на следующий")
         }
     }
 }
@@ -41,8 +41,9 @@ final class NetworkManagerCoinLayer {
 extension NetworkManagerCoinLayer {
     private var apiKey1: String { return "6668744690fd8c840e335ed7d0ca796f" }
     private var apiKey2: String { return "bb5e94afb7945f8762b53977431c32ea" }
-    
+    private var apiKey3: String { return "4ee82450cd9923f7f05beab02782ef7c" }
+
     func createURL() -> String {
-        return "http://api.coinlayer.com/api/live?access_key=\(apiKey2)&target=USD"
+        return "http://api.coinlayer.com/api/live?access_key=\(apiKey3)&target=USD"
     }
 }

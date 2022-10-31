@@ -30,11 +30,6 @@ final class SettingsVC: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateThemeUi()
@@ -49,13 +44,23 @@ final class SettingsVC: UIViewController {
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-            let window = UIApplication.shared.keyWindow
-            window?.overrideUserInterfaceStyle = .light
-            
+            UIApplication
+                .shared
+                .connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .flatMap { $0.windows }
+                .first { $0.isKeyWindow }?.overrideUserInterfaceStyle = .light
+
             isLightTheme = true
+            
         } else {
-            let window = UIApplication.shared.keyWindow
-            window?.overrideUserInterfaceStyle = .dark
+            
+            UIApplication
+                .shared
+                .connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .flatMap { $0.windows }
+                .first { $0.isKeyWindow }?.overrideUserInterfaceStyle = .dark
             
             isLightTheme = false
         }
