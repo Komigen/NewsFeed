@@ -6,7 +6,7 @@ final class FirstVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var createStringUrl = NetworkManagerNewsApi()
+    private var networkManagerNewsApi = NetworkManagerNewsApi()
     private var imagesArray = [UIImage?]()
     private var postsArray = [CurrentPostModel]()
     
@@ -28,14 +28,15 @@ final class FirstVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NetworkManagerNewsApi().fetchData(viewController: self, urlString: createStringUrl.createURL(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
+        
+        networkManagerNewsApi.fetchData(viewController: self, urlString: networkManagerNewsApi.createURL(countryCodes: CountrysCodes.UnitedStates.rawValue)) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let articles):
-                    self?.reloadPostsArray(articles: articles)
+                self.reloadPostsArray(articles: articles)
+                self.tableView.reloadData()
             case .failure:
-                DispatchQueue.main.async {
-                    self?.present(createAlertController().createErrorAlert(), animated: true)
-                }
+                    self.present(createAlertController().createErrorAlert(), animated: true)
             }
         }
     }
@@ -154,7 +155,7 @@ extension FirstVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         if let _ = searchBar.text {
-            NetworkManagerNewsApi().fetchData(viewController: self, urlString: createStringUrl.createURL(phrase: searchBar.text!)) { [weak self] result in
+            NetworkManagerNewsApi().fetchData(viewController: self, urlString: networkManagerNewsApi.createURL(phrase: searchBar.text!)) { [weak self] result in
                 switch result {
                 case .success(let articles):
                     self?.reloadPostsArray(articles: articles)
