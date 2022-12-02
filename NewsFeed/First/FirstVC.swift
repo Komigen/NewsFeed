@@ -36,7 +36,7 @@ final class FirstVC: UIViewController {
                 self.reloadPostsArray(articles: articles)
                 self.tableView.reloadData()
             case .failure:
-                    self.present(createAlertController().createErrorAlert(), animated: true)
+                    self.present(СreateAlertController().createErrorAlert(), animated: true)
             }
         }
     }
@@ -166,4 +166,3 @@ extension FirstVC: UISearchBarDelegate {
         }
     }
 }
-

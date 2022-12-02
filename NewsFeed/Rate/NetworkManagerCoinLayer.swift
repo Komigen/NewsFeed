@@ -14,7 +14,7 @@ final class NetworkManagerCoinLayer {
             if let safeError = error {
                 print(safeError.localizedDescription)
                 DispatchQueue.main.async {
-                    viewController.present(createAlertController().createErrorAlert(), animated: true)
+                    viewController.present(СreateAlertController().createErrorAlert(), animated: true)
                 }
             }
 

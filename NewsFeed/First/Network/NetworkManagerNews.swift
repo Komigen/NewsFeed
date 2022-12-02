@@ -16,12 +16,12 @@ final class NetworkManagerNewsApi {
             if let safeError = error {
                 print(safeError.localizedDescription)
                 DispatchQueue.main.async {
-                    viewController.present(createAlertController().createErrorAlert(), animated: true)
+                    viewController.present(СreateAlertController().createErrorAlert(), animated: true)
                 }
             }
             
             if let safeData = data {
-                
+
                 do {
                     let result = try JSONDecoder().decode(ModelNews.self, from: safeData)
                     DispatchQueue.main.async {

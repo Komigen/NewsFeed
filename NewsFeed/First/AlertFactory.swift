@@ -6,7 +6,7 @@ protocol AlertFactory: AnyObject {
 }
 
 
-class createAlertController: AlertFactory {
+class СreateAlertController: AlertFactory {
     
     var someVC: UIViewController?
     
